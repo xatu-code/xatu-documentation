@@ -2,12 +2,12 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'xatu'
+copyright = '2024, Atomelix'
+author = 'Atomelix'
 
-release = '0.1'
-version = '0.1.0'
+release = '1.0'
+version = '1.3.1'
 
 # -- General configuration
 

@@ -32,7 +32,7 @@ Documentation Contents
    :caption: Theory and Methods
 
    methods/screening
-   methods/bse
+   methods/BSE
    methods/optical_properties
 
 .. toctree::

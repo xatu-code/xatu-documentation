@@ -1,82 +1,66 @@
-=====================================
+===============================
 Screening Potentials in Xatu
-=====================================
+===============================
 
-In Xatu, the electron-hole interaction kernel in the Bethe-Salpeter Equation (BSE) is built assuming point-like localized orbitals and a phenomenological screening. Two models are implemented to describe the screened Coulomb interaction:
+Xatu supports two real-space interaction potentials used in the Bethe-Salpeter Equation:
 
-- The **bare Coulomb potential**
-- The **Rytova-Keldysh potential**, suitable for 2D systems
+1. **Coulomb potential**
+2. **Rytova–Keldysh potential**
 
-These screening models are used to compute the direct and exchange terms of the BSE kernel either in real space or reciprocal space.
+These govern the electron–hole interaction and are used to build the interaction kernel.
 
 .. contents::
    :local:
    :depth: 2
 
-Coulomb Interaction
-=====================
+Coulomb Potential
+===================
 
-The standard 3D Coulomb interaction is used as the default in vacuum and bulk systems:
-
-.. math::
-
-   V(r) = \frac{e^2}{4\pi\epsilon_0 \epsilon_r r}
-
-In reciprocal space:
+The standard Coulomb interaction in real space is defined as:
 
 .. math::
 
-   V(\mathbf{q}) = \frac{e^2}{\epsilon_0 \epsilon_r q^2}
+   V(\mathbf{r}) = \frac{e^2}{4 \pi \varepsilon_0 |\mathbf{r}|}
 
-where \( a \) is the in-plane lattice constant. In Fourier-based calculations, the divergence at \( q=0 \) is removed by setting \( V(q=0) = 0 \).
+In the implementation, this interaction is:
 
-Rytova-Keldysh Potential
-==========================
+- Regularized at $ r = 0 $ using a small `regularization` parameter
+- Truncated beyond a distance cutoff defined from the lattice parameter
 
-The Rytova-Keldysh model describes screened Coulomb interactions in two-dimensional (2D) materials embedded in a dielectric environment:
+In code terms:
+
+.. code-block:: cpp
+
+   return (R != 0) ? ec/(4E-10*PI*eps0*R)
+                  : ec*1E10/(4*PI*eps0*regularization);
+
+This option is appropriate when long-range unscreened interactions are desired.
+
+Rytova–Keldysh Potential
+=========================
+
+This model captures the effect of environmental screening in 2D materials. The potential reads:
 
 .. math::
 
-   V(r) = \frac{e^2}{8 \epsilon_0 \bar{\epsilon} r_0} \left[ H_0\left( \frac{r}{r_0} \right) - Y_0\left( \frac{r}{r_0} \right) \right]
+   V(r) = \frac{e^2}{4 \varepsilon_0 \bar{\varepsilon} r_0} \left[ H_0\left(\frac{r}{r_0}\right) - Y_0\left(\frac{r}{r_0}\right) \right]
 
 where:
 
-- \( \bar{\epsilon} = \frac{\epsilon_m + \epsilon_s}{2} \) is the average dielectric constant of the surrounding media
-- \( r_0 \) is the effective screening length of the 2D material
-- \( H_0 \) is the Struve function of order 0
-- \( Y_0 \) is the Bessel function of the second kind
+- $ \bar{\varepsilon} = (\varepsilon_m + \varepsilon_s)/2 $ is the average surrounding dielectric
+- $ r_0 $ is the effective screening length of the 2D material
+- $ H_0 $ is the Struve function
+- $ Y_0 $ is the Bessel function of the second kind
 
-This potential captures the non-local screening effects in layered materials and decays faster than the bare Coulomb interaction.
+In practice:
 
-Regularization
---------------------------
+- The interaction is regularized at $ r = 0 $
+- A cutoff beyond which the interaction vanishes is applied
+- The implementation may treat the screening radius **anisotropically**, i.e., using different $ r_0 $ values along different directions. This is an extension not typically found in the literature.
 
-Both potential diverges as \( r \rightarrow 0 \). This divergence is regularized by setting:
+Anisotropic Screening
+======================
 
-.. math::
+Xatu supports anisotropic screening in the Rytova–Keldysh model by allowing directional dependence in the screening length. This is implemented by constructing an effective vector $ \mathbf{r}_0 = (r_x, r_y, r_z) $, and rescaling the coordinates accordingly.
 
-   V(0) = V(a)
-
-where \( a \) is the lattice parameter.
-
-Cutoff and Regularization
---------------------------
-
-Since the interaction decays quickly, a radial cutoff \( R_c \) is applied:
-
-.. math::
-
-   \tilde{V}(r) = 
-   \begin{cases}
-     V(a) & r = 0 \\
-     V(r) & r < R_c \\
-     0 & r \geq R_c
-   \end{cases}
-
-The default is to use the Keldysh interaction with real-space summation. 
-
-Reciprocal Space Representation
---------------------------
-
-As for the interactions computed using the Fourier series of the potential, we set V(q = 0) = 0 to remove the long wavelength divergence.
-
+This allows the screening environment to be tuned independently along in-plane and out-of-plane directions — a generalization that extends beyond conventional isotropic models.

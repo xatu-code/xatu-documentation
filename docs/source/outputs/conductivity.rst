@@ -7,7 +7,7 @@ Xatu computes the optical conductivity spectrum using both the independent-parti
 Files Generated
 ===============
 
-Three output files are created:
+Three output files are created, tipically defined in `kubo_w.in` as:
 
 - ``*_sp.dat`` — IPA (independent-particle) optical conductivity
 - ``*_ex.dat`` — BSE (excitonic) optical conductivity
@@ -16,7 +16,7 @@ Three output files are created:
 Structure of `*_sp.dat` and `*_ex.dat`
 =======================================
 
-Each file contains tabulated real parts of the conductivity tensor components for different photon energies:
+Each file contains real parts of the conductivity tensor components for different photon energies:
 
 .. code-block:: text
 
@@ -28,20 +28,13 @@ Each file contains tabulated real parts of the conductivity tensor components fo
 Units
 ======
 
-- \( \omega \): photon energy in **electron volts (eV)**
-- \( \sigma_{ij} \): real part of optical conductivity in units of \( \frac{e^2}{\hbar} \)
+- $ \omega $: photon energy in **electron volts (eV)**
+- $ \sigma_{ij} $: real part of optical conductivity in units of $ \frac{e^2}{\hbar} $
 
 Post-processing
 ================
 
-These `.dat` files can be plotted directly using tools like `matplotlib`, `gnuplot`, or any spreadsheet software.
-
-Use Cases
-=========
-
-- Comparing excitonic vs independent-particle spectra
-- Evaluating anisotropy in optical response
-- Identifying exciton-driven spectral features
+These `.dat` files can be plotted directly using ``absorption.py`` at ``/plot/`` folder in Xatu repository.
 
 Related Files
 =============

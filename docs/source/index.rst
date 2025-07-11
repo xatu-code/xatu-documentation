@@ -32,6 +32,17 @@ Documentation Contents
    input_files
    usage
 
+   .. toctree::
+   :maxdepth: 2
+   :caption: Outputs
+
+   outputs/eigval
+   outputs/states
+   outputs/kwf
+   outputs/rswf
+   outputs/conductivity
+   outputs/spin
+
 .. toctree::
    :maxdepth: 2
    :caption: Theory and Methods
@@ -54,15 +65,3 @@ Documentation Contents
 
    citing
    license
-
-   .. toctree::
-   :maxdepth: 2
-   :caption: Outputs
-
-   outputs/eigval
-   outputs/states
-   outputs/kwf
-   outputs/rswf
-   outputs/conductivity
-   outputs/spin
-

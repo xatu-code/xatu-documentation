@@ -27,13 +27,6 @@ In the implementation, this interaction is:
 - Regularized at $ r = 0 $ using a small `regularization` parameter
 - Truncated beyond a distance cutoff defined from the lattice parameter
 
-In code terms:
-
-.. code-block:: cpp
-
-   return (R != 0) ? ec/(4E-10*PI*eps0*R)
-                  : ec*1E10/(4*PI*eps0*regularization);
-
 This option is appropriate when long-range unscreened interactions are desired.
 
 Rytova–Keldysh Potential
@@ -43,7 +36,7 @@ This model captures the effect of environmental screening in 2D materials. The p
 
 .. math::
 
-   V(r) = \frac{e^2}{4 \varepsilon_0 \bar{\varepsilon} r_0} \left[ H_0\left(\frac{r}{r_0}\right) - Y_0\left(\frac{r}{r_0}\right) \right]
+   V(r) = -\frac{e^2}{4 \varepsilon_0 \bar{\varepsilon} r_0} \left[ H_0\left(\frac{r}{r_0}\right) - Y_0\left(\frac{r}{r_0}\right) \right]
 
 where:
 

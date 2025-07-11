@@ -15,7 +15,7 @@ Starting from the full interacting Hamiltonian projected onto electron-hole pair
 
 .. math::
 
-   \sum_{v',c',\mathbf{k}'} H_{vc,v'c'}(\mathbf{k},\mathbf{k}',Q) A^Q_{v'c'}(\mathbf{k}') = E_X A^Q_{vc}(\mathbf{k})
+   \sum_{v',c',\bm{k}'} H_{vc,v'c'}(\bm{k},\bm{k}',Q) A^Q_{v'c'}(\bm{k}') = E_X A^Q_{vc}(\bm{k})
 
 we define the interaction kernel and simplify the problem by transforming into the **Hartree-Fock (HF) band basis**. This incorporates self-energy corrections into the quasiparticle energies.
 
@@ -23,13 +23,13 @@ The resulting **working form of the BSE** solved in Xatu is:
 
 .. math::
 
-   \left( \varepsilon_{c,\mathbf{k+Q}} - \varepsilon_{v,\mathbf{k}} \right) A^Q_{vc}(\mathbf{k}) +
-   \sum_{v',c',\mathbf{k}'} K_{vc,v'c'}(\mathbf{k}, \mathbf{k}', Q) A^Q_{v'c'}(\mathbf{k}') = E_X A^Q_{vc}(\mathbf{k})
+   \left( \varepsilon_{c,\bm{k+Q}} - \varepsilon_{v,\bm{k}} \right) A^Q_{vc}(\bm{k}) +
+   \sum_{v',c',\bm{k}'} K_{vc,v'c'}(\bm{k}, \bm{k}', Q) A^Q_{v'c'}(\bm{k}') = E_X A^Q_{vc}(\bm{k})
 
 where:
 
-- $ \varepsilon_{n,\mathbf{k}} $ are the HF (or DFT/GW) quasiparticle energies
-- $ A^Q_{vc}(\mathbf{k}) $ are the exciton amplitudes
+- $ \varepsilon_{n,\bm{k}} $ are the HF (or DFT/GW) quasiparticle energies
+- $ A^Q_{vc}(\bm{k}) $ are the exciton amplitudes
 - $ K = -(D - X) $ is the interaction kernel with:
   - $ D $: direct interaction between electron and hole
   - $ X $: exchange interaction (optional)
@@ -46,11 +46,11 @@ The matrix elements are computed assuming point-like localized orbitals. For exa
 
    D_{vc,v'c'}(\mathbf{k}, \mathbf{k}', Q) =
    \sum_{ij,\alpha\beta} 
-   C^{*}_{c,\mathbf{k+Q}}^{i\alpha} C^{*}_{v',\mathbf{k}'}^{j\beta}
-   C_{c',\mathbf{k'+Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}
+   C^{*}_{c,\mathbf{k}+\mathbf{Q}}^{i\alpha} C^{*}_{v',\mathbf{k}'}^{j\beta}
+   C_{c',\mathbf{k}'+\mathbf{Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}
    \, V_{ij}(\mathbf{k}' - \mathbf{k})
 
-Here, $ C_{n,\mathbf{k}}^{i\alpha} $ are the tight-binding coefficients and $ V_{ij} $ is the lattice-transformed interaction.
+Here, $ C_{n,\bm{k}}^{i\alpha} $ are the tight-binding coefficients and $ V_{ij} $ is the lattice-transformed interaction.
 
 The exchange term is analogous and typically vanishes at $ Q = 0 $.
 

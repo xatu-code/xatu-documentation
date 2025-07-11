@@ -35,14 +35,14 @@ From the Xatu paper (Section 2.3):
 
   .. math::
 
-     \langle \phi_{n,\mathbf{k}} | \hat{S}_z | \phi_{n,\mathbf{k}} \rangle
+     \langle \phi_{n,\bm{k}} | \hat{S}_z | \phi_{n,\bm{k}} \rangle
 
-  where $\phi_{n,\mathbf{k}} $ is the HF eigenstate of band $n $ and momentum $\mathbf{k} $, and $\hat{S}_z $ is the spin operator.
+  where $\phi_{n,\bm{k}} $ is the HF eigenstate of band $n $ and momentum $\bm{k} $, and $\hat{S}_z $ is the spin operator.
 
 - For an exciton state $M $, the total spin projection is:
 
   .. math::
 
-     S^z_M = \sum_{vc\mathbf{k}} |A^M_{vc}(\mathbf{k})|^2 (s^z_c - s^z_v)
+     S^z_M = \sum_{vc\bm{k}} |A^M_{vc}(\bm{k})|^2 (s^z_c - s^z_v)
 
 - This assumes spin is well-defined for each state -- i.e., spin-orbit coupling or noncollinear magnetism is not explicitly required for the output.

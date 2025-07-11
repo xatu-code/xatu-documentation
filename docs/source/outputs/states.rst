@@ -8,7 +8,7 @@ Format
 ======
 
 The first line contains the dimension of the BSE matrix $n$, i.e. the number of different electron-hole pairs. 
-The next $n$ lines specify the valence, conduction bands of each electron-hole pair and their $\mathbf{k}$ point
+The next $n$ lines specify the valence, conduction bands of each electron-hole pair and their $\bm{k}$ point
 
 .. code-block:: text
 

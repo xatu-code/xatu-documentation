@@ -34,10 +34,10 @@ The key quantity is the matrix element of the current operator between the groun
 
 .. math::
 
-   \langle 0 | j_\alpha | M \rangle = \sum_{v,c,\mathbf{k}} A^{M}_{vc}(\mathbf{k}) 
-   \langle v,\mathbf{k} | j_\alpha | c,\mathbf{k} \rangle
+   \langle 0 | j_\alpha | M \rangle = \sum_{v,c,\bm{k}} A^{M}_{vc}(\bm{k}) 
+   \langle v,\bm{k} | j_\alpha | c,\bm{k} \rangle
 
-Here, \( A^{M}_{vc}(\mathbf{k}) \) are the excitonic wavefunction coefficients in the electron-hole basis, and \( \langle v | j | c \rangle \) are velocity matrix elements computed from the system Hamiltonian.
+Here, \( A^{M}_{vc}(\bm{k}) \) are the excitonic wavefunction coefficients in the electron-hole basis, and \( \langle v | j | c \rangle \) are velocity matrix elements computed from the system Hamiltonian.
 
 
 Excitonic Absorption Spectrum

@@ -2,6 +2,7 @@
    G. J. Inacio
 
 .. _Xatu: https://github.com/xatu-code/xatu
+.. _xatu_paper: 
 
 =======================================================
 Xatu: eXcitons from ATomistic calcUlations
@@ -14,7 +15,7 @@ The BSE is constructed from user-defined input and then diagonalized to obtain t
 .. note::
 
    📄 **Reference Paper:**   
-   [`Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications`, 2024](https://doi.org/10.1016/j.cpc.2023.109001)
+   `Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications, 2024`<https://doi.org/10.1016/j.cpc.2023.109001>
 
 
 .. image:: images/hbn_xatu_example.png
@@ -32,7 +33,7 @@ Documentation Contents
    input_files
    usage
 
-   .. toctree::
+.. toctree::
    :maxdepth: 2
    :caption: Outputs
 

@@ -61,4 +61,4 @@ Reference
 
 For details, see:
 
-[Efficient computation of optical excitations in two-dimensional materials with the Xatu code, `Computer Physics Communications`, 2024](https://doi.org/10.1016/j.cpc.2023.109001)
+`Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications, 2024` <https://doi.org/10.1016/j.cpc.2023.109001>

@@ -28,7 +28,7 @@ The resulting **working form of the BSE** solved in Xatu is:
 
 where:
 
-- $ \varepsilon_{n,\bm{k}} $ are the HF (or DFT/GW) quasiparticle energies
+- :math:`\varepsilon_{n,\bm{k}}` $ are the HF (or DFT/GW) quasiparticle energies
 - $ A^Q_{vc}(\bm{k}) $ are the exciton amplitudes
 - $ K = -(D - X) $ is the interaction kernel with:
   - $ D $: direct interaction between electron and hole

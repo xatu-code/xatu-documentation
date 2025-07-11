@@ -20,9 +20,7 @@ Each file contains real parts of the conductivity tensor components for differen
 
 .. code-block:: text
 
-   # omega (eV)   Re[σ_xx]   Re[σ_xy]   Re[σ_xz]   Re[σ_yx]   Re[σ_yy]   Re[σ_yz]   Re[σ_zx]   Re[σ_zy]   Re[σ_zz]
-   0.00          0.00001     0.00000    0.00000    0.00000    0.00001    0.00000    0.00000    0.00000    0.00003
-   0.01          0.00005     0.00000    0.00000    0.00000    0.00004    0.00000    0.00000    0.00000    0.00006
+   # omega (eV)   Re[$\sigma_{$_xx}]   Re[$\sigma_{$_xy}]   Re[$\sigma_{$_xz}]   Re[$\sigma_{$_yx}]   Re[$\sigma_{$_yy}]   Re[$\sigma_{$_yz}]   Re[$\sigma_{$_zx}]   Re[$\sigma_{$_zy}]   Re[$\sigma_{$_zz}]
    ...
 
 Units

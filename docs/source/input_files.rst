@@ -36,7 +36,8 @@ Optional Blocks
 `**# [OverlapMatrices]`: In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices $S(\bm{R})$. The overlap in $k$ space is given by:
 
 .. math::
-   S(\bm{k}) = \Sum_{\bm{R}}S(\bm{R})e^{i\bm{k}\cdot\bm{R}}
+
+   S(\bm{k}) = \sum_{\bm{R}}S(\bm{R})e^{i\bm{k}\cdot\bm{R}}
 
 This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem $H(\bm{k})S(\bm{k})\Psi = ES(\bm{k})\Psi$. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix $S(\bm{R})$ must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
 

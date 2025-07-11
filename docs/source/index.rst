@@ -15,7 +15,8 @@ The BSE is constructed from user-defined input and then diagonalized to obtain t
 .. note::
 
    📄 **Reference Paper:**   
-   `Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications, 2024`<https://doi.org/10.1016/j.cpc.2023.109001>
+   `Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications, 2024 <https://doi.org/10.1016/j.cpc.2023.109001>`_
+
 
 
 .. image:: images/hbn_xatu_example.png

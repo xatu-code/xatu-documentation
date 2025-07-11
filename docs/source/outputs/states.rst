@@ -17,4 +17,5 @@ The next $n$ lines specify the valence, conduction bands of each electron-hole p
 Afterwards, each line specifies completely the coefficients of each exciton state. The format per line is
 
 .. code-block:: text
+
    Re(A1) Im(A1) Re(A2) Im(A2)

@@ -13,9 +13,9 @@ A plain text list of exciton energies in **electron volts (eV)**:
 
 .. code-block:: text
 
-Ncells
-BSE dimension
-Number of states
+   Ncells
+   BSE dimension
+   Number of states
    E_1
    E_2
    E_3

@@ -25,21 +25,21 @@ to determine the dimensionality of the system. The expected format is one vector
 
 `**# Filling`: Total number of electrons in the unit cell. Required to identify the Fermi level, which is the reference point in the construction of the excitons. Must be an integer number.
 
-`**# BravaisVectors`: List of Bravais vectors $\bm{R}$ that participate in the construction of the Bloch Hamiltonian. Expected one per line, in format `x y z`.
+`**# BravaisVectors`: List of Bravais vectors$\bm{R}$that participate in the construction of the Bloch Hamiltonian. Expected one per line, in format `x y z`.
 
-`**# FockMatrices`: Matrices $H(\bm{R})$ that construct the Bloch Hamiltonian $H(\bm{k})$. The matrices must
-be fully defined, i.e., they cannot be triangular, since the code does not use hermiticity to generate the Bloch Hamiltonian. The Fock matrices given must follow the ordering given in the block `BravaisVectors`. The matrices can be real or complex, and each one must be separated from the next using the delimiter `&`. In case the matrices are complex, the real and imaginary parts must be separated by a space, and the complex part must carry the imaginary umber symbol (e.g. $1.5 −2.1j$). Both $i$ and $j$ can be used.
+`**# FockMatrices`: Matrices$H(\bm{R})$that construct the Bloch Hamiltonian $H(\bm{k})$. The matrices must
+be fully defined, i.e., they cannot be triangular, since the code does not use hermiticity to generate the Bloch Hamiltonian. The Fock matrices given must follow the ordering given in the block `BravaisVectors`. The matrices can be real or complex, and each one must be separated from the next using the delimiter `&`. In case the matrices are complex, the real and imaginary parts must be separated by a space, and the complex part must carry the imaginary umber symbol (e.g.$1.5 −2.1j$). Both$i$and$j$can be used.
 
 Optional Blocks
 ---------------
 
-`**# [OverlapMatrices]`: In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices $S(\bm{R})$. The overlap in $k$ space is given by:
+`**# [OverlapMatrices]`: In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices$S(\bm{R})$. The overlap in $k$space is given by:
 
 .. math::
 
    S(\bm{k}) = \sum_{\bm{R}}S(\bm{R})e^{i\bm{k}\cdot\bm{R}}
 
-This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem $H(\bm{k})S(\bm{k})\Psi = ES(\bm{k})\Psi$. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix $S(\bm{R})$ must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
+This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem$H(\bm{k})S(\bm{k})\Psi = ES(\bm{k})\Psi$. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix$S(\bm{R})$must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
 
 HDF5 Format (Alternative)
 =========================
@@ -67,7 +67,7 @@ Key Blocks
 Optional Blocks
 ---------------
 
-`**# [Submesh]**`: Used to specify a submesh of the Brillouin zone. Takes a positive integer $m$, which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the Ncells block. This option can become memory intensive (it scales as $\mathcal{O}(m^d)$, $d$ the dimension)
+`**# [Submesh]**`: Used to specify a submesh of the Brillouin zone. Takes a positive integer$m$, which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the Ncells block. This option can become memory intensive (it scales as$\mathcal{O}(m^d)$,$d$the dimension)
 
 `**# [ShiftMesh]**`: Center submesh at `kx ky kz` provided.
 
@@ -84,7 +84,7 @@ Optional Blocks
 `**# [Scissor]**`: Apply bandgap correction shift, takes a single float `shift`.
 
 `**# [Regularization]**`: Set the regularization distance used in the real-space method
-to avoid the electrostatic divergence at $r = 0$ by setting $V (0) = V (a)$, where a is the regu-
+to avoid the electrostatic divergence at$r = 0$by setting$V (0) = V (a)$, where a is the regu-
 larization distance. By default this parameter is set to the unit cell lattice parameter. It is
 advised to be changed only for supercell calculations.
 

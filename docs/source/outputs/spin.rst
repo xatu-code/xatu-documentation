@@ -16,30 +16,30 @@ Each line in the `.spin` file has the format:
 Where:
 
 - ``n``: Exciton index (starting from 0)
-- ``St``: Total spin projection $S^z $ of the exciton
-- ``Sh``: Spin projection $s^z_h $ of the hole
-- ``Se``: Spin projection $s^z_e $ of the electron
+- ``St``: Total spin projection $S^z$of the exciton
+- ``Sh``: Spin projection $s^z_h$of the hole
+- ``Se``: Spin projection $s^z_e$of the electron
 
-All values are given in units of $\hbar $, e.g., $\pm \frac{1}{2}, \pm 1, 0 $, etc.
+All values are given in units of$\hbar$, e.g.,$\pm \frac{1}{2}, \pm 1, 0$, etc.
 
 
 Calculation
 =========================
 
-The spin projections are calculated from the expectation values of the spin operator along the $z $-axis for each quasiparticle, based on their wavefunction composition.
+The spin projections are calculated from the expectation values of the spin operator along the$z$-axis for each quasiparticle, based on their wavefunction composition.
 
 From the Xatu paper (Section 2.3):
 
-- The spin projection $S^z $ of the exciton is obtained as the **sum** of the electron and hole spin projections.
+- The spin projection $S^z$of the exciton is obtained as the **sum** of the electron and hole spin projections.
 - The projection of each single-particle state is computed using:
 
   .. math::
 
      \langle \phi_{n,\bm{k}} | \hat{S}_z | \phi_{n,\bm{k}} \rangle
 
-  where $\phi_{n,\bm{k}} $ is the HF eigenstate of band $n $ and momentum $\bm{k} $, and $\hat{S}_z $ is the spin operator.
+  where$\phi_{n,\bm{k}}$is the HF eigenstate of band$n $and momentum$\bm{k}$, and$\hat{S}_z$is the spin operator.
 
-- For an exciton state $M $, the total spin projection is:
+- For an exciton state$M$, the total spin projection is:
 
   .. math::
 

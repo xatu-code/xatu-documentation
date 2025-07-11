@@ -26,8 +26,8 @@ Each file contains real parts of the conductivity tensor components for differen
 Units
 ======
 
-- $ \omega $: photon energy in **electron volts (eV)**
-- $ \sigma_{ij} $: real part of optical conductivity in units of $ \frac{e^2}{\hbar} $
+-$\omega $: photon energy in **electron volts (eV)**
+-$\sigma_{ij}$: real part of optical conductivity in units of$\frac{e^2}{\hbar}$
 
 Post-processing
 ================

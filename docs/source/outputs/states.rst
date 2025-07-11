@@ -2,13 +2,13 @@
 .states — Exciton Eigenstates
 ==============================
 
-This file stores the eigenstates for the $n$ excitons computed (via flag ``-s - -states [nstates]``, `default = 8`), in the electron-hole basis.
+This file stores the eigenstates for the$n $excitons computed (via flag ``-s - -states [nstates]``, `default = 8`), in the electron-hole basis.
 
 Format
 ======
 
-The first line contains the dimension of the BSE matrix $n$, i.e. the number of different electron-hole pairs. 
-The next $n$ lines specify the valence, conduction bands of each electron-hole pair and their $\bm{k}$ point
+The first line contains the dimension of the BSE matrix$n $, i.e. the number of different electron-hole pairs. 
+The next$n $lines specify the valence, conduction bands of each electron-hole pair and their$\bm{k}$point
 
 .. code-block:: text
 

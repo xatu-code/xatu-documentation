@@ -2,9 +2,9 @@
 .kwf — Momentum-Space Probability Density
 ======================================
 
-Generated when the ``-k --kwf`` flag is provided for the first $n$ excitons chosen with ``-n --states [n=8]``.
+Generated when the ``-k --kwf`` flag is provided for the first$n $excitons chosen with ``-n --states [n=8]``.
 
-The `.kwf` file stores the **momentum-space probability density** of each exciton wavefunction. It quantifies how the exciton is distributed over electron-hole pairs with a well-defined crystal momentum $ \bm{k} $.
+The `.kwf` file stores the **momentum-space probability density** of each exciton wavefunction. It quantifies how the exciton is distributed over electron-hole pairs with a well-defined crystal momentum$\bm{k}$.
 
 Format
 =======
@@ -25,13 +25,13 @@ The file contains a table with one row per k-point and one column per exciton st
    #
 
 **Units**
-- $[k]=\AA^{-1}$
-- $ |\psi_X(\bm{k})|^2 $ is dimensionless and normalized over the k-grid
+-$[k]=\AA^{-1}$
+-$|\psi_X(\bm{k})|^2$is dimensionless and normalized over the k-grid
 
 Calculation
 ========================
 
-Given the exciton wavefunction expressed in the electron-hole basis as $ A^{Q}_{vc}(\bm{k}) $, the $k$-space probability is defined as:
+Given the exciton wavefunction expressed in the electron-hole basis as$A^{Q}_{vc}(\bm{k})$, the$k$-space probability is defined as:
 
 .. math::
 

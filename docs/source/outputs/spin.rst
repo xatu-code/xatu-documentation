@@ -7,7 +7,7 @@ When using the ``-s`` flag, Xatu outputs the spin characteristics of each comput
 Format
 ======
 
-Each line in the `.spin` file has the format:
+Each line in the ``.spin`` file has the format:
 
 .. code-block:: text
 
@@ -37,12 +37,12 @@ From the Xatu paper (Section 2.3):
 
      \langle \phi_{n,\bm{k}} | \hat{S}_z | \phi_{n,\bm{k}} \rangle
 
-  where$\phi_{n,\bm{k}}$is the HF eigenstate of band$n $and momentum$\bm{k}$, and$\hat{S}_z$is the spin operator.
+  where$\phi_{n,\bm{k}}$is the HF eigenstate of band $n$ and momentum$\bm{k}$ , and $\hat{S}_z$is the spin operator.
 
-- For an exciton state$M$, the total spin projection is:
+- For an exciton state $M$, the total spin projection is:
 
   .. math::
 
      S^z_M = \sum_{vc\bm{k}} |A^M_{vc}(\bm{k})|^2 (s^z_c - s^z_v)
 
-- This assumes spin is well-defined for each state -- i.e., spin-orbit coupling or noncollinear magnetism is not explicitly required for the output.
+This assumes spin is well-defined for each state -- i.e., spin-orbit coupling or noncollinear magnetism is not explicitly required for the output.

@@ -20,14 +20,14 @@ Each file contains real parts of the conductivity tensor components for differen
 
 .. code-block:: text
 
-   # omega (eV)   Re[$\sigma_{$_xx}]   Re[$\sigma_{$_xy}]   Re[$\sigma_{$_xz}]   Re[$\sigma_{$_yx}]   Re[$\sigma_{$_yy}]   Re[$\sigma_{$_yz}]   Re[$\sigma_{$_zx}]   Re[$\sigma_{$_zy}]   Re[$\sigma_{$_zz}]
+   # omega (eV)   Re[$\sigma_{xx}$]   Re[$\sigma_{xy}$]   Re[$\sigma_{xz}$]   Re[$\sigma_{yx}$]   Re[$\sigma_{yy}$]   Re[$\sigma_{yz}$]   Re[$\sigma_{zx}$]   Re[$\sigma_{zy}$]   Re[$\sigma_{zz}$]
    ...
 
 Units
 ======
 
--$\omega $: photon energy in **electron volts (eV)**
--$\sigma_{ij}$: real part of optical conductivity in units of$\frac{e^2}{\hbar}$
+-$\omega$ : photon energy in **electron volts (eV)**
+-$\sigma_{ij}$ : real part of optical conductivity in units of $\frac{e^2}{\hbar}$
 
 Post-processing
 ================

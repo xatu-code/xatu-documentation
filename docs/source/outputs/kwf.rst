@@ -26,12 +26,12 @@ The file contains a table with one row per k-point and one column per exciton st
 
 **Units**
 -$[k]=\AA^{-1}$
--$|\psi_X(\bm{k})|^2$is dimensionless and normalized over the k-grid
+-$|\psi_X(\bm{k})|^2$ is dimensionless and normalized over the k-grid
 
 Calculation
 ========================
 
-Given the exciton wavefunction expressed in the electron-hole basis as$A^{Q}_{vc}(\bm{k})$, the$k$-space probability is defined as:
+Given the exciton wavefunction expressed in the electron-hole basis as $A^{Q}_{vc}(\bm{k})$, the $k$ space probability is defined as:
 
 .. math::
 

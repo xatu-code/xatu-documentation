@@ -17,16 +17,16 @@ Where:
 
 - ``n``: Exciton index (starting from 0)
 - ``St``: Total spin projection $S^z$of the exciton
-- ``Sh``: Spin projection $s^z_h$of the hole
-- ``Se``: Spin projection $s^z_e$of the electron
+- ``Sh``: Spin projection $ s^z_h$ of the hole
+- ``Se``: Spin projection $ s^z_e$ of the electron
 
-All values are given in units of$\hbar$, e.g.,$\pm \frac{1}{2}, \pm 1, 0$, etc.
+All values are given in units of :math:`\hbar`, e.g., :math:`\pm 1/2,\ \pm 1,\ 0` , etc.
 
 
 Calculation
 =========================
 
-The spin projections are calculated from the expectation values of the spin operator along the$z$-axis for each quasiparticle, based on their wavefunction composition.
+The spin projections are calculated from the expectation values of the spin operator along the $z$-axis for each quasiparticle, based on their wavefunction composition.
 
 From the Xatu paper (Section 2.3):
 
@@ -37,7 +37,7 @@ From the Xatu paper (Section 2.3):
 
      \langle \phi_{n,\bm{k}} | \hat{S}_z | \phi_{n,\bm{k}} \rangle
 
-  where$\phi_{n,\bm{k}}$is the HF eigenstate of band $n$ and momentum $\bm{k}$ , and $\hat{S}_z$ is the spin operator.
+  where $\phi_{n,\mathbf{k}}$ is the HF eigenstate of band $n$ and momentum $\mathbf{k}$ , and :math:`\hat{S}_z` is the spin operator.
 
 - For an exciton state $M$, the total spin projection is:
 

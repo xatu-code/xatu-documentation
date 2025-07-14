@@ -4,7 +4,7 @@
 
 This file contains the exciton eigenvalues (binding energies) computed from solving the Bethe-Salpeter Equation (BSE).
 
-It is generated when running `xatu` with an exciton input file and requesting eigenvalues explicitly (via `-e`).
+It is generated when running `Xatu` with an exciton input file and requesting eigenvalues explicitly (via `-e`).
 
 Format
 ======

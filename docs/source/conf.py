@@ -33,11 +33,6 @@ mathjax3_config = {
     }
 }
 
-latex_elements = {
-#this allows \AA to be used in equations 
-'preamble': '\\global\\renewcommand{\\AA}{\\text{\\r{A}}}',
-}
-
 html_static_path = ['_static']
 
 def setup(app):
@@ -51,10 +46,6 @@ templates_path = ['_templates']
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
-
-.. only:: html
-
-   :math:`\\require{mediawiki-texvc}`
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'

@@ -26,7 +26,7 @@ The file contains a table with one row per k-point and one column per exciton st
 
 **Units**
 
-- :math:`[k]= \AA ^{-1}`
+- :math:`[k]= Å ^{-1}`
 
 - :math:`\left| \psi_{X}(\bm{k})^{2} \right|` is dimensionless and normalized over the k-grid
 

@@ -20,20 +20,20 @@ Each file contains real parts of the conductivity tensor components for differen
 
 .. code-block:: text
 
-   # omega (eV)   Re[$\sigma_{xx}$]   Re[$\sigma_{xy}$]   Re[$\sigma_{xz}$]   Re[$\sigma_{yx}$]   Re[$\sigma_{yy}$]   Re[$\sigma_{yz}$]   Re[$\sigma_{zx}$]   Re[$\sigma_{zy}$]   Re[$\sigma_{zz}$]
+   :math:`\omega` (eV)   Re[:math:`\sigma_{xx}`]   Re[:math:`\sigma_{xy}`]   Re[:math:`\sigma_{xz}`]   Re[:math:`\sigma_{yx}`]   Re[:math:`\sigma_{yy}`]   Re[:math:`\sigma_{yz}`]   Re[:math:`\sigma_{zx}`]   Re[:math:`\sigma_{zy}`]   Re[:math:`\sigma_{zz}`]
    ...
 
 Units
 ======
 
-- $\omega$ : photon energy in **electron volts (eV)**
+- :math:`\omega` : photon energy in **electron volts (eV)**
 
-- $\sigma_{ij}$ : real part of optical conductivity in units of $\frac{e^2}{\hbar}$
+- :math:`\sigma_{ij}` : real part of optical conductivity in units of :math:`\frac{e^2}{\hbar}`
 
 Post-processing
 ================
 
-These `.dat` files can be plotted directly using ``absorption.py`` at ``/plot/`` folder in Xatu repository.
+These ``.dat`` files can be plotted directly using ``absorption.py`` at ``/plot/`` folder in Xatu repository.
 
 Related Files
 =============
@@ -41,4 +41,3 @@ Related Files
 For oscillator strengths used in the excitonic conductivity calculation, see:
 
 :doc:`../methods/oscillator_strengths`
-

@@ -7,7 +7,7 @@ Xatu can compute the linear optical conductivity using the excitonic states obta
 .. contents::
    :local:
    :depth: 2
-   
+
 General Expression
 ===================
 
@@ -17,33 +17,18 @@ The real part of the conductivity tensor $ \sigma_{ab}(\omega) $ is given by:
 
 .. math::
 
-   \sigma_{ab}(\omega) = \frac{\pi e^2 \hbar}{V} \sum_{\mathbf{k}}^{N_X} \frac{1}{E_{\mathbf{k}}}
-   \left[ V_{\mathbf{k}}^a (V_{\mathbf{k}}^b)^* \right] \delta(\hbar\omega - E_{\mathbf{k}})
+   \sigma_{ab}(\omega) = \frac{\pi e^2 \hbar}{V} \sum_{\bm{k}}^{N_X} \frac{1}{E_{\bm{k}}}
+   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega - E_{\bm{k}})
 
 where:
 
 - $ V $ is the system volume
-- $ E_{\mathbf{k}} $ is the exciton energy at momentum $ \mathbf{k} $
-- $ V_{\mathbf{k}}^a $ is the oscillator strength (current matrix element) in direction $ a $
+- $ E_{\bm{k}} $ is the exciton energy at momentum $ \bm{k} $
+- $ V_{\bm{k}}^a $ is the oscillator strength (current matrix element) in direction $ a $
 - $ N_X $ is the number of computed exciton states
 - The delta function is broadened numerically using a specified kernel
 
-This expression is implemented directly in Xatu when the linear response spectrum is requested using the `-a` flag and a valid `kubo_w.in` file is provided.
-
-
-
-Dipole Matrix Elements
-========================
-
-The key quantity is the matrix element of the current operator between the ground state and an exciton:
-
-.. math::
-
-   \langle 0 | j_\alpha | M \rangle = \sum_{v,c,\bm{k}} A^{M}_{vc}(\bm{k}) 
-   \langle v,\bm{k} | j_\alpha | c,\bm{k} \rangle
-
-Here, $A^{M}_{vc}(\bm{k})$ are the excitonic wavefunction coefficients in the electron-hole basis, and $\langle v | j | c \rangle$ are velocity matrix elements computed from the system Hamiltonian.
-
+This expression is implemented directly in Xatu when the linear response spectrum is requested using the ``-a`` flag and a valid ``kubo_w.in`` file is provided.
 
 Excitonic Absorption Spectrum
 ===============================

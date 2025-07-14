@@ -28,11 +28,11 @@ The resulting **working form of the BSE** solved in Xatu is:
 
 where:
 
-- :math:`\varepsilon_{n,\bm{k}}`$are the HF (or DFT/GW) quasiparticle energies
--$A^Q_{vc}(\bm{k})$ are the exciton amplitudes
--$K = -(D - X)$ is the interaction kernel with:
-  -$D$ : direct interaction between electron and hole
-  -$X$ : exchange interaction (optional)
+- :math:`\varepsilon_{n,\bm{k}}` are the HF (or DFT/GW) quasiparticle energies
+- $ A^{Q}_{vc}(\bm{k}) $ are the exciton amplitudes
+- $ K = -(D - X) $ is the interaction kernel with:
+  -$ D $ : direct interaction between electron and hole
+  -$ X $ : exchange interaction (optional)
 
 This is the **Tamm-Dancoff approximation (TDA)** form of the BSE.
 

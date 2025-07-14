@@ -33,7 +33,7 @@ be fully defined, i.e., they cannot be triangular, since the code does not use h
 Optional Blocks
 ---------------
 
-**# [OverlapMatrices]:** In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices $S(\bm{R})$. The overlap in $k$ space is given by:
+**# [OverlapMatrices]:** In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices :math:`S(\mathbf{R})`. The overlap in $k$ space is given by:
 
 .. math::
 
@@ -71,7 +71,7 @@ Optional Blocks
 
 **# [ShiftMesh]:** Center submesh at ``kx ky kz`` provided.
 
-**# [TotalMomentum]:** Exciton total center-of-mass momentum $\bm{Q}$, expects a vector ``qx qy qz``. Defaults to zero.
+**# [TotalMomentum]:** Exciton total center-of-mass momentum :math:`\mathbf{Q}`, expects a vector ``qx qy qz``. Defaults to zero.
 
 **# [Reciprocal]:** calculates interaction matrix elements in reciprocal space; It takes an integer argument to specify the number of reciprocal cells to sum over, ``nG``.
 

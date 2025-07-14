@@ -4,7 +4,7 @@
 
 Generated when the ``-k --kwf`` flag is provided for the first$n $excitons chosen with ``-n --states [n=8]``.
 
-The `.kwf` file stores the **momentum-space probability density** of each exciton wavefunction. It quantifies how the exciton is distributed over electron-hole pairs with a well-defined crystal momentum$\bm{k}$.
+The `.kwf` file stores the **momentum-space probability density** of each exciton wavefunction. It quantifies how the exciton is distributed over electron-hole pairs with a well-defined crystal momentum :math:`\mathbf{k}`.
 
 Format
 =======
@@ -26,7 +26,7 @@ The file contains a table with one row per k-point and one column per exciton st
 
 **Units**
 
-- :math:`[k]= \AA $^{-1}`
+- :math:`[k]= \text{\AA} $^{-1}`
 
 - :math:`\left| \psi_{X}(\bm{k})^{2} \right|` is dimensionless and normalized over the k-grid
 

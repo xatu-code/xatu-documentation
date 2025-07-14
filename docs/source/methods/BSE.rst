@@ -28,8 +28,8 @@ The resulting **working form of the BSE** solved in Xatu is:
 
 where:
 
-- :math:`\varepsilon_{n,\bm{k}}` are the HF (or DFT/GW) quasiparticle energies
-- $ A^{Q}_{vc}(\bm{k}) $ are the exciton amplitudes
+- :math:`\varepsilon_{n,\mathbf{k}}` are the HF (or DFT/GW) quasiparticle energies
+- :math:`A^{Q}_{vc}(\mathbf{k})` $ are the exciton amplitudes
 - $ K = -(D - X) $ is the interaction kernel with:
   -$ D $ : direct interaction between electron and hole
   -$ X $ : exchange interaction (optional)
@@ -50,7 +50,7 @@ The matrix elements are computed assuming point-like localized orbitals. For exa
    C_{c',\mathbf{k}'+\mathbf{Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}
    \, V_{ij}(\mathbf{k}' - \mathbf{k})
 
-Here, $C_{n,\bm{k}}^{i\alpha}$ are the tight-binding coefficients and $V_{ij}$ is the lattice-transformed interaction.
+Here, :math:`C_{n,\mathbf{k}}^{i\alpha}` are the tight-binding coefficients and $V_{ij}$ is the lattice-transformed interaction.
 
 The exchange term is analogous and typically vanishes at $Q = 0$ .
 

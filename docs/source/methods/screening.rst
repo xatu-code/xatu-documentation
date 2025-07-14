@@ -54,6 +54,6 @@ In practice:
 Anisotropic Screening
 ======================
 
-Xatu supports anisotropic screening in the Rytova–Keldysh model by allowing directional dependence in the screening length. This is implemented by constructing an effective vector $\bm{r}_0 = (r_x, r_y, r_z)$ , and rescaling the coordinates accordingly.
+Xatu supports anisotropic screening in the Rytova–Keldysh model by allowing directional dependence in the screening length. This is implemented by constructing an effective vector :math:`\mathbf{r}_0 = (r_x, r_y, r_z)` , and rescaling the coordinates accordingly.
 
 This allows the screening environment to be tuned independently along in-plane and out-of-plane directions -- a generalization that extends beyond conventional isotropic models.

@@ -2,7 +2,6 @@
    G. J. Inacio
 
 .. _Xatu: https://github.com/xatu-code/xatu
-.. _xatu_paper: 
 
 =======================================================
 Xatu: eXcitons from ATomistic calcUlations
@@ -67,3 +66,4 @@ Documentation Contents
 
    citing
    license
+   api

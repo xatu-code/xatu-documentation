@@ -9,8 +9,8 @@ The Xatu source code exposes key functionalities via a documented **C++ API**, i
 API Documentation
 ===================
 
-- Full API documentation is available and maintained using **Doxygen**
-- To generate the API documentation:
+* Full API documentation is available and maintained using **Doxygen**
+* To generate the API documentation:
 
 .. code-block:: bash
 
@@ -42,5 +42,5 @@ Example structure:
    auto eigvals = result.eigenvalues();
    auto eigvecs = result.eigenvectors();
 
-- API header files are located under `include/`
-- Example usages are available in the `main/` directory
+* API header files are located under `include/`
+* Example usages are available in the `main/` directory

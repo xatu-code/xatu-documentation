@@ -1,6 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 
-# -- Project information
+# -* Project information
 
 project = 'xatu'
 copyright = '2024, Atomelix'
@@ -9,7 +9,7 @@ author = 'Atomelix'
 release = '1.0'
 version = '1.3.1'
 
-# -- General configuration
+# -* General configuration
 
 extensions = [
     'sphinx.ext.duration',
@@ -43,9 +43,9 @@ intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
 
-# -- Options for HTML output
+# -* Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
 
-# -- Options for EPUB output
+# -* Options for EPUB output
 epub_show_urls = 'footnote'

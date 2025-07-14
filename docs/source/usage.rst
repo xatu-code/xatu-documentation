@@ -54,9 +54,9 @@ Indicate that the system file is in Wannier90 output format. You must specify th
 
 ``-eck, --energy / --eigenstates / --kwf``  
 Flags to write exciton outputs:
-- `-e`: energies
-- `-c`: eigenvectors
-- `-k`: reciprocal-space densities  
+* `-e`: energies
+* `-c`: eigenvectors
+* `-k`: reciprocal-space densities  
 These can be combined: e.g., `-ek`.
 
 ``-r, --rswf [holeIndex] [-r ncells]``  
@@ -70,9 +70,9 @@ Compute the optical conductivity using the Kubo formalism. Requires `kubo_w.in` 
 
 ``-m, --method diag | davidson | sparse``  
 Choose BSE solver. Options:
-- `diag`: full diagonalization (default)
-- `davidson`: iterative Davidson method
-- `sparse`: sparse Lanczos method
+* `diag`: full diagonalization (default)
+* `davidson`: iterative Davidson method
+* `sparse`: sparse Lanczos method
 
 ``-b, --bands kpointsfile``  
 Diagonalize the Bloch Hamiltonian at k-points specified in a file. Does not compute excitons.

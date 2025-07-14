@@ -18,15 +18,15 @@ The real part of the conductivity tensor $ \sigma_{ab}(\omega) $ is given by:
 .. math::
 
    \sigma_{ab}(\omega) = \frac{\pi e^2 \hbar}{V} \sum_{\bm{k}}^{N_X} \frac{1}{E_{\bm{k}}}
-   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega - E_{\bm{k}})
+   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega * E_{\bm{k}})
 
 where:
 
-- $ V $ is the system volume
-- :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
-- :math:`V_{\mathbf{k}}^a` is the oscillator strength (current matrix element) in direction $ a $
-- $ N_X $ is the number of computed exciton states
-- The delta function is broadened numerically using a specified kernel
+* $ V $ is the system volume
+* :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
+* :math:`V_{\mathbf{k}}^a` is the oscillator strength (current matrix element) in direction $ a $
+* $ N_X $ is the number of computed exciton states
+* The delta function is broadened numerically using a specified kernel
 
 This expression is implemented directly in Xatu when the linear response spectrum is requested using the ``-a`` flag and a valid ``kubo_w.in`` file is provided.
 
@@ -35,14 +35,14 @@ Excitonic Absorption Spectrum
 
 The absorption spectrum is computed by convoluting the excitonic delta functions with a chosen broadening. The user can specify:
 
-- Broadening type: `lorentzian`, `gaussian`, or `exponential`
-- Broadening width (in eV)
-- Frequency range and resolution
+* Broadening type: `lorentzian`, `gaussian`, or `exponential`
+* Broadening width (in eV)
+* Frequency range and resolution
 
 This is controlled by the `kubo_w.in` input file. The computed spectra include:
 
-- **Independent-particle spectrum** (IPA)
-- **Excitonic spectrum** (BSE)
+* **Independent-particle spectrum** (IPA)
+* **Excitonic spectrum** (BSE)
 
 Each output is saved to separate `.dat` files for plotting, with names defined in the exciton configuration file.
 

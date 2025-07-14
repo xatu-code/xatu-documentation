@@ -83,10 +83,7 @@ Optional Blocks
 
 **# [Scissor]:** Apply bandgap correction shift, takes a single float `shift`.
 
-**# [Regularization]:** Set the regularization distance used in the real-space method
-to avoid the electrostatic divergence at $r = 0$ by setting $V (0) = V (a)$, where a is the regu-
-larization distance. By default this parameter is set to the unit cell lattice parameter. It is
-advised to be changed only for supercell calculations.
+**# [Regularization]:** Set the regularization distance used in the real-space method to avoid the electrostatic divergence at $r = 0$ by setting $V (0) = V (a)$, where a is the regularization distance. By default this parameter is set to the unit cell lattice parameter. It is advised to be changed only for supercell calculations.
 
 Absorption File: `kubo_w.in`
 ============================

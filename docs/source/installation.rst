@@ -11,13 +11,13 @@ Xatu is built upon the Armadillo C++ library for linear algebra, which in turn d
 Dependencies
 ============
 Required libraries:
-- Armadillo
-- OpenBLAS
-- LAPACK
-- ARPACK
+* Armadillo
+* OpenBLAS
+* LAPACK
+* ARPACK
 
 Optional:
-- HDF5 (for using HDF5-format input files)
+* HDF5 (for using HDF5-format input files)
 
 Ubuntu / Debian / WSL
 ======================

@@ -9,26 +9,26 @@ Files Generated
 
 Three output files are created, tipically defined in `kubo_w.in` as:
 
-- ``*_sp.dat`` -- IPA (independent-particle) optical conductivity
-- ``*_ex.dat`` -- BSE (excitonic) optical conductivity
-- ``*_osc.dat`` -- Exciton oscillator strengths (see :doc:`../methods/optical_properties`)
+* ``*_sp.dat`` -* IPA (independent-particle) optical conductivity
+* ``*_ex.dat`` -* BSE (excitonic) optical conductivity
+* ``*_osc.dat`` -* Exciton oscillator strengths (see :doc:`../methods/optical_properties`)
 
 Structure of `*_sp.dat` and `*_ex.dat`
 =======================================
 
 Each file contains real parts of the conductivity tensor components for different photon energies:
 
-.. code-block:: text
+.. code-block:: math
 
-   :math:`\omega` (eV)   Re[:math:`\sigma_{xx}`]   Re[:math:`\sigma_{xy}`]   Re[:math:`\sigma_{xz}`]   Re[:math:`\sigma_{yx}`]   Re[:math:`\sigma_{yy}`]   Re[:math:`\sigma_{yz}`]   Re[:math:`\sigma_{zx}`]   Re[:math:`\sigma_{zy}`]   Re[:math:`\sigma_{zz}`]
+   \omega (eV)   Re[\sigma_{xx}]   Re[\sigma_{xy}]   Re[\sigma_{xz}]   Re[\sigma_{yx}]   Re[\sigma_{yy}]   Re[\sigma_{yz}]   Re[\sigma_{zx}]   Re[\sigma_{zy}]   Re[\sigma_{zz}]
    ...
 
 Units
 ======
 
-- :math:`\omega` : photon energy in **electron volts (eV)**
+* :math:`\omega` : photon energy in **electron volts (eV)**
 
-- :math:`\sigma_{ij}` : real part of optical conductivity in units of :math:`\frac{e^2}{\hbar}`
+* :math:`\sigma_{ij}` : real part of optical conductivity in units of :math:`\frac{e^2}{\hbar}`
 
 Post-processing
 ================

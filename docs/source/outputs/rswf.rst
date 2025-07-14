@@ -23,14 +23,14 @@ The file is organized in blocks, one for each exciton. Each block contains:
 
 Where:
 
-- ``x, y, z``: Coordinates of each unit cell vector (in :math:`Å`)
-- ``P``: Squared amplitude :math:`| \psi_X(\mathbf{r}) |^2`
+* ``x, y, z``: Coordinates of each unit cell vector (in :math:`Å`)
+* ``P``: Squared amplitude :math:`| \psi_X(\mathbf{r}) |^2`
 
 Each block is separated by a `#` delimiter.
 
 **Units**
 
-- Coordinates are in :math:`[x]=Å`
+* Coordinates are in :math:`[x]=Å`
 
 Calculation
 =========================
@@ -39,13 +39,13 @@ The probability density is computed as:
 
 .. math::
 
-   P(\bm{r}) = \left| \psi_X(\bm{r}, \bm{r}_h) \right|^2 = \sum_n \left| \psi^X_n(\bm{r}, \bm{r}_h) \right|^2
+   P(\bm{r}) = \left| \psi_X(\bm{r}, \bm{r}_h) \right|^2 = \sum_{n} \left| \psi^{X}_{n}(\bm{r}, \bm{r}_h) \right|^2
 
 where:
 
-- :math:`\mathbf{r}_{h}` is the fixed hole position (specified by `--rswf [holeIndex]`)
-- :math:`\psi^{X}_{n}` denotes the exciton component over orbital $n$
-- The sum is over orbitals centered at :math:`\mathbf{r}`
+* :math:`\mathbf{r}_{h}` is the fixed hole position (specified by `--rswf [holeIndex]`)
+* :math:`\psi^{X}_{n}` denotes the exciton component over orbital $n$
+* The sum is over orbitals centered at :math:`\mathbf{r}`
 
 By default, Xatu evaluates this for the **first 8 exciton states**, or as defined by the user with ``--states [n]``.
 

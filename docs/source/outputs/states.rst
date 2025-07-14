@@ -2,7 +2,7 @@
 .states — Exciton Eigenstates
 ==============================
 
-This file stores the eigenstates for the $n$ excitons computed (via flag ``-s - -states [nstates]``, `default = 8`), in the electron-hole basis.
+This file stores the eigenstates for the $n$ excitons computed (via flag ``-s * -states [nstates]``, `default = 8`), in the electron-hole basis.
 
 Format
 ======

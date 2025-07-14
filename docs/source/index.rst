@@ -64,6 +64,6 @@ Documentation Contents
    :maxdepth: 1
    :caption: Miscellaneous
 
-   miscellanous/citing
-   miscellanous/license
-   miscellanous/api
+   miscellaneous/citing
+   miscellaneous/license
+   miscellaneous/api

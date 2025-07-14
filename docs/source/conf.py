@@ -33,6 +33,12 @@ mathjax3_config = {
     }
 }
 
+div.body p,
+div.body li,
+div.body dd,
+table.docutils .justify-align {
+    text-align:justify;
+}
 
 intersphinx_disabled_domains = ['std']
 

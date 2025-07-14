@@ -40,7 +40,8 @@ This model captures the effect of environmental screening in 2D materials. The p
 
 where:
 
-- :math:`\bar{\\varepsilon} = (\\varepsilon_m + \\varepsilon_s)/2 ` is the average surrounding dielectric
+- An inline mathematical expression: :math:`\psi(r) = \exp(-2r)`
+- :math:`\bar{\varepsilon} = (\varepsilon_m + \varepsilon_s)/2` is the average surrounding dielectric
 - $ r_0 $ is the effective screening length of the 2D material
 - $ H_0 $ is the Struve function
 - $ Y_0 $ is the Bessel function of the second kind

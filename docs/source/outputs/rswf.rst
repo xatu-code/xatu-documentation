@@ -23,14 +23,14 @@ The file is organized in blocks, one for each exciton. Each block contains:
 
 Where:
 
-- ``x, y, z``: Coordinates of each unit cell vector (in :math:`Å`)
+- ``x, y, z``: Coordinates of each unit cell vector (in :math:`\AA`)
 - ``P``: Squared amplitude :math:`| \psi_X(\mathbf{r}) |^2`
 
 Each block is separated by a `#` delimiter.
 
 **Units**
 
-- Coordinates are in :math:`[x]=Å`
+- Coordinates are in :math:`[x]=\AA`
 
 Calculation
 =========================

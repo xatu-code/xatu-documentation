@@ -40,4 +40,4 @@ Related Files
 
 For oscillator strengths used in the excitonic conductivity calculation, see:
 
-:doc:`../methods/oscillator_strengths`
+:doc:`./oscillator_strengths`

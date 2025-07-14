@@ -1,10 +1,10 @@
 =========================
-Exciton Oscillator Strengths
+Exciton Oscillator Strengths (_osc.dat)
 =========================
 
 The exciton oscillator strengths quantify the coupling of each excitonic state to the electromagnetic field and are used to compute the optical conductivity.
 
-These values are computed internally when calculating the optical absorption spectrum and are included in the output file following the BSE conductivity data (see :doc:`../outputs/conductivity`).
+These values are computed internally when calculating the optical absorption spectrum and are written separatedly, following the BSE conductivity data (see :doc:`../outputs/conductivity`).
 
 Definition
 ===========
@@ -38,7 +38,7 @@ Each line corresponds to a single exciton and contains:
 
 .. math::
 
-   E_X   Re(V_{x})\quad   Im(V_{x})\quad   Re(V_{y})\quad   Im(V_{y})\quad   Re(V_{z})\quad   Im(V_{z})
+   E_X\quad   Re(V_{x})\quad   Im(V_{x})\quad   Re(V_{y})\quad   Im(V_{y})\quad   Re(V_{z})\quad   Im(V_{z})
 
 where:
 
@@ -53,5 +53,5 @@ Units
 * :math:`[E_X] = \text{eV}`
 * :math:`[V_\alpha]` is dimensionless (combined with prefactors in the conductivity formula)
 
-See also: :doc:`optical_properties`
+See also: :doc:`../methods/optical_properties`
 

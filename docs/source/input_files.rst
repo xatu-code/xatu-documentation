@@ -21,7 +21,7 @@ to determine the dimensionality of the system. The expected format is one vector
 
 **# Motif:** List with the positions and chemical species of all atoms of the motif (unit cell). The chemical species are specified with an integer index, used later to retrieve the number of orbitals of that species. The expected format is one atom per line, ``x y z index``.
 
-**# Orbitals:** Number of orbitals of each chemical species present. The position of the number of orbitals for each species follows the indexing used in the motif block. This block expects one or more numbers of orbitals, the same as the number of different species present, `n1 [n2 ...]`.
+**# Orbitals:** Number of orbitals of each chemical species present. The position of the number of orbitals for each species follows the indexing used in the motif block. This block expects one or more numbers of orbitals, the same as the number of different species present, ``n1 [n2 ...]``.
 
 **# Filling:** Total number of electrons in the unit cell. Required to identify the Fermi level, which is the reference point in the construction of the excitons. Must be an integer number.
 

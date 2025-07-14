@@ -9,9 +9,9 @@ Files Generated
 
 Three output files are created, tipically defined in `kubo_w.in` as:
 
-* ``*_sp.dat`` -* IPA (independent-particle) optical conductivity
-* ``*_ex.dat`` -* BSE (excitonic) optical conductivity
-* ``*_osc.dat`` -* Exciton oscillator strengths (see :doc:`../methods/optical_properties`)
+* ``*_sp.dat`` : IPA (independent-particle) optical conductivity
+* ``*_ex.dat`` : BSE (excitonic) optical conductivity
+* ``*_osc.dat``: Exciton oscillator strengths (see :doc:`./oscillator_strengths`)
 
 Structure of `*_sp.dat` and `*_ex.dat`
 =======================================
@@ -20,8 +20,10 @@ Each file contains real parts of the conductivity tensor components for differen
 
 .. math::
 
-   \omega (eV)   Re[\sigma_{xx}]   Re[\sigma_{xy}]   Re[\sigma_{xz}]   Re[\sigma_{yx}]   Re[\sigma_{yy}]   Re[\sigma_{yz}]   Re[\sigma_{zx}]   Re[\sigma_{zy}]   Re[\sigma_{zz}]
-   ...
+   \omega\quad   Re[\sigma_{xx}]\quad   Re[\sigma_{xy}]\quad   Re[\sigma_{xz}]\quad   Re[\sigma_{yx}]\quad   Re[\sigma_{yy}]\quad   Re[\sigma_{yz}]\quad   Re[\sigma_{zx}]\quad   Re[\sigma_{zy}]\quad   Re[\sigma_{zz}]\quad
+   .
+   .
+   .
 
 Units
 ======

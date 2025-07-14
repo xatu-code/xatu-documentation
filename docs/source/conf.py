@@ -33,12 +33,11 @@ mathjax3_config = {
     }
 }
 
-div.body p,
-div.body li,
-div.body dd,
-table.docutils .justify-align {
-    text-align:justify;
-}
+html_static_path = ['_static']
+
+def setup(app):
+    app.add_css_file('custom.css')
+
 
 intersphinx_disabled_domains = ['std']
 

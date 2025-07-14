@@ -42,6 +42,7 @@ Documentation Contents
    outputs/kwf
    outputs/rswf
    outputs/conductivity
+   outputs/oscillator_strengths
    outputs/spin
 
 .. toctree::

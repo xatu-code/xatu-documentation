@@ -17,9 +17,9 @@ Required Blocks
 ---------------
 
 **# BravaisLattice:** Basis vectors of the Bravais lattice. The number of vectors present is also used
-to determine the dimensionality of the system. The expected format is one vector per line, `x y z`.
+to determine the dimensionality of the system. The expected format is one vector per line, ``x y z``.
 
-**# Motif:** List with the positions and chemical species of all atoms of the motif (unit cell). The chemical species are specified with an integer index, used later to retrieve the number of orbitals of that species. The expected format is one atom per line, `x y z index`.
+**# Motif:** List with the positions and chemical species of all atoms of the motif (unit cell). The chemical species are specified with an integer index, used later to retrieve the number of orbitals of that species. The expected format is one atom per line, ``x y z index``.
 
 **# Orbitals:** Number of orbitals of each chemical species present. The position of the number of orbitals for each species follows the indexing used in the motif block. This block expects one or more numbers of orbitals, the same as the number of different species present, `n1 [n2 ...]`.
 
@@ -67,7 +67,7 @@ Key Blocks
 Optional Blocks
 ---------------
 
-**# [Submesh]:** Used to specify a submesh of the Brillouin zone. Takes a positive integer $m$ , which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the Ncells block. This option can become memory intensive (it scales as $\mathcal{O}(m^d)$ , $d$ the dimension)
+**# [Submesh]:** Used to specify a submesh of the Brillouin zone. Takes a positive integer $m$ , which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the Ncells block. This option can become memory intensive (it scales as :math:`\mathcal{O}(m^d)` , $d$ the dimension)
 
 **# [ShiftMesh]:** Center submesh at ``kx ky kz`` provided.
 

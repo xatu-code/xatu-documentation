@@ -13,7 +13,7 @@ General Expression
 
 The optical conductivity tensor is computed from the excitonic eigenstates and their coupling to the electromagnetic field, following the Kubo-Greenwood formalism.
 
-The real part of the conductivity tensor $ \sigma_{ab}(\omega) $ is given by:
+The real part of the conductivity tensor :math:`\sigma_{ab}(\omega)` is given by:
 
 .. math::
 

@@ -18,7 +18,7 @@ Structure of `*_sp.dat` and `*_ex.dat`
 
 Each file contains real parts of the conductivity tensor components for different photon energies:
 
-.. code-block:: math
+.. math::
 
    \omega (eV)   Re[\sigma_{xx}]   Re[\sigma_{xy}]   Re[\sigma_{xz}]   Re[\sigma_{yx}]   Re[\sigma_{yy}]   Re[\sigma_{yz}]   Re[\sigma_{zx}]   Re[\sigma_{zy}]   Re[\sigma_{zz}]
    ...

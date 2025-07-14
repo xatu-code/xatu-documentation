@@ -24,7 +24,7 @@ The standard Coulomb interaction in real space is defined as:
 
 In the implementation, this interaction is:
 
-* Regularized at $r = 0$ using a small `regularization` parameter
+* Regularized at $r = 0$ using a small regularization parameter
 * Truncated beyond a distance cutoff defined from the lattice parameter
 
 This option is appropriate when long-range unscreened interactions are desired.

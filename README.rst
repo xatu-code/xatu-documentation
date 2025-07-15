@@ -1,7 +1,7 @@
-Template for the Read the Docs tutorial
+xatu Documentation
 =======================================
 
-This GitHub includes the documentation of rteh Xatu computational package
+This GitHub includes the documentation and tutorial for the Xatu computational package
 
 Read the tutorial here:
 

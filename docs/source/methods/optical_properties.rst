@@ -24,7 +24,7 @@ where:
 
 * $ V $ is the system volume
 * :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
-* :math:`V_{\mathbf{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{mathbf{k} \rangle`
+* :math:`V_{\mathbf{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{\mathbf{k}} \rangle`
 * $ N_X $ is the number of computed exciton states
 * The delta function is broadened numerically using a specified kernel
 

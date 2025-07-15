@@ -4,7 +4,7 @@ Exciton Oscillator Strengths (_osc.dat)
 
 The exciton oscillator strengths quantify the coupling of each excitonic state to the electromagnetic field and are used to compute the optical conductivity.
 
-These values are computed internally when calculating the optical absorption spectrum and are written separatedly, following the BSE conductivity data (see :doc:`../outputs/conductivity`).
+These values are computed internally when calculating the optical absorption spectrum with (``-a`` or ``--absorption``) and are written separatedly, following the BSE conductivity data (see :doc:`../outputs/conductivity`).
 
 Output Format
 ===============

@@ -2,7 +2,7 @@
 .spin — Exciton Spin Projection
 ================================
 
-When using the ``-s`` flag, Xatu outputs the spin characteristics of each computed exciton state. This includes the total spin projection and the individual spin projections of the electron and the hole.
+When using the ``-s`` or ``--spin`` flag, Xatu outputs the spin characteristics of each computed exciton state. This includes the total spin projection and the individual spin projections of the electron and the hole.
 
 Format
 ======
@@ -15,7 +15,7 @@ Each line in the ``.spin`` file has the format:
 
 Where:
 
-* ``n``: Exciton index (starting from 0)
+* ``n``: Exciton index (starting from $0$ )
 * ``St``: Total spin projection $S^z$of the exciton
 * ``Sh``: Spin projection $ s^z_h$ of the hole
 * ``Se``: Spin projection $ s^z_e$ of the electron

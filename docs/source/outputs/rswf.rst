@@ -2,7 +2,7 @@
 .rswf — Real-Space Probability Density
 ========================================
 
-Generated when the ``-r --rswf [holeIndex=0]`` flag is provided, for the first$n $excitons chosen with ``-n --states [n=8]``.
+Generated when the ``-r --rswf [holeIndex=0]`` flag is provided, for the first $n$ excitons chosen with ``-n --states [n=8]``.
 
 The `.rswf` file contains the **real-space probability density** :math:`P(\mathbf{r})` of the first few exciton wavefunctions, computed by fixing the hole position and evaluating the squared amplitude of the wavefunction as a function of the electron position in real space.
 

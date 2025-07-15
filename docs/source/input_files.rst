@@ -41,6 +41,33 @@ Optional Blocks
 
 This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem :math:`H(\mathbf{k})S(\mathbf{k})\Psi = ES(\mathbf{k})\Psi`. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix :math:`S(\mathbf{R})` must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
 
+DFT Hamiltonians (CRYSTAL and Wannier90)
+=======================================
+
+CRYSTAL
+--------
+
+One may use the hamiltonian given in ``.outp`` from CRYSTAL. When doing so, you may specify the number of unit cells to read. 
+
+The hamiltonian can be written in ``.outp`` by writing the ``input.d3`` with
+
+.. code-block:: bash
+   BASISSET
+   2
+   60 M
+   64 N
+   END
+
+where $M$ and $N$ are the number of overlap and Fock matrices printed.
+
+Wannier90
+-----------
+
+One may use the hamiltonian given in ``_tb.dat`` from Wannier90. When using this hamiltonian, it is mandatory to indicate the number of filled bands ``[filling]`` when executing the commnad line. see :docs:`./usage.rst`.
+
+To print the hamiltonian one must include  ``write_tb = .true.`` in the ``.win`` file.
+
+
 HDF5 Format (Alternative)
 =========================
 

@@ -1,4 +1,4 @@
-xatu Documentation
+Xatu Documentation
 =======================================
 
 This GitHub includes the documentation and tutorial for the Xatu computational package

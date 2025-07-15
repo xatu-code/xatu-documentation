@@ -1,3 +1,10 @@
 .wy-nav-content p {
     text-align: justify;
 }
+
+/* Shrink the sidebar logo */
+.wy-side-nav-search .logo,
+.wy-side-nav-search img {
+    max-height: 120px;   /* adjust to taste */
+    padding: 0 0 10px 0; /* top right bottom left */
+}

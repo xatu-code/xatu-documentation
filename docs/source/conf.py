@@ -2,7 +2,7 @@
 
 # -* Project information
 
-project = 'xatu'
+project = 'Xatu'
 copyright = '2024, Atomelix'
 author = 'Atomelix'
 
@@ -34,6 +34,7 @@ mathjax3_config = {
 }
 
 html_static_path = ['_static']
+html_logo = "images/xatu_logo.svg"   # path relative to conf.py
 
 def setup(app):
     app.add_css_file('custom.css')

@@ -62,12 +62,12 @@ Key Blocks
 
 **# [BandList]:** Explicit list of indices of the bands that compose the exciton. 0 is taken as the last valence band, meaning that 1 would be the first conduction band, -1 is the second valence band and so on.  (overrides **# Bands**) **# Ncells**: Number of k-points in each direction of the Brillouin zone
 
-**# Dielectric:** Substrate permittivity, medium permittivity, and screening length. Screening length can optionally be anisotropic: ``es em rx [ry [rz]]``. If only `es em rx` is provided, the Xatu uses ``r0=ry=rz=rx``.
+**# Dielectric:** Substrate permittivity, medium permittivity, and screening length. Screening length can optionally be anisotropic: ``es em rx [ry [rz]]``. If only ``es em rx`` is provided, the Xatu uses :math:`r_{0}=r^{y}_{0}=r^{z}_{0}=r^{x}_{0}`.
 
 Optional Blocks
 ---------------
 
-**# [Submesh]:** Used to specify a submesh of the Brillouin zone. Takes a positive integer $m$ , which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the Ncells block. This option can become memory intensive (it scales as :math:`\mathcal{O}(m^d)` , $d$ the dimension)
+**# [Submesh]:** Used to specify a submesh of the Brillouin zone. Takes a positive integer $m$ , which divides the BZ along each axis by that factor. The resulting area is meshed with the number of points specified in the `Ncells` block. This option can become memory intensive (it scales as :math:`\mathcal{O}(m^d)` , $d$ the dimension)
 
 **# [ShiftMesh]:** Center submesh at ``kx ky kz`` provided.
 

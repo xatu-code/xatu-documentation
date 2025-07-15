@@ -26,7 +26,7 @@ Documentation Contents
 =======================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Getting Started
 
    installation
@@ -34,7 +34,7 @@ Documentation Contents
    usage
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Outputs
 
    outputs/eigval
@@ -46,7 +46,7 @@ Documentation Contents
    outputs/spin
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Theory and Methods
 
    methods/screening
@@ -55,15 +55,7 @@ Documentation Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Developer Reference
-
-   api
-   contributing
-   changelog
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Miscellaneous
+   :caption: Miscellaneous & Devs
 
    miscellaneous/citing
    miscellaneous/license

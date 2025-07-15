@@ -1,6 +1,6 @@
-======================================
+==========================================
 .kwf — Momentum-Space Probability Density
-======================================
+==========================================
 
 Generated when the ``-k --kwf`` flag is provided for the first$n $excitons chosen with ``-n --states [n=8]``.
 
@@ -30,7 +30,7 @@ The file contains a table with one row per k-point and one column per exciton st
 
 * :math:`\left| \psi_{X}(\bm{k})^{2} \right|` is dimensionless and normalized over the k-grid
 
-Calculation
+Definition
 ========================
 
 Given the exciton wavefunction expressed in the electron-hole basis as :math:`A^{Q}_{vc}(\mathbf{k})`, the $k$ space probability is defined as:

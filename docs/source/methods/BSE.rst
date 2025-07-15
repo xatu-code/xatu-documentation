@@ -29,8 +29,9 @@ The resulting **working form of the BSE** solved in Xatu is:
 where:
 
 * :math:`\varepsilon_{n,\mathbf{k}}` are the HF (or DFT/GW) quasiparticle energies
-* :math:`A^{Q}_{vc}(\mathbf{k})` $ are the exciton amplitudes
-* $ K = -(D * X) $ is the interaction kernel with:
+* :math:`A^{Q}_{vc}(\mathbf{k})` are the exciton amplitudes
+* $ K = -(D - X) $ is the interaction kernel with:
+
   * $ D $ : direct interaction between electron and hole
   * $ X $ : exchange interaction (optional)
 
@@ -44,10 +45,10 @@ This is the **Tamm-Dancoff approximation (TDA)** form of the BSE.
 
 .. .. math::
 
-..    D_{vc,v'c'}(\mathbf{k}, \mathbf{k}', \mathbf{Q}) = 
-..    \sum_{ij,\alpha\beta} 
-..    C^{*}_{c,\mathbf{k} + \mathbf{Q}}^{i\alpha} C^{*}_{v',\mathbf{k}'}^{j\beta}
-..    C_{c',\mathbf{k}'+\mathbf{Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}\, V_{ij}(\mathbf{k}' * \mathbf{k})
+   .. D_{vc,v'c'}(\mathbf{k}, \mathbf{k}', \mathbf{Q}) = 
+   .. \sum_{ij,\alpha\beta} 
+   .. C^{i\alpha*}_{c,\mathbf{k} + \mathbf{Q}}^{} C^{*}_{v',\mathbf{k}'}^{j\beta}
+   .. C_{c',\mathbf{k}'+\mathbf{Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}\, V_{ij}(\mathbf{k}' * \mathbf{k})
 
 .. Here, :math:`C_{n,\mathbf{k}}^{i\alpha}` are the tight-binding coefficients and $V_{ij}$ is the lattice-transformed interaction.
 

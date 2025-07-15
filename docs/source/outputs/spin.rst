@@ -1,6 +1,6 @@
-==========================
+================================
 .spin — Exciton Spin Projection
-==========================
+================================
 
 When using the ``-s`` flag, Xatu outputs the spin characteristics of each computed exciton state. This includes the total spin projection and the individual spin projections of the electron and the hole.
 
@@ -53,8 +53,7 @@ where:
 
 The spin of the exciton is thus the **difference** between the electron and hole spin projections, weighted by the probability amplitude of each electron-hole pair in the excitonic state.
 
-Assumptions
-===========
+**Assumptions**
 
 - Spin is assumed to be a good quantum number of the single-particle states.
 - This holds when the Hamiltonian :math:`H_0` commutes with :math:`\hat{S}_z`, i.e., in the absence of spin-orbit coupling or magnetic noncollinearity.

@@ -18,13 +18,13 @@ The real part of the conductivity tensor :math:`\sigma_{ab}(\omega)` is given by
 .. math::
 
    \sigma_{ab}(\omega) = \frac{\pi e^2 \hbar}{V} \sum_{\bm{k}}^{N_X} \frac{1}{E_{\bm{k}}}
-   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega * E_{\bm{k}})
+   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega - E_{\bm{k}})
 
 where:
 
 * $ V $ is the system volume
 * :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
-* :math:`V_{\mathbf{k}}^a` is the oscillator strength (current matrix element) in direction $ a $
+* :math:`V_{\mathbf{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{mathbf{k} \rangle`
 * $ N_X $ is the number of computed exciton states
 * The delta function is broadened numerically using a specified kernel
 
@@ -39,7 +39,7 @@ The absorption spectrum is computed by convoluting the excitonic delta functions
 * Broadening width (in eV)
 * Frequency range and resolution
 
-This is controlled by the `kubo_w.in` input file. The computed spectra include:
+This is controlled by the ``kubo_w.in`` input file. The computed spectra include:
 
 * **Independent-particle spectrum** (IPA)
 * **Excitonic spectrum** (BSE)

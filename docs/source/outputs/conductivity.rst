@@ -18,27 +18,24 @@ Structure of `*_sp.dat` and `*_ex.dat`
 
 Each file contains real parts of the conductivity tensor components for different photon energies:
 
-.. math::
+.. code-block:: text 
 
-   \omega\quad   Re[\sigma_{xx}]\quad   Re[\sigma_{xy}]\quad   Re[\sigma_{xz}]\quad   Re[\sigma_{yx}]\quad   Re[\sigma_{yy}]\quad   Re[\sigma_{yz}]\quad   Re[\sigma_{zx}]\quad   Re[\sigma_{zy}]\quad   Re[\sigma_{zz}]\quad
+   omega  xx   xy   xz   yx   yy   yz   zx   zy   zz
    .
    .
    .
 
-Units
-======
+**Units**
 
 * :math:`\omega` : photon energy in **electron volts (eV)**
 
-* :math:`\sigma_{ij}` : real part of optical conductivity in units of :math:`\frac{e^2}{\hbar}`
+* ``ij`` is :math:`Re{\sigma_{ij}}` : real part of optical conductivity in units of :math:`e^{2}/\hbar`
 
-Post-processing
-================
+**Post-processing**
 
 These ``.dat`` files can be plotted directly using ``absorption.py`` at ``/plot/`` folder in Xatu repository.
 
-Related Files
-=============
+**Related Files**
 
 For oscillator strengths used in the excitonic conductivity calculation, see:
 

@@ -36,11 +36,11 @@ This model captures the effect of environmental screening in 2D materials. The p
 
 .. math::
 
-   V(r) = -\frac{e^2}{4 \varepsilon_0 \bar{\varepsilon} r_0} \left[ H_0\left(\frac{r}{r_0}\right) * Y_0\left(\frac{r}{r_0}\right) \right]
+   V(r) = -\frac{e^2}{8 \varepsilon_0 \bar{\varepsilon} r_0} \left[ H_0\left(\frac{r}{r_0}\right) - Y_0\left(\frac{r}{r_0}\right) \right]
 
 where:
 
-* :math:`\bar{\varepsilon} = (\varepsilon_m + \varepsilon_s)/2` is the average surrounding dielectric
+* :math:`\bar{\varepsilon} = (\varepsilon_m + \varepsilon_s)/2` is the average surrounding dielectric between the medium :math:`\varepsilon_m` and substrate :math:`\varepsilon_s`
 * $ r_0 $ is the effective screening length of the 2D material
 * $ H_0 $ is the Struve function
 * $ Y_0 $ is the Bessel function of the second kind
@@ -56,4 +56,4 @@ Anisotropic Screening
 
 Xatu supports anisotropic screening in the Rytova–Keldysh model by allowing directional dependence in the screening length. This is implemented by constructing an effective vector :math:`\mathbf{r}_0 = (r_{0}^{x}, r_{0}^{y}, r_{0}^{z})` , and rescaling the coordinates accordingly.
 
-This allows the screening environment to be tuned independently along in-plane and out-of-plane directions -* a generalization that extends beyond conventional isotropic models.
+This allows the screening environment to be tuned independently along in-plane and out-of-plane directions -- a generalization that extends beyond conventional isotropic models.

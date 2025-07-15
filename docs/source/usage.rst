@@ -11,28 +11,28 @@ The program expects at least one file describing the system and a second file de
 
 For thigh-binding ``.model`` files, the command to execute is
 
-.. code-block:: console
+.. code-block:: bash
 
    xatu [OPTIONS] systemfile.model [excitonfile]
    
 
-For thigh-binding-like ``_tb.dat`` Wannier90 hamiltonians, the command to execute is
+For **Wannier90** hamiltonians ``_tb.dat``, the command to execute is
 
-.. code-block:: console
+.. code-block:: bash
 
    xatu --w90 [filling] [OPTIONS] systemfile.model [excitonfile]
     
-and have a mandatory ``[filling]`` parameter.
+and have a mandatory ``[filling]`` parameter, that is the number of filled bands.
 
-For DFT ``.outp`` CRYSTAL hamiltonians, the command to execute is
+For DFT **CRYSTAL** hamiltonians ``.outp``, the command to execute is
 
-.. code-block:: console
+.. code-block:: bash
 
    xatu --dft [ncells] [OPTIONS] systemfile.model [excitonfile]
     
 You may optionally specify the number of unit cells to read.
 
-Flags can be passed to modify the behavior and output of the simulation.
+Flags ``[OPTIONS]`` can be passed to modify the behavior and output of the simulation.
 
 Available Options
 =================
@@ -83,19 +83,19 @@ Specify format of the system file. Defaults to `model`. Note: HDF5 support requi
 Examples
 ========
 
-Run with default output for 8 exciton states:
+Run with **default output** for 8 exciton states:
 
 .. code-block:: bash
 
-   xatu system.model exciton.in
+   xatu system.model exciton.config
 
-Run with custom number of states and output eigenstates and absorption:
+Run with **custom number of states and output eigenstates and absorption**:
 
 .. code-block:: bash
 
    xatu -s 10 -cek -a system.model exciton.in
 
-Run with DFT input and extract real-space amplitudes:
+Run with **DFT input and extract real-space amplitudes**:
 
 .. code-block:: bash
 

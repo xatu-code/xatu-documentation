@@ -105,7 +105,7 @@ Optional Blocks
 
 **# [Potential]:** Specify the potential function used in the direct term of the kernel of the BSE. `keldysh` or `coulomb` (defaults to `keldysh`)
 
-**# [Exchange]:** Whether to include exchange interaction (`true` or `false`). Defaults to `true`.
+**# [Exchange]:** Whether to include exchange interaction (`true` or `false`). Defaults to `false`.
 
 **# [Exchange.potential]:** Used to specify the potential function used in the exchange term of the kernel of the BSE (`keldysh` or `coulomb`). Defaults to `keldysh`.
 

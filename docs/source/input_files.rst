@@ -88,7 +88,9 @@ Key Blocks
 
 **# Bands:** Number of valence and conduction bands to include
 
-**# [BandList]:** Explicit list of indices of the bands that compose the exciton. 0 is taken as the last valence band, meaning that 1 would be the first conduction band, -1 is the second valence band and so on.  (overrides **# Bands**) **# Ncells**: Number of k-points in each direction of the Brillouin zone
+**# [BandList]:** Explicit list of indices of the bands that compose the exciton. 0 is taken as the last valence band, meaning that 1 would be the first conduction band, -1 is the second valence band and so on.  (overrides **# Bands**) 
+
+**# Ncells**: Number of k-points in each direction of the Brillouin zone
 
 **# Dielectric:** Substrate permittivity, medium permittivity, and screening length. Screening length can optionally be anisotropic: ``es em rx [ry [rz]]``. If only ``es em rx`` is provided, the Xatu uses :math:`r_{0}=r^{y}_{0}=r^{z}_{0}=r^{x}_{0}`.
 

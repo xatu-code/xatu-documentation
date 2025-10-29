@@ -40,7 +40,7 @@ Available Options
 ``-h, --help``  
 Print a help message and exit.
 
-``-s, --states nstates``  
+``-n, --states nstates``  
 Number of exciton states to compute and output (default: 8).
 
 ``-p, --precision decimals``  

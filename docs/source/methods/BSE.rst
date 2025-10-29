@@ -23,7 +23,7 @@ The resulting **working form of the BSE** solved in Xatu is:
 
 .. math::
 
-   \left( \varepsilon_{c,\bm{k+Q}} * \varepsilon_{v,\bm{k}} \right) A^Q_{vc}(\bm{k}) +
+   \left( \varepsilon_{c,\bm{k+Q}} - \varepsilon_{v,\bm{k}} \right) A^Q_{vc}(\bm{k}) +
    \sum_{v',c',\bm{k}'} K_{vc,v'c'}(\bm{k}, \bm{k}', Q) A^Q_{v'c'}(\bm{k}') = E_X A^Q_{vc}(\bm{k})
 
 where:

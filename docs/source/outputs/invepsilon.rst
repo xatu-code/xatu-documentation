@@ -4,7 +4,7 @@ Inverse Dielectric Matrix Output
 
 Xatu computes the inverse RPA dielectric matrix if the ``-z`` flag enabling the screening functionalities is provided and the user passes either one of the functions `inversedielectric` or `exciton` in the screening input file.
 If the function `exciton` is used, then a file with the format ``kgrid_*.dat`` containing all the momentum vectors in the BZ mesh is created, alongside the file containing the inverse dielectric matrix.
-The file containing all the generated matrix elements has the format ``*_invpesilon.dat``.
+The file containing all the generated matrix elements has the format ``*_invepsilon.dat``.
 
 Structure of ``*_invepsilon.dat``
 =================================
@@ -21,7 +21,7 @@ If the function `inversedielectric` is used, then only a single inverse dielectr
 
 where *n-1* is the total number of :math:`\bm{G}`-vectors (including the null one). They are sorted by the same order as they are printed when running Xatu.
 
-If the function `exciton` is used, then the inverse dielectric matrix in the entire BZ mesh is printed into the ``*_invpesilon.dat`` file with a table format, with the structure:
+If the function `exciton` is used, then the inverse dielectric matrix in the entire BZ mesh is printed into the ``*_invepsilon.dat`` file with a table format, with the structure:
 
 .. code-block:: text
 
@@ -50,11 +50,14 @@ The :math:`\bm{G}`-vectors are sorted by the same order as they are printed when
 
 The method ``ExcitonTB::readInverseDielectricMatrix(std::string filename)`` provided in the Xatu library can be used to read the inverse dielectric matrix from a file with the name ``filename`` containing a previously computed one in the same format.
 In this way, the user can repeat an exciton calculation with different parameters (e.g., different BSE solver or regularization scheme) without having to recompute the inverse dielectric matrix.
+
 For an example of its use in a script, see the ``read_screening.cpp`` file in the main folder of the project's repository.
 
-**Pro tip**: Using the Xatu as an API tool, the user can also use any language of their preference to read the inverse dielectric matrix, invert it to obtain the dielectric matrix and reduce it, and invert it once again if the user wishes to compute the exciton with a smaller ``Gcutoff`` without having to recompute the inverse dielectric matrix.
+**Pro tip**: Using Xatu as a library, the user can also use any language of their preference to read the inverse dielectric matrix, invert it to obtain the dielectric matrix and reduce it, and invert it once again if the user wishes to compute the exciton calculation with a smaller ``Gcutoff`` without having to recompute the inverse dielectric matrix.
 
-**Pro tip**: Using the Xatu as an API tool, the user can start with a previously computed inverse dielectric matrix by reading it from a file and augment it with the method ``ExcitonTB::augment_2D_DielectricMatrix(double Gcutoff)`` upon passing a larger ``Gcutoff`` value. In this way, only the missing matrix elements will be computed, without the need to recompute the entire inverse dielectric matrix from scratch. For this, the method ``ExcitonTB::augment_2D_DielectricMatrix(double Gcutoff)`` has to be called after a succesful call of ``ExcitonTB::readInverseDielectricMatrix(std::string filename)``.
+**Pro tip**: Using Xatu as a library, the user can start with a previously computed inverse dielectric matrix by reading it from a file and augment it with the method ``ExcitonTB::augment_2D_DielectricMatrix(double Gcutoff)`` upon passing a larger ``Gcutoff`` value. In this way, only the missing matrix elements are computed, without recomputing the entire matrix from scratch. The method has to be called after a successful call of ``ExcitonTB::readInverseDielectricMatrix(std::string filename)``, and it fills the dielectric matrix, so ``ExcitonTB::invertDielectricMatrix()`` must be called afterwards to obtain the augmented inverse. The augmented matrix keeps the order of the :math:`\bm{G}` vectors of the file and appends the new ones after them, so its ordering can differ from that of a calculation done directly at the larger cutoff. It is available for the `2d` and `q2d_legacy` modes.
+
+In `q2d_averaged` mode the file has the same layout, written with 17 significant digits, and holds the projected inverse response :math:`M(\bm{q})` of :doc:`../methods/screening`; the macroscopic dielectric function is :math:`\epsilon_M(\bm{q}) = 1/M_{00}(\bm{q})`. The file `<label>_epsilon.dat` written by the `dielectric` function has the same layout as well.
 
 
 Structure of ``kgrid_*.dat``

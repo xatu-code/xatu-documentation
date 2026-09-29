@@ -38,18 +38,18 @@ The oscillator strength vector for a given exciton state :math:`X_k`, in directi
 
 .. math::
 
-   V_k^\alpha = \sum_{v c \mathbf{k}} A_{vc}^k(\mathbf{k}) \, v_{vc}^\alpha(\mathbf{k})
+   V_k^\alpha = \sum_{v c \bm{k}} A_{vc}^k(\bm{k}) \, v_{vc}^\alpha(\bm{k})
 
 where:
 
-* :math:`A_{vc}^k(\mathbf{k})` are the exciton wavefunction coefficients
-* :math:`v_{vc}^\alpha(\mathbf{k})` are the velocity matrix elements in direction :math:`\alpha`
+* :math:`A_{vc}^k(\bm{k})` are the exciton wavefunction coefficients
+* :math:`v_{vc}^\alpha(\bm{k})` are the velocity matrix elements in direction :math:`\alpha`
 
 The velocity matrix elements are defined as:
 
 .. math::
 
-   v_{vc}^\alpha(\mathbf{k}) = \langle v\mathbf{k} | \hat{v}^\alpha | c\mathbf{k} \rangle 
-   = i\hbar^{-1} \langle v\mathbf{k} | [H_0, \hat{r}^\alpha] | c\mathbf{k} \rangle
+   v_{vc}^\alpha(\bm{k}) = \langle v\bm{k} | \hat{v}^\alpha | c\bm{k} \rangle 
+   = i\hbar^{-1} \langle v\bm{k} | [H_0, \hat{r}^\alpha] | c\bm{k} \rangle
 
 where :math:`H_0` is the non-interacting (mean-field) Hamiltonian.

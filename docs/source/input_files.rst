@@ -103,58 +103,76 @@ Optional Blocks
 
 **# [TotalMomentum]:** Exciton total center-of-mass momentum :math:`\bm{Q}`, expects a vector ``qx qy qz``. Defaults to zero.
 
-**# [Gcutoff]:** calculates interaction matrix elements in reciprocal space; It takes a real argument to specify the cutoff for the reciprocal lattice vectors. Can be smaller than the one specified in the screening file.
+**# [Gcutoff]:** Calculates the interaction matrix elements in reciprocal space. It takes a real argument, the cutoff for the reciprocal lattice vectors :math:`\bm{G}` summed over. With the `rpa` potential it can be smaller than the one specified in the screening file.
 
-**# [Potential]:** Specify the potential function used in the direct term of the kernel of the BSE. `keldysh` or `coulomb` (defaults to `keldysh`)
+**# [Potential]:** Specify the potential function used in the direct term of the kernel of the BSE: `keldysh`, `coulomb` or `rpa` (defaults to `keldysh`). `rpa` uses the numerical screened potential and requires a screening file (see `Screening File Format`_) and the reciprocal-space method (**# Gcutoff**).
 
 **# [Exchange]:** Whether to include exchange interaction (`true` or `false`). Defaults to `false`.
 
-**# [Exchange.potential]:** Used to specify the potential function used in the exchange term of the kernel of the BSE (`keldysh` or `coulomb`). Defaults to `keldysh`.
+**# [Exchange.potential]:** Used to specify the potential function used in the exchange term of the kernel of the BSE (`keldysh`, `coulomb` or `rpa`). Defaults to `keldysh`.
 
 **# [Scissor]:** Apply bandgap correction shift, takes a single float `shift`.
 
 **# [Regularization]:** Set the regularization distance used in the real-space method to avoid the electrostatic divergence at $r = 0$ by setting $V (0) = V (a)$, where a is the regularization distance. By default this parameter is set to the unit cell lattice parameter. It is advised to be changed only for supercell calculations.
 
-**# [Percentage]:** Set the regularization distance :math:`q_0` used in the reciprocal-space method to avoid the electrostatic divergence at $q = 0$ by setting $q_0 = \varsigma k_0$, where $\varsigma$ is the percentage of the smallest wavevector in the BZ mesh. By default this parameter is set to `0.5`. If `0.0` is provided, then the singular term in the potential is set to `0.0`.
+**# [Percentage]:** Sets the radius :math:`q_0 = \varsigma k_0` of the disk around :math:`\Gamma` used in the reciprocal-space method to regularize the divergent :math:`\bm{q} = 0` term of the interaction, where :math:`\varsigma` is this parameter and :math:`k_0` the smallest nonzero wavevector of the BZ mesh. The divergent term is replaced by the average of the screened potential over that disk (see :doc:`./methods/BSE`). Defaults to `0.5`. If `0.0` is provided, the :math:`\bm{q} = 0` term is set to zero. This term shifts all exciton energies rigidly by an amount that vanishes as the BZ mesh is refined; splittings, wavefunctions and oscillator strengths do not depend on it.
 
 Screening File Format
 =====================
 
-This file defines how the microscopic dielectric screening is computed and which parameters to use. It uses the same block-based syntax as the exciton file. Currently,  if a screening file is provided, then an exciton file must be provided as well.
+This file defines how the microscopic dielectric screening is computed and which parameters to use. It is passed with the ``-z`` flag and uses the same block-based syntax as the exciton file. If a screening file is provided, an exciton file must be provided as well; its ``label`` names the output files. The screening model is chosen with **# screening.mode** and described in :doc:`./methods/screening`.
 
 Key Blocks
 ----------
 
-**# ncells_aux**: Number of unit cells/kpoints, in each direction, of the auxiliary BZ mesh to compute the polarizability matrix element(s).
-
-**# valence.bands:** Number of valence bands included in the calculations.
-
-**# conduction.bands:** Number of conduction bands included in the calculations.
-
-**# spin:** Indicates whether if the spin degree of freedom has been considered in the system model or not (`true` or `false`).
-
-**# gcutoff:** Defines the cutoff ``Gcutoff`` for the reciprocal lattice vectors to be included in the calculation of the dielectric matrix. Defaults to `2.5`. Can be different (higher) than the one specified in the exciton file.
-
-**# function:** Specifies which functionality of the screening the user intends. It can be `dielectric`, `polarizability`, `inversedielectric` or `exciton`.
+**# function:** Specifies which screening functionality is run: `dielectric`, `polarizability`, `inversedielectric` or `exciton`. Except for `exciton`, the calculation stops after writing its output. What each function writes depends on **# screening.mode**:
 
 .. hlist::
    :columns: 1
 
-   * **dielectric** Computes the dielectric function at a specified momentum and for a chosen matrix element. The values of the polarizability as a function of included valence and conduction bands are computed and printed in a file named `polarizability_convergence.dat`. Each line of the file has the form ``[# valence bands] [# conduction bands] [Re{χ}] [Im{χ}]``.
-   * **polarizability** Computes the polarizability matrix element :math:`\chi_{\bm{G}\bm{G}'}` for the specified pair :math:`\bm{G}`, :math:`\bm{G}'`  in the BZ mesh. The values are printed to the `polarizability_mesh.dat` file, and each line of the file has the structure ``[kx] [ky] [kz] [Re{χ}] [Im{χ}]``.  Currently works only for 2D materials, whence `kz = 0` at all times.
-   * **inversedielectric** Computes the inverse of the dielectric matrix :math:`\epsilon^{-1}(\bm{q})` at the specified momentum. The matrix elements are printed to the file `<label>_invepsilon.dat`. The order of the `G` vectors is the same as the one they appear by when printed to `stdout` when this option is used. Each row in the file has the real and imaginary parts of each matrix element printed separately separated by a space (and conserving the order of the `G` vectors).
-   * **exciton**  Computes the inverse of the dielectric matrix in the BZ mesh, and proceeds with the calculation of the exciton. A file containing all the points in the BZ mesh is generated. The file has a name of the form `kgrid_<ncells>.dat`, where `ncells` is the number of cells in each direction, specified in the exciton file. The object :math:`\epsilon^{-1}(\bm{q})` is printed to the file `<label>_invepsilon.dat`, where `<label>` is the value of the label parameter specified in the exciton file. All the individual matrices :math:`\epsilon^{-1}(\bm{q})` are printed by the same order of momentum points as that of the file containing the `k` points.
+   * **dielectric** Computes the dielectric matrix :math:`\epsilon_{\bm{G}\bm{G}'}(\bm{q})` at the momentum given in **# momentum** and writes it to `<label>_epsilon.dat`, with the same layout as the inverse (see :doc:`./outputs/invepsilon`). In `q2d_averaged` mode this is the inverse of the projected inverse response, not an average of the microscopic dielectric function.
+   * **polarizability** In `2d` mode, computes the polarizability matrix element :math:`\chi_{\bm{G}\bm{G}'}` for the pair of **# vectors** over the BZ mesh and writes it to `polarizability_mesh.dat`, one line ``[kx] [ky] [kz] [Re{χ}] [Im{χ}]`` per k point. In `q2d_legacy` mode, writes the polarizability matrix at **# momentum** to `<label>_polarizability.dat`. Not available in `q2d_averaged` mode.
+   * **inversedielectric** Computes the inverse dielectric matrix :math:`\epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})` at **# momentum** and writes it to `<label>_invepsilon.dat` (see :doc:`./outputs/invepsilon`). The order of the :math:`\bm{G}` vectors is the one printed to `stdout`. In `q2d_averaged` mode the file holds the projected inverse response :math:`M`, and :math:`\epsilon_M(\bm{q}) = 1/M_{00}(\bm{q})`.
+   * **exciton** Computes the screening on the BZ mesh and continues with the exciton calculation using the `rpa` potential. The BZ mesh is written to `kgrid_<ncells>.dat`. In the `2d`, `q2d_legacy` and `q2d_averaged` modes the inverse dielectric matrices on that mesh are written to `<label>_invepsilon.dat`, in the order of `kgrid_<ncells>.dat`. In `q2d_atomic` mode the screened interaction is built internally and not written.
 
-**# vectors:** Indicates which pair of reciprocal lattice vectors :math:`\bm{G}`, :math:`\bm{G}'` the polarizability is computed for. Two indices have to be provided as: `<index1> <index2>`. This entry is valid for both functions `dielectric` and `polarizability`. Defaults to `0 0`.
+In `q2d_atomic` mode, every function other than `exciton` computes the atomic-plane screening at **# momentum** and writes it to `<label>_q2d_atomic.dat`: the plane heights, the :math:`\bm{G}` vectors, and for each :math:`\bm{q}` the matrices :math:`P`, :math:`B`, :math:`R`, :math:`W`, :math:`I - BP` and :math:`I + BR` of :doc:`./methods/screening`, indexed as ``G*Nplanes + plane``.
 
-**# momentum:** Specifies which momentum the polarizability, or inverse of the dielectric matrix, is to be computed at. A vector in the form `qx qy qz` has to be given. Defaults to `0.2 0 0`.
+**# ncell_aux:** Number of k points in each direction of the auxiliary BZ mesh used to compute the polarizability.
+
+**# valence.bands:** Number of valence bands included in the polarizability.
+
+**# conduction.bands:** Number of conduction bands included in the polarizability.
+
+**# spin:** Whether the spin degree of freedom is included in the system model (`true`) or not (`false`). With `false` a spin degeneracy factor of 2 is applied.
+
+**# gcutoff:** Cutoff for the reciprocal lattice vectors :math:`\bm{G}` included in the dielectric matrix. It can be larger than the one specified in the exciton file.
 
 Optional Blocks
 ---------------
 
-**# [isotropic]:** Indicates whether the system is isotropic (`true` or `false`). Defaults to `false`.
+**# [screening.mode]:** Screening model. Defaults to `2d`.
 
-**# [thickness]:** Indicates the thickness of the 2D material. If provided, it enables the Q2D calculation for the **inversedielectric** or **exciton** functions. Defaults to `0.0`.
+.. hlist::
+   :columns: 1
+
+   * **2d** Strictly two-dimensional RPA dielectric matrix.
+   * **q2d_legacy** Quasi-2D RPA dielectric matrix averaged over a slab of thickness **# thickness**.
+   * **q2d_atomic** Quasi-2D RPA resolved on the atomic planes of the structure, solved analytically in :math:`z`.
+   * **q2d_averaged** The `q2d_atomic` response, averaged uniformly in :math:`z` after the inversion.
+
+**# [momentum]:** Momentum :math:`\bm{q}` at which the dielectric function, polarizability or atomic screening is computed, as ``qx qy qz``. Not used by the `exciton` function. Defaults to `0.2 0 0`.
+
+**# [vectors]:** Pair of indices of the reciprocal lattice vectors :math:`\bm{G}`, :math:`\bm{G}'` for which the `polarizability` function computes :math:`\chi_{\bm{G}\bm{G}'}` in `2d` mode, as ``<index1> <index2>``. Defaults to `0 0`.
+
+**# [isotropic]:** Whether the system is isotropic (`true` or `false`). If `false`, the :math:`\bm{q} = 0` regularization of the `2d` and `q2d_legacy` modes averages the dielectric function along :math:`\bm{q}_0` and the perpendicular direction. Defaults to `false`.
+
+**# [thickness]:** Thickness :math:`d_\perp` of the slab in `q2d_legacy` mode, in Angstrom. Required and positive in that mode; ignored by the others.
+
+**# [zaverage.margin]:** Used by `q2d_averaged` only. The averaging interval in :math:`z` defaults to the extent of the atomic planes, :math:`[z_\mathrm{min}, z_\mathrm{max}]`. A margin :math:`m` widens it to :math:`[z_\mathrm{min} - m, z_\mathrm{max} + m]`, a width proportional to the structure. Defaults to `0`. The result depends on this choice; the interval used is printed.
+
+**# [zaverage.zmin], [zaverage.zmax]:** Used by `q2d_averaged` only. Explicit bounds of the averaging interval, in Angstrom; each replaces the bound on its side, including the margin. All atomic planes must lie inside the interval. A structure whose atoms all share one height needs a margin or both bounds.
+
+**# [zdecomposition.states]:** `q2d_atomic` with function `exciton` only. List of 1-based exciton indices whose direct interaction term is decomposed into contributions from each ordered pair of atomic planes, for both the screened and the bare interaction. The result is written to `<label>_zdecomposition.dat`. This is a read-only diagnostic: it changes no energy or state.
 
 Absorption File: `kubo_w.in`
 ============================

@@ -4,7 +4,7 @@
 
 Generated when the ``-r --rswf [holeIndex=0]`` flag is provided, for the first $n$ excitons chosen with ``-n --states [n=8]``.
 
-The `.rswf` file contains the **real-space probability density** :math:`P(\mathbf{r})` of the first few exciton wavefunctions, computed by fixing the hole position and evaluating the squared amplitude of the wavefunction as a function of the electron position in real space.
+The `.rswf` file contains the **real-space probability density** :math:`P(\bm{r})` of the first few exciton wavefunctions, computed by fixing the hole position and evaluating the squared amplitude of the wavefunction as a function of the electron position in real space.
 
 
 Format
@@ -24,7 +24,7 @@ The file is organized in blocks, one for each exciton. Each block contains:
 Where:
 
 * ``x, y, z``: Coordinates of each unit cell vector (in :math:`Å`)
-* ``P``: Squared amplitude :math:`| \psi_X(\mathbf{r}) |^2`
+* ``P``: Squared amplitude :math:`| \psi_X(\bm{r}) |^2`
 
 Each block is separated by a `#` delimiter.
 
@@ -43,9 +43,9 @@ The probability density is computed as:
 
 where:
 
-* :math:`\mathbf{r}_{h}` is the fixed hole position (specified by `--rswf [holeIndex]`)
+* :math:`\bm{r}_{h}` is the fixed hole position (specified by `--rswf [holeIndex]`)
 * :math:`\psi^{X}_{n}` denotes the exciton component over orbital $n$
-* The sum is over orbitals centered at :math:`\mathbf{r}`
+* The sum is over orbitals centered at :math:`\bm{r}`
 
 By default, Xatu evaluates this for the **first 8 exciton states**, or as defined by the user with ``--states [n]``.
 

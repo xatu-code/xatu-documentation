@@ -3,16 +3,16 @@
 ==============================
 
 The ``.states`` file (written with the ``-c`` / ``--eigenstates`` flag) contains the **complex coefficients**  
-:math:`A^{Q}_{vc}(\mathbf{k})` that define each exciton wavefunction in the electron–hole basis.  
+:math:`A^{Q}_{vc}(\bm{k})` that define each exciton wavefunction in the electron–hole basis.  
 These are exactly the amplitudes that appear in the Bethe‑Salpeter Equation (see Eq. 14 of the paper):
 
 .. math::
 
-   (\varepsilon_{c,\mathbf{k+Q}} - \varepsilon_{v,\mathbf{k}})
-   A^{Q}_{vc}(\mathbf{k})
-   + \sum_{v'c'\mathbf{k}'} K_{vc,v'c'}(\mathbf{k},\mathbf{k}',Q)\,
-     A^{Q}_{v'c'}(\mathbf{k}')
-   \;=\; E_X\,A^{Q}_{vc}(\mathbf{k})
+   (\varepsilon_{c,\bm{k+Q}} - \varepsilon_{v,\bm{k}})
+   A^{Q}_{vc}(\bm{k})
+   + \sum_{v'c'\bm{k}'} K_{vc,v'c'}(\bm{k},\bm{k}',Q)\,
+     A^{Q}_{v'c'}(\bm{k}')
+   \;=\; E_X\,A^{Q}_{vc}(\bm{k})
 
 File Structure
 ==============
@@ -24,7 +24,7 @@ File Structure
       n_pairs
 
    The dimension ``n_pairs`` of the BSE matrix -- i.e. the total number of distinct  
-   electron-hole pairs :math:`(v,c,\mathbf{k})` used for the calculation.
+   electron-hole pairs :math:`(v,c,\bm{k})` used for the calculation.
 
 2. **Basis definition (next ``n_pairs`` lines)**
 
@@ -73,7 +73,7 @@ Properties
 .. Typical Use Cases
 .. =================
 
-.. * Build the k‑space probability density :math:`|\psi_X(\mathbf{k})|^2`
+.. * Build the k‑space probability density :math:`|\psi_X(\bm{k})|^2`
 ..   (written automatically to ``.kwf`` when using ``-k``).
 .. * Reconstruct the real‑space wavefunction (``.rswf``) for visualization.
 .. * Analyse band‑resolved or spin‑resolved content of a particular exciton.

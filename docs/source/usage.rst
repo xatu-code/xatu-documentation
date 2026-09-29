@@ -84,7 +84,7 @@ Diagonalize the Bloch Hamiltonian at k-points specified in a file. Does not comp
 Specify format of the system file. Defaults to `model`. Note: HDF5 support requires compilation with `HDF5=1`.
 
 ``-z, --screening screeningfile``  
-Enable screening functionalities. An exciton file must be provided alongside the screening file.
+Enable screening functionalities (see the screening file format in :doc:`./input_files`). An exciton file must be provided alongside the screening file.
 
 Examples
 ========
@@ -99,7 +99,7 @@ Run with **custom number of states and output eigenstates and absorption**:
 
 .. code-block:: bash
 
-   xatu -s 10 -kace system.model exciton.in
+   xatu -n 10 -kace system.model exciton.in
 
 Run with **DFT input and extract real-space amplitudes**:
 

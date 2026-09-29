@@ -44,11 +44,11 @@ The total spin projection :math:`\langle X | \hat{S}_z^T | X \rangle` for each e
 
 .. math::
 
-   \langle S_z^T \rangle = \sum_{v,c,\mathbf{k}} |A_{vc}^{Q}(\mathbf{k})|^2 (\sigma_c - \sigma_v)
+   \langle S_z^T \rangle = \sum_{v,c,\bm{k}} |A_{vc}^{Q}(\bm{k})|^2 (\sigma_c - \sigma_v)
 
 where:
 
-- :math:`A_{vc}^{Q}(\mathbf{k})` is the excitonic coefficient in the electron-hole basis
+- :math:`A_{vc}^{Q}(\bm{k})` is the excitonic coefficient in the electron-hole basis
 - :math:`\sigma_c`, :math:`\sigma_v \in \{-1/2, +1/2\}` are the spin projections of the conduction and valence bands, respectively
 
 The spin of the exciton is thus the **difference** between the electron and hole spin projections, weighted by the probability amplitude of each electron-hole pair in the excitonic state.

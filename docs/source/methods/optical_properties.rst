@@ -23,8 +23,8 @@ The real part of the conductivity tensor :math:`\sigma_{ab}(\omega)` is given by
 where:
 
 * $ V $ is the system volume
-* :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
-* :math:`V_{\mathbf{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{\mathbf{k}} \rangle`
+* :math:`E_{\bm{k}}` is the exciton energy at momentum :math:`\bm{k}`
+* :math:`V_{\bm{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{\bm{k}} \rangle`
 * $ N_X $ is the number of computed exciton states
 * The delta function is broadened numerically using a specified kernel
 

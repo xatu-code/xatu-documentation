@@ -25,21 +25,21 @@ to determine the dimensionality of the system. The expected format is one vector
 
 **# Filling:** Total number of electrons in the unit cell. Required to identify the Fermi level, which is the reference point in the construction of the excitons. Must be an integer number.
 
-**# BravaisVectors:** List of Bravais vectors :math:`\mathbf{R}` that participate in the construction of the Bloch Hamiltonian. Expected one per line, in format ``x y z``.
+**# BravaisVectors:** List of Bravais vectors :math:`\bm{R}` that participate in the construction of the Bloch Hamiltonian. Expected one per line, in format ``x y z``.
 
-**# FockMatrices:** Matrices :math:`H(\mathbf{R})` that construct the Bloch Hamiltonian :math:`H(\mathbf{k})` . The matrices must
+**# FockMatrices:** Matrices :math:`H(\bm{R})` that construct the Bloch Hamiltonian :math:`H(\bm{k})` . The matrices must
 be fully defined, i.e., they cannot be triangular, since the code does not use hermiticity to generate the Bloch Hamiltonian. The Fock matrices given must follow the ordering given in the block `BravaisVectors`. The matrices can be real or complex, and each one must be separated from the next using the delimiter `&`. In case the matrices are complex, the real and imaginary parts must be separated by a space, and the complex part must carry the imaginary umber symbol (e.g. $1.5 −2.1j$ ). Both $i$ and $j$ can be used.
 
 Optional Blocks
 ---------------
 
-**# [OverlapMatrices]:** In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices :math:`S(\mathbf{R})`. The overlap in $k$ space is given by:
+**# [OverlapMatrices]:** In case that the orbitals used are not orthonormal, one can optionally provide the overlap matrices :math:`S(\bm{R})`. The overlap in $k$ space is given by:
 
 .. math::
 
    S(\bm{k}) = \sum_{\bm{R}}S(\bm{R})e^{i\bm{k}\cdot\bm{R}}
 
-This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem :math:`H(\mathbf{k})S(\mathbf{k})\Psi = ES(\mathbf{k})\Psi`. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix :math:`S(\mathbf{R})` must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
+This is necessary to be able to reproduce the bands, which come from solving the generalized eigenvalue problem :math:`H(\bm{k})S(\bm{k})\Psi = ES(\bm{k})\Psi`. This will be specially necessary if the system was determined using DFT, since in tight-binding we usually assume orthonormality. This block follows the same rules as FockMatrices: each matrix :math:`S(\bm{R})` must be separated with the delimiter `&`, and they must follow the order given in `BravaisVectors`.
 
 DFT Hamiltonians (CRYSTAL and Wannier90)
 ========================================
@@ -101,9 +101,9 @@ Optional Blocks
 
 **# [ShiftMesh]:** Center submesh at ``kx ky kz`` provided.
 
-**# [TotalMomentum]:** Exciton total center-of-mass momentum :math:`\mathbf{Q}`, expects a vector ``qx qy qz``. Defaults to zero.
+**# [TotalMomentum]:** Exciton total center-of-mass momentum :math:`\bm{Q}`, expects a vector ``qx qy qz``. Defaults to zero.
 
-**# [Reciprocal]:** calculates interaction matrix elements in reciprocal space; It takes an integer argument to specify the number of reciprocal cells to sum over, ``nG``.
+**# [Gcutoff]:** calculates interaction matrix elements in reciprocal space; It takes a real argument to specify the cutoff for the reciprocal lattice vectors. Can be smaller than the one specified in the screening file.
 
 **# [Potential]:** Specify the potential function used in the direct term of the kernel of the BSE. `keldysh` or `coulomb` (defaults to `keldysh`)
 
@@ -114,6 +114,47 @@ Optional Blocks
 **# [Scissor]:** Apply bandgap correction shift, takes a single float `shift`.
 
 **# [Regularization]:** Set the regularization distance used in the real-space method to avoid the electrostatic divergence at $r = 0$ by setting $V (0) = V (a)$, where a is the regularization distance. By default this parameter is set to the unit cell lattice parameter. It is advised to be changed only for supercell calculations.
+
+**# [Percentage]:** Set the regularization distance :math:`q_0` used in the reciprocal-space method to avoid the electrostatic divergence at $q = 0$ by setting $q_0 = \varsigma k_0$, where $\varsigma$ is the percentage of the smallest wavevector in the BZ mesh. By default this parameter is set to `0.5`. If `0.0` is provided, then the singular term in the potential is set to `0.0`.
+
+Screening File Format
+=====================
+
+This file defines how the microscopic dielectric screening is computed and which parameters to use. It uses the same block-based syntax as the exciton file. Currently,  if a screening file is provided, then an exciton file must be provided as well.
+
+Key Blocks
+----------
+
+**# ncells_aux**: Number of unit cells/kpoints, in each direction, of the auxiliary BZ mesh to compute the polarizability matrix element(s).
+
+**# valence.bands:** Number of valence bands included in the calculations.
+
+**# conduction.bands:** Number of conduction bands included in the calculations.
+
+**# spin:** Indicates whether if the spin degree of freedom has been considered in the system model or not (`true` or `false`).
+
+**# gcutoff:** Defines the cutoff ``Gcutoff`` for the reciprocal lattice vectors to be included in the calculation of the dielectric matrix. Defaults to `2.5`. Can be different (higher) than the one specified in the exciton file.
+
+**# function:** Specifies which functionality of the screening the user intends. It can be `dielectric`, `polarizability`, `inversedielectric` or `exciton`.
+
+.. hlist::
+   :columns: 1
+
+   * **dielectric** Computes the dielectric function at a specified momentum and for a chosen matrix element. The values of the polarizability as a function of included valence and conduction bands are computed and printed in a file named `polarizability_convergence.dat`. Each line of the file has the form ``[# valence bands] [# conduction bands] [Re{χ}] [Im{χ}]``.
+   * **polarizability** Computes the polarizability matrix element :math:`\chi_{\bm{G}\bm{G}'}` for the specified pair :math:`\bm{G}`, :math:`\bm{G}'`  in the BZ mesh. The values are printed to the `polarizability_mesh.dat` file, and each line of the file has the structure ``[kx] [ky] [kz] [Re{χ}] [Im{χ}]``.  Currently works only for 2D materials, whence `kz = 0` at all times.
+   * **inversedielectric** Computes the inverse of the dielectric matrix :math:`\epsilon^{-1}(\bm{q})` at the specified momentum. The matrix elements are printed to the file `<label>_invepsilon.dat`. The order of the `G` vectors is the same as the one they appear by when printed to `stdout` when this option is used. Each row in the file has the real and imaginary parts of each matrix element printed separately separated by a space (and conserving the order of the `G` vectors).
+   * **exciton**  Computes the inverse of the dielectric matrix in the BZ mesh, and proceeds with the calculation of the exciton. A file containing all the points in the BZ mesh is generated. The file has a name of the form `kgrid_<ncells>.dat`, where `ncells` is the number of cells in each direction, specified in the exciton file. The object :math:`\epsilon^{-1}(\bm{q})` is printed to the file `<label>_invepsilon.dat`, where `<label>` is the value of the label parameter specified in the exciton file. All the individual matrices :math:`\epsilon^{-1}(\bm{q})` are printed by the same order of momentum points as that of the file containing the `k` points.
+
+**# vectors:** Indicates which pair of reciprocal lattice vectors :math:`\bm{G}`, :math:`\bm{G}'` the polarizability is computed for. Two indices have to be provided as: `<index1> <index2>`. This entry is valid for both functions `dielectric` and `polarizability`. Defaults to `0 0`.
+
+**# momentum:** Specifies which momentum the polarizability, or inverse of the dielectric matrix, is to be computed at. A vector in the form `qx qy qz` has to be given. Defaults to `0.2 0 0`.
+
+Optional Blocks
+---------------
+
+**# [isotropic]:** Indicates whether the system is isotropic (`true` or `false`). Defaults to `false`.
+
+**# [thickness]:** Indicates the thickness of the 2D material. If provided, it enables the Q2D calculation for the **inversedielectric** or **exciton** functions. Defaults to `0.0`.
 
 Absorption File: `kubo_w.in`
 ============================

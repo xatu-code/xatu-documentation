@@ -44,6 +44,7 @@ Documentation Contents
    outputs/conductivity
    outputs/oscillator_strengths
    outputs/spin
+   outputs/invpesilon
 
 .. toctree::
    :maxdepth: 1

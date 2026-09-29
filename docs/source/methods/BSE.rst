@@ -37,6 +37,25 @@ where:
 
 This is the **Tamm-Dancoff approximation (TDA)** form of the BSE.
 
+Screened RPA Coulomb potential
+==============================
+
+If the user chose the `rpa` option for the interaction potential, then in the strict 2D approximation the screened Coulomb potential is also a matrix at each point in the Brillouin zone, whose elements are given by
+
+.. math::
+   W_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{v_c(\bm{q}+\bm{G})}\, \epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q}) \sqrt{v_c(\bm{q}+\bm{G}')} \,,
+
+where :math:`\epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})` is the inverse RPA dielectric function computed within the strictly 2D approach. If the user provides the thickness :math:`d_{\perp}` of the 2D material in the screening input file, then the quasi-2D mode (Q2D) is enabled, and the screened potential is given by
+
+.. math::
+   \bar{W}_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{\bar{v}_c(\bm{q}+\bm{G})} \,\bar{\epsilon}^{-1}_{\bm{G}\bm{G}'}(\bm{q}) \sqrt{\bar{v}_c(\bm{q}+\bm{G}')} \,,
+
+where :math:`\bar{\epsilon}^{-1}_{\bm{G}\bm{G}'}(\bm{q})` is the inverse RPA dielectric function computed within the Q2D approach, and :math:`\bar{v}_c` is given by
+
+.. math::
+   \bar{v}_c(\bm{q}) = \int_{-d_{\perp}/2}^{d_{\perp}/2}  \int_{-d_{\perp}/2}^{d_{\perp}/2}  v_c(\bm{q}, z-z') \, \mathrm{d} z \, \mathrm{d} z'\,,
+
+where :math:`v_c(\bm{q},z-z')` is the Coulomb potential in the mixed :math:`(\bm{q},z)`-representation. Formally, it is given by the in-plane Fourier transform of the unscreened real-space-resolved Coulomb potential :math:`V(\bm{r}-\bm{r}')`, while keeping the $z,z'$ variables intact.
 
 .. Interaction Matrix Elements
 .. =============================

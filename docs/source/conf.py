@@ -54,13 +54,25 @@ html_theme_options = {
     'source_repository': 'https://github.com/xatu-code/xatu-documentation',
     'source_branch': 'main',
     'source_directory': 'docs/source/',
+    # Sidebar colours: blue section captions, dark top-level entries, and a tinted
+    # band for the section containing the current page (see _static/custom.css)
     'light_css_variables': {
         'color-brand-primary': '#1f6f8b',
         'color-brand-content': '#1f6f8b',
+        'color-sidebar-caption-text': '#1f6f8b',
+        'color-sidebar-link-text--top-level': '#1b1f24',
+        'color-sidebar-link-text': '#4a5561',
+        'color-sidebar-item-background--current': '#d6e9f0',
+        'sidebar-section-background': '#e9f2f6',
     },
     'dark_css_variables': {
         'color-brand-primary': '#5fb3cf',
         'color-brand-content': '#5fb3cf',
+        'color-sidebar-caption-text': '#5fb3cf',
+        'color-sidebar-link-text--top-level': '#e6e9ec',
+        'color-sidebar-link-text': '#b3bcc5',
+        'color-sidebar-item-background--current': '#1f3a47',
+        'sidebar-section-background': '#1a262e',
     },
     'footer_icons': [
         {

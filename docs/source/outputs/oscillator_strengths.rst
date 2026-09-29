@@ -1,55 +1,51 @@
-=======================================
-Exciton Oscillator Strengths (_osc.dat)
-=======================================
+================================================
+Oscillator strengths (``*_ex_osc.dat``)
+================================================
 
-The exciton oscillator strengths quantify the coupling of each excitonic state to the electromagnetic field and are used to compute the optical conductivity.
+Written with ``-a``, next to the excitonic conductivity. The name is the excitonic file name of
+``kubo_w.in`` with ``_osc`` inserted before the extension (``hBN_ex.dat`` → ``hBN_ex_osc.dat``). It lists
+the velocity matrix element between the ground state and **every** exciton of the BSE, which is what
+sets each exciton's brightness.
 
-These values are computed internally when calculating the optical absorption spectrum with (``-a`` or ``--absorption``) and are written separatedly, following the BSE conductivity data (see :doc:`../outputs/conductivity`).
+Format
+======
 
-Output Format
-===============
+One line per exciton, in order of energy. There are as many lines as the BSE dimension, independent
+of ``-n``:
 
-The oscillator strengths are written after the conductivity data in the **BSE output file**, following a blank line.
+.. code-block:: text
 
-Each line corresponds to a single exciton and contains:
+   E      Re(Vx)   Im(Vx)   Re(Vy)   Im(Vy)   Re(Vz)   Im(Vz)
 
-.. code-block:: text 
+* ``E``: exciton energy :math:`E_X` (eV).
+* ``V``: velocity matrix element :math:`V^a_X = \langle GS|\hat v^a|X\rangle` along :math:`a = x,y,z`, in
+  atomic units.
 
-   En   Re(Vx)   Im(Vx)   Re(Vy)   Im(Vy)   Re(Vz)   Im(Vz)
+Excitons with :math:`V_X \approx 0` are dark. The conductivity of :doc:`conductivity` is
 
-where:
+.. math::
 
-* ``En`` is :math:`E_X`: energy of the n-th exciton in eV;
-* :math:`\text{Re}(V_\alpha), \text{Im}(V_\alpha)`: real and imaginary parts of the oscillator strength in direction :math:`\alpha`.
+   \sigma^{ab}(\omega) \propto \sum_X \frac{(V^a_X)^*\,V^b_X}{E_X}\,\delta(\hbar\omega - E_X),
 
-These values allow one to reconstruct the optical conductivity or analyze polarization-resolved excitonic properties.
-
-**Units**
-
-* :math:`[E_X] = \text{eV}`
-* :math:`[V_\alpha]` is dimensionless (combined with prefactors in the conductivity formula)
-
-See also: :doc:`../methods/optical_properties`
+so :math:`|V^a_X|^2/E_X` is the weight of exciton :math:`X` in the absorption along :math:`a`.
 
 Definition
-===========
-
-The oscillator strength vector for a given exciton state :math:`X_k`, in direction :math:`\alpha \in \{x, y, z\}`, is given by:
+==========
 
 .. math::
 
-   V_k^\alpha = \sum_{v c \mathbf{k}} A_{vc}^k(\mathbf{k}) \, v_{vc}^\alpha(\mathbf{k})
+   V^a_X = \sum_{v c \bm{k}} A_{vc}^X(\bm{k})\, v^a_{vc}(\bm{k}),
+   \qquad
+   v^a_{vc}(\bm{k}) = \langle v\bm{k}|\hat v^a|c\bm{k}\rangle
+   = \frac{i}{\hbar}\langle v\bm{k}|[H_0,\hat r^a]|c\bm{k}\rangle ,
 
-where:
+where :math:`A^X_{vc}(\bm{k})` are the exciton coefficients (:doc:`states`) and :math:`H_0` is the
+single-particle Hamiltonian.
 
-* :math:`A_{vc}^k(\mathbf{k})` are the exciton wavefunction coefficients
-* :math:`v_{vc}^\alpha(\mathbf{k})` are the velocity matrix elements in direction :math:`\alpha`
+.. code-block:: python
 
-The velocity matrix elements are defined as:
-
-.. math::
-
-   v_{vc}^\alpha(\mathbf{k}) = \langle v\mathbf{k} | \hat{v}^\alpha | c\mathbf{k} \rangle 
-   = i\hbar^{-1} \langle v\mathbf{k} | [H_0, \hat{r}^\alpha] | c\mathbf{k} \rangle
-
-where :math:`H_0` is the non-interacting (mean-field) Hamiltonian.
+   import numpy as np
+   osc = np.loadtxt("hBN_ex_osc.dat")
+   E = osc[:, 0]
+   Vx = osc[:, 1] + 1j * osc[:, 2]
+   bright = np.abs(Vx)**2 / E            # weight in σ^xx

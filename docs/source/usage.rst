@@ -1,108 +1,133 @@
-========================
-Command-Line Usage
-========================
+==================
+Command-line usage
+==================
 
-Xatu can be used either as a standalone executable with input files or as a C++ library (API). This section covers the command-line interface (CLI) usage of the `xatu` binary.
-
-Basic Command
-=============
-
-The program expects at least one file describing the system and a second file describing the excitonic properties.
-
-For tight-binding ``.model`` files, the command to execute is
+The ``xatu`` binary takes a **system file** and an **exciton file**, plus optional flags:
 
 .. code-block:: bash
 
-   xatu [OPTIONS] systemfile.model [excitonfile]
-   
+   xatu [OPTIONS] systemfile [excitonfile]
 
-For **Wannier90** hamiltonians ``_tb.dat``, the command to execute is
+The format of the system file sets how it is read:
 
-.. code-block:: bash
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-   xatu --w90 [filling] [OPTIONS] systemfile.model [excitonfile]
-    
-and have a mandatory ``[filling]`` parameter, that is the number of filled bands.
+   * - System file
+     - Command
+   * - Xatu model file (``.model``)
+     - ``xatu [OPTIONS] system.model exciton.txt``
+   * - HDF5 model file
+     - ``xatu -f hdf5 [OPTIONS] system.hdf5 exciton.txt`` (needs an HDF5 build)
+   * - CRYSTAL output (``.outp``)
+     - ``xatu -d <ncells> [OPTIONS] system.outp exciton.txt``
+   * - Wannier90 Hamiltonian (``_tb.dat``)
+     - ``xatu -w <filling> [OPTIONS] system_tb.dat exciton.txt``
 
-For DFT **CRYSTAL** hamiltonians ``.outp``, the command to execute is
+See :doc:`input_files/system` for each format.
 
-.. code-block:: bash
+Options
+=======
 
-   xatu --dft [ncells] [OPTIONS] systemfile.model [excitonfile]
-    
-You may optionally specify the number of unit cells to read.
+Physics and input
+-----------------
 
-Flags ``[OPTIONS]`` can be passed to modify the behavior and output of the simulation.
+.. list-table::
+   :header-rows: 1
+   :widths: 32 68
 
-Available Options
-=================
+   * - Flag
+     - Description
+   * - ``-w, --w90 <filling>``
+     - The system file is a Wannier90 ``_tb.dat``. ``<filling>`` is the number of filled bands and is
+       **mandatory**, because the file does not contain it.
+   * - ``-d, --dft <ncells>``
+     - The system file is a CRYSTAL ``.outp``. Read the Fock and overlap matrices of the first
+       ``<ncells>`` unit cells. The value is required.
+   * - ``-f, --format model|hdf5``
+     - Format of a Xatu system file. Default ``model``.
+   * - ``-m, --method diag|davidson|sparse``
+     - BSE solver: full diagonalization (default), iterative Davidson, or sparse Lanczos (ARPACK). The
+       iterative solvers only compute the lowest ``-n`` states and are faster for large BSE matrices.
+   * - ``-z, --screening <file>`` |scr|
+     - Compute the microscopic RPA screening described in ``<file>`` (see
+       :doc:`input_files/screening`). An exciton file is required too.
+   * - ``-b, --bands <kpointsfile>``
+     - Only compute the band structure at the k-points listed in ``<kpointsfile>`` (one ``kx ky kz`` per
+       line), write the eigenvalues (eV, one row per k-point) to ``<kpointsfile>.bands``, and exit. No
+       exciton file is needed.
 
-``-h, --help``  
-Print a help message and exit.
+What to write
+-------------
 
-``-n, --states nstates``  
-Number of exciton states to be written in `.states`, `.eigval` files and in the terminal (default: 8).
+Output files are named after the ``# label`` of the exciton file.
 
-``-t, --encut nstates``  
-Overrides `-n` flag. Print excitons up to the energy cuttof value (defaults to 8 exciton states).
+.. list-table::
+   :header-rows: 1
+   :widths: 32 68
 
-``-p, --precision decimals``  
-Set the number of decimal places for energy output (default: 6).
-
-``-d, --dft [ncells]``  
-Indicate that the system file is in CRYSTAL output format. You may optionally specify the number of unit cells to read.
-
-``-w, --w90 [filling]``  
-Indicate that the system file is in Wannier90 output format. You must specify the number of filled bands.
-
-``-eck, --energy / --eigenstates / --kwf``  
-Flags to write exciton outputs:
-
-* `-e`: energies
-* `-c`: eigenvectors
-* `-k`: reciprocal-space densities  
-
-``-r, --rswf [holeIndex] [-r ncells]``  
-Write real-space wavefunction amplitudes. The hole index and number of unit cells can be specified.
-
-``-s, --spin``  
-Compute the total spin of each exciton. Assumes spin is part of the basis.
-
-``-a, --absorption``  
-Compute the optical conductivity using the Kubo formalism. Requires `kubo_w.in` input file in working directory.
-
-``-m, --method diag | davidson | sparse``  
-Choose BSE solver. Options:
-* `diag`: full diagonalization (default)
-* `davidson`: iterative Davidson method
-* `sparse`: sparse Lanczos method
-
-``-b, --bands kpointsfile``  
-Diagonalize the Bloch Hamiltonian at k-points specified in a file. Does not compute excitons.
-
-``-f, --format model | hdf5``  
-Specify format of the system file. Defaults to `model`. Note: HDF5 support requires compilation with `HDF5=1`.
-
-``-z, --screening screeningfile``  
-Enable screening functionalities. An exciton file must be provided alongside the screening file.
+   * - Flag
+     - Output
+   * - ``-n, --states <n>``
+     - Number of excitons printed and written to every output file. Default 8.
+   * - ``-t, --ecut <E>`` |w90|
+     - Instead of a fixed number, keep the excitons up to energy ``E`` (eV) in the terminal,
+       ``.eigval``, ``.states`` and ``.spin`` output. Overrides ``-n`` for those outputs.
+   * - ``-p, --precision <d>``
+     - Decimals used to print energies and to decide which states are degenerate. Default 6.
+   * - ``-e, --energy``
+     - Exciton energies → :doc:`outputs/eigval`.
+   * - ``-c, --eigenstates``
+     - Exciton coefficients :math:`A_{vc}(\bm{k})` → :doc:`outputs/states`.
+   * - ``-k, --kwf``
+     - Reciprocal-space densities → :doc:`outputs/kwf`.
+   * - ``-r, --rswf <hole> [-r <ncells>]``
+     - Real-space densities with the hole on atom ``<hole>`` of the motif, over ``<ncells>`` unit cells
+       (default 8) → :doc:`outputs/rswf`. Give ``-r`` twice to set both, e.g. ``-r 0 -r 10``.
+   * - ``-s, --spin``
+     - Spin of each exciton → :doc:`outputs/spin`. Spin must be part of the orbital basis.
+   * - ``-a, --absorption``
+     - Optical conductivity with and without excitons, and oscillator strengths →
+       :doc:`outputs/conductivity`. Reads ``kubo_w.in`` (see :doc:`input_files/absorption`).
+   * - ``-h, --help``
+     - Print the help and exit.
 
 Examples
 ========
 
-Run with **default output** for 8 exciton states:
+Energies of the lowest 8 excitons (the defaults):
 
 .. code-block:: bash
 
-   xatu system.model exciton.config
+   xatu -e system.model exciton.txt
 
-Run with **custom number of states and output eigenstates and absorption**:
-
-.. code-block:: bash
-
-   xatu -s 10 -kace system.model exciton.in
-
-Run with **DFT input and extract real-space amplitudes**:
+Ten excitons, with eigenstates, k-space densities, absorption and energies:
 
 .. code-block:: bash
 
-   xatu -d 3 -r 2 -r 10 system.dft exciton.in
+   xatu -n 10 -kace system.model exciton.txt
+
+Wannier90 Hamiltonian with 8 filled bands, keeping every exciton below 3 eV |w90|:
+
+.. code-block:: bash
+
+   xatu -w 8 -t 3.0 -e -c MoS2_tb.dat exciton.txt
+
+CRYSTAL calculation reading 50 cells, real-space wavefunction with the hole on atom 2, over 10 cells:
+
+.. code-block:: bash
+
+   xatu -d 50 -r 2 -r 10 hBN.outp exciton.txt
+
+Large BSE with the Davidson solver:
+
+.. code-block:: bash
+
+   xatu -m davidson -n 20 -e system.model exciton.txt
+
+Exciton with the RPA-screened interaction |scr|:
+
+.. code-block:: bash
+
+   xatu -d 50 -z screening.txt -e hBN.outp exciton.txt

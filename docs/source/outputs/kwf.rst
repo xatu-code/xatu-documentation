@@ -1,42 +1,44 @@
-==========================================
-.kwf — Momentum-Space Probability Density
-==========================================
+============================================
+.kwf — momentum-space probability density
+============================================
 
-Generated when the ``-k --kwf`` flag is provided for the first$n $excitons chosen with ``-n --states [n=8]``.
-
-The `.kwf` file stores the **momentum-space probability density** of each exciton wavefunction. It quantifies how the exciton is distributed over electron-hole pairs with a well-defined crystal momentum :math:`\mathbf{k}`.
-
-Format
-=======
-
-The file contains a table with one row per k-point and one column per exciton state:
-
-.. code-block:: text
-
-   kx ky kz P
-   .
-   .
-   .
-   #
-   kx ky kz P
-   .
-   .
-   .
-   #
-
-**Units**
-
-* :math:`[k]= Å ^{-1}`
-
-* :math:`\left| \psi_{X}(\bm{k})^{2} \right|` is dimensionless and normalized over the k-grid
-
-Definition
-========================
-
-Given the exciton wavefunction expressed in the electron-hole basis as :math:`A^{Q}_{vc}(\mathbf{k})`, the $k$ space probability is defined as:
+Written with ``-k``, for each of the ``-n`` excitons. It gives the weight of the exciton on each
+k-point, summed over bands:
 
 .. math::
 
-   |\psi_{X}(\bm{k})|^2 = \sum_{v,c} \left| A^{Q}_{vc}(\bm{k}) \right|^2
+   |\psi_X(\bm{k})|^2 = \sum_{v,c} |A_{vc}(\bm{k})|^2 .
 
-This quantity is evaluated on the same k-point grid used in the original BSE calculation.
+Format
+======
+
+One block per exciton, each closed by a line with ``#``:
+
+.. code-block:: text
+
+   kx   ky   kz   P          <- exciton 1
+   ...
+   #
+   kx   ky   kz   P          <- exciton 2
+   ...
+   #
+
+* ``kx ky kz``: k-point in Å⁻¹.
+* ``P``: :math:`|\psi_X(\bm{k})|^2`, divided by the spacing between k-points.
+
+For a full-zone mesh, the density is **repeated over neighbouring Brillouin zones** to fill a
+square box around Γ. This makes plots of hexagonal zones easier to read. With ``# submesh``, only
+the mesh itself is written, and each block starts with a ``kx ky kz Prob.`` header line.
+
+.. image:: ../images/hbn_wavefunctions.png
+   :width: 100%
+   :align: center
+
+Plot with ``plot/kwf.py`` from the repository, or:
+
+.. code-block:: python
+
+   import numpy as np, matplotlib.pyplot as plt
+   blocks = open("hBN_N30.kwf").read().split("#")[:-1]
+   k = np.loadtxt(blocks[0].splitlines())        # first exciton
+   plt.scatter(k[:, 0], k[:, 1], c=k[:, 3], s=5); plt.gca().set_aspect("equal")

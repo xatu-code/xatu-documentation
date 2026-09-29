@@ -1,54 +1,58 @@
-===============================================
-Optical Conductivity from Excitonic States
-===============================================
+====================
+Optical conductivity
+====================
 
-Xatu can compute the linear optical conductivity using the excitonic states obtained from the BSE. The calculation is performed in the **independent-particle approximation (IPA)** or the **Bethe-Salpeter equation (BSE)** formalism, based on the eigenstates previously computed.
+With ``-a``, Xatu computes the linear optical conductivity from the Kubo formula. It does so twice: in
+the **independent-particle approximation (IPA)**, from interband transitions, and with **excitons
+(BSE)**, from transitions between the ground state and each exciton.
 
-.. contents::
-   :local:
-   :depth: 2
+Excitonic conductivity
+======================
 
-General Expression
-===================
-
-The optical conductivity tensor is computed from the excitonic eigenstates and their coupling to the electromagnetic field, following the Kubo-Greenwood formalism.
-
-The real part of the conductivity tensor :math:`\sigma_{ab}(\omega)` is given by:
+The absorptive part of the conductivity tensor is
 
 .. math::
 
-   \sigma_{ab}(\omega) = \frac{\pi e^2 \hbar}{V} \sum_{\bm{k}}^{N_X} \frac{1}{E_{\bm{k}}}
-   \left[ V_{\bm{k}}^a (V_{\bm{k}}^b)^* \right] \delta(\hbar\omega - E_{\bm{k}})
+   \sigma^{ab}(\omega) = \frac{\pi}{V N_{\bm{k}}} \sum_{X}
+   \frac{(V^a_X)^*\,V^b_X}{E_X}\; \delta(\hbar\omega - E_X)
+   \qquad (\text{atomic units}),
 
-where:
+where
 
-* $ V $ is the system volume
-* :math:`E_{\mathbf{k}}` is the exciton energy at momentum :math:`\mathbf{k}`
-* :math:`V_{\mathbf{k}}^a` velocity matrix elements :math:`\langle GS| \hat{v}^{a} | X_{\mathbf{k}} \rangle`
-* $ N_X $ is the number of computed exciton states
-* The delta function is broadened numerically using a specified kernel
+* :math:`V` is the unit-cell volume (area in 2D) and :math:`N_{\bm{k}}` the number of k-points;
+* :math:`E_X` is the energy of exciton :math:`X`, and the sum runs over **all** excitons of the BSE;
+* :math:`V^a_X = \langle GS|\hat v^a|X\rangle` is the velocity matrix element between the ground state
+  and the exciton, written to :doc:`../outputs/oscillator_strengths`;
+* the :math:`\delta` function is replaced by a Lorentzian, Gaussian or exponential of width
+  :math:`\eta`, set in :doc:`../input_files/absorption`.
 
-This expression is implemented directly in Xatu when the linear response spectrum is requested using the ``-a`` flag and a valid ``kubo_w.in`` file is provided.
+The exciton velocity matrix elements follow from the exciton coefficients and the single-particle
+velocity matrix elements:
 
-Excitonic Absorption Spectrum
-===============================
+.. math::
 
-The absorption spectrum is computed by convoluting the excitonic delta functions with a chosen broadening. The user can specify:
+   V^a_X = \sum_{vc\bm{k}} A^X_{vc}(\bm{k})\; v^a_{vc}(\bm{k}),
+   \qquad
+   v^a_{vc}(\bm{k}) = \frac{i}{\hbar}\langle v\bm{k}|[H_0, \hat r^a]|c\bm{k}\rangle .
 
-* Broadening type: `lorentzian`, `gaussian`, or `exponential`
-* Broadening width (in eV)
-* Frequency range and resolution
+Independent-particle conductivity
+=================================
 
-This is controlled by the ``kubo_w.in`` input file. The computed spectra include:
+The IPA spectrum is the same formula, with excitons replaced by single electron–hole pairs
+:math:`(v, c, \bm{k})` of energy :math:`\varepsilon_{c\bm{k}} - \varepsilon_{v\bm{k}}`. It always uses a
+Lorentzian of width :math:`\eta`. Comparing the two spectra shows the effect of the electron–hole
+interaction directly: the continuum is redistributed into exciton peaks below the gap.
 
-* **Independent-particle spectrum** (IPA)
-* **Excitonic spectrum** (BSE)
+Output
+======
 
-Each output is saved to separate `.dat` files for plotting, with names defined in the exciton configuration file.
+Both spectra, their imaginary parts and the oscillator strengths are written as described in
+:doc:`../outputs/conductivity`. The conductivity is given in atomic units, i.e. :math:`e^2/\hbar` for
+2D materials.
 
 Reference
 =========
 
-For details, see:
-
-`Efficient computation of optical excitations in two-dimensional materials with the Xatu code, Computer Physics Communications, 2024` <https://doi.org/10.1016/j.cpc.2023.109001>
+A. J. Uría-Álvarez *et al.*, `Efficient computation of optical excitations in two-dimensional
+materials with the Xatu code, Comput. Phys. Commun. 295, 109001 (2024)
+<https://doi.org/10.1016/j.cpc.2023.109001>`_.

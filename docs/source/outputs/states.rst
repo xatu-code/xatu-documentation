@@ -1,82 +1,42 @@
-==============================
-.states — Exciton Eigenstates
-==============================
+=================================
+.states — exciton eigenstates
+=================================
 
-The ``.states`` file (written with the ``-c`` / ``--eigenstates`` flag) contains the **complex coefficients**  
-:math:`A^{Q}_{vc}(\mathbf{k})` that define each exciton wavefunction in the electron–hole basis.  
-These are exactly the amplitudes that appear in the Bethe‑Salpeter Equation (see Eq. 14 of the paper):
+Written with ``-c``. It contains the coefficients :math:`A_{vc}(\bm{k})` of each exciton in the
+electron–hole basis, the solutions of the BSE (see :doc:`../methods/BSE`):
 
 .. math::
 
-   (\varepsilon_{c,\mathbf{k+Q}} - \varepsilon_{v,\mathbf{k}})
-   A^{Q}_{vc}(\mathbf{k})
-   + \sum_{v'c'\mathbf{k}'} K_{vc,v'c'}(\mathbf{k},\mathbf{k}',Q)\,
-     A^{Q}_{v'c'}(\mathbf{k}')
-   \;=\; E_X\,A^{Q}_{vc}(\mathbf{k})
+   |X\rangle = \sum_{v,c,\bm{k}} A_{vc}(\bm{k})\; c^\dagger_{c,\bm{k}+\bm{Q}}\, c_{v,\bm{k}}\, |GS\rangle .
 
-File Structure
-==============
+Format
+======
 
-1. **Header line**
+.. code-block:: text
 
-   .. code-block:: text
+   900                                                  <- n_pairs, dimension of the BSE
+   -1.4510418   0.0000000   0.0000000   0   1           <- basis: kx ky kz v c
+   -1.4026738   0.0837758   0.0000000   0   1
+   ...                                                  (n_pairs lines)
+   Re(A1) Im(A1) Re(A2) Im(A2) ... Re(An) Im(An)        <- exciton 1
+   Re(A1) Im(A1) Re(A2) Im(A2) ... Re(An) Im(An)        <- exciton 2
+   ...
 
-      n_pairs
+1. **Header**: the number of electron–hole pairs ``n_pairs``.
+2. **Basis**: ``n_pairs`` lines, each giving one pair: the k-point (Å⁻¹) and the valence and conduction
+   band indices ``v c``. Band indices are absolute and count from 0 at the lowest band of the
+   Hamiltonian, so the top valence band is ``filling - 1``.
+3. **Coefficients**: one line per exciton, with the complex coefficients as ``Re Im`` pairs. The
+   :math:`j`-th pair belongs to the :math:`j`-th basis line.
 
-   The dimension ``n_pairs`` of the BSE matrix -- i.e. the total number of distinct  
-   electron-hole pairs :math:`(v,c,\mathbf{k})` used for the calculation.
+Each exciton is normalised: :math:`\sum_j |A_j|^2 = 1`. There are ``-n`` exciton lines, or those up to
+``-t`` |w90|.
 
-2. **Basis definition (next ``n_pairs`` lines)**
+.. code-block:: python
 
-   Each line lists one electron–hole pair in the exact order used later for the coefficients:
-
-   .. code-block:: text 
-
-      k_x   k_y   k_z   v   c
-
-   :math:`k_x\quad   k_y\quad   k_z\quad` are given in crystal‑momentum units (fractional coordinates or :math:`Å^{-1}`,  
-   depending on input), $v$ and $c$ are valence and conduction band indices.
-
-3. **Exciton coefficient matrix**
-
-   After the basis section, each remaining line corresponds to **one exciton state**.  
-   The coefficients are written as consecutive real–imaginary pairs following the same
-   ordering of electron–hole pairs defined above:
-
-   .. code-block:: text
-
-      Re(A1)  Im(A1)  Re(A2)  Im(A2)  ...  Re(An)  Im(An)
-      .
-      .
-      .
-      Re(A1)  Im(A1)  Re(A2)  Im(A2)  ...  Re(An)  Im(An)
-
-
-   where *n = n_pairs*.  
-   If you requested `N` exciton states with ``--states N`` (*default=8*), there will be `N` such lines.
-
-Properties
-==========
-
-* **Normalization**  
-  Each row is normalized so that  
-  :math:`\sum_{j=1}^{n_{\mathrm{pairs}}} |A_j|^2 = 1`.
-
-* **Complex ordering**  
-  The $j$-th complex pair in a row corresponds to the $j$-th electron–hole pair  
-  listed in the basis definition.  This one‑to‑one mapping makes it straightforward  
-  to reconstruct the wavefunction in k‑space or transform it to real space.
-
-* **Units**  
-  The coefficients are dimensionless.
-
-.. Typical Use Cases
-.. =================
-
-.. * Build the k‑space probability density :math:`|\psi_X(\mathbf{k})|^2`
-..   (written automatically to ``.kwf`` when using ``-k``).
-.. * Reconstruct the real‑space wavefunction (``.rswf``) for visualization.
-.. * Analyse band‑resolved or spin‑resolved content of a particular exciton.
-.. * Feed the coefficients into custom post‑processing scripts for exciton–phonon
-..   coupling, nonlinear optics, etc.
-
+   import numpy as np
+   with open("hBN_N30.states") as f:
+       n = int(f.readline())
+       basis = np.array([f.readline().split() for _ in range(n)], dtype=float)
+       coefs = np.loadtxt(f)
+   A = coefs[:, 0::2] + 1j * coefs[:, 1::2]     # A[exciton, pair]

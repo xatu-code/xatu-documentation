@@ -1,86 +1,122 @@
-====================================
-Bethe-Salpeter Equation in Xatu
-====================================
+=============================
+The Bethe–Salpeter equation
+=============================
 
-The Bethe-Salpeter Equation (BSE) governs the formation of excitons in semiconductors and insulators. Xatu solves the BSE using localized orbitals and static screened interactions.
+The Bethe–Salpeter equation (BSE) describes excitons, the bound electron–hole pairs of semiconductors
+and insulators. Xatu solves it in a basis of localized orbitals, with a static screened interaction.
 
-.. contents::
-   :local:
-   :depth: 2
+Excitons as electron–hole pairs
+===============================
 
-BSE Formalism
-==============
-
-Starting from the full interacting Hamiltonian projected onto electron-hole pairs:
-
-.. math::
-
-   \sum_{v',c',\bm{k}'} H_{vc,v'c'}(\bm{k},\bm{k}',Q) A^Q_{v'c'}(\bm{k}') = E_X A^Q_{vc}(\bm{k})
-
-we define the interaction kernel and simplify the problem by transforming into the **Hartree-Fock (HF) band basis**. This incorporates self-energy corrections into the quasiparticle energies.
-
-The resulting **working form of the BSE** solved in Xatu is:
+An exciton of centre-of-mass momentum :math:`\bm{Q}` is written as a superposition of electron–hole
+pairs, with an electron in conduction band :math:`c` at :math:`\bm{k}+\bm{Q}` and a hole in valence
+band :math:`v` at :math:`\bm{k}`:
 
 .. math::
 
-   \left( \varepsilon_{c,\bm{k+Q}} - \varepsilon_{v,\bm{k}} \right) A^Q_{vc}(\bm{k}) +
-   \sum_{v',c',\bm{k}'} K_{vc,v'c'}(\bm{k}, \bm{k}', Q) A^Q_{v'c'}(\bm{k}') = E_X A^Q_{vc}(\bm{k})
+   |X\rangle = \sum_{v,c,\bm{k}} A^{\bm{Q}}_{vc}(\bm{k})\;
+   c^\dagger_{c,\bm{k}+\bm{Q}}\, c_{v,\bm{k}}\, |GS\rangle .
 
-where:
-
-* :math:`\varepsilon_{n,\mathbf{k}}` are the HF (or DFT/GW) quasiparticle energies
-* :math:`A^{Q}_{vc}(\mathbf{k})` are the exciton amplitudes
-* $ K = -(D - X) $ is the interaction kernel with:
-
-  * $ D $ : direct interaction between electron and hole
-  * $ X $ : exchange interaction (optional)
-
-This is the **Tamm-Dancoff approximation (TDA)** form of the BSE.
-
-Screened RPA Coulomb potential
-==============================
-
-If the user chose the `rpa` option for the interaction potential, then in the strict 2D approximation the screened Coulomb potential is also a matrix at each point in the Brillouin zone, whose elements are given by
+Projecting the interacting Hamiltonian onto these pairs gives an eigenvalue problem for the coefficients
+:math:`A^{\bm{Q}}_{vc}(\bm{k})`:
 
 .. math::
-   W_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{v_c(\bm{q}+\bm{G})}\, \epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q}) \sqrt{v_c(\bm{q}+\bm{G}')} \,,
 
-where :math:`\epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})` is the inverse RPA dielectric function computed within the strictly 2D approach. If the user provides the thickness :math:`d_{\perp}` of the 2D material in the screening input file, then the quasi-2D mode (Q2D) is enabled, and the screened potential is given by
+   \sum_{v',c',\bm{k}'} H_{vc,v'c'}(\bm{k},\bm{k}',\bm{Q})\, A^{\bm{Q}}_{v'c'}(\bm{k}') = E_X\, A^{\bm{Q}}_{vc}(\bm{k}) .
 
-.. math::
-   \bar{W}_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{\bar{v}_c(\bm{q}+\bm{G})} \,\bar{\epsilon}^{-1}_{\bm{G}\bm{G}'}(\bm{q}) \sqrt{\bar{v}_c(\bm{q}+\bm{G}')} \,,
-
-where :math:`\bar{\epsilon}^{-1}_{\bm{G}\bm{G}'}(\bm{q})` is the inverse RPA dielectric function computed within the Q2D approach, and :math:`\bar{v}_c` is given by
+Working in the band basis of a mean-field Hamiltonian (Hartree–Fock, DFT or tight-binding) absorbs the
+self-energy corrections into the quasiparticle energies. The equation Xatu solves is then
 
 .. math::
-   \bar{v}_c(\bm{q}) = \int_{-d_{\perp}/2}^{d_{\perp}/2}  \int_{-d_{\perp}/2}^{d_{\perp}/2}  v_c(\bm{q}, z-z') \, \mathrm{d} z \, \mathrm{d} z'\,,
 
-where :math:`v_c(\bm{q},z-z')` is the Coulomb potential in the mixed :math:`(\bm{q},z)`-representation. Formally, it is given by the in-plane Fourier transform of the unscreened real-space-resolved Coulomb potential :math:`V(\bm{r}-\bm{r}')`, while keeping the $z,z'$ variables intact.
+   \left( \varepsilon_{c,\bm{k}+\bm{Q}} - \varepsilon_{v,\bm{k}} \right) A^{\bm{Q}}_{vc}(\bm{k})
+   + \sum_{v',c',\bm{k}'} K_{vc,v'c'}(\bm{k}, \bm{k}', \bm{Q})\, A^{\bm{Q}}_{v'c'}(\bm{k}')
+   = E_X\, A^{\bm{Q}}_{vc}(\bm{k}),
 
-.. Interaction Matrix Elements
-.. =============================
+where
 
-.. The matrix elements are computed assuming point-like localized orbitals. For example, the direct term reads:
+* :math:`\varepsilon_{n,\bm{k}}` are the quasiparticle band energies (plus the optional
+  ``# scissor``);
+* :math:`A^{\bm{Q}}_{vc}(\bm{k})` are the exciton coefficients, written to :doc:`../outputs/states`;
+* :math:`K = -(D - X)` is the interaction kernel, with the **direct** term :math:`D` (screened
+  electron–hole attraction) and the optional **exchange** term :math:`X` (``# exchange``).
 
-.. .. math::
+This is the **Tamm–Dancoff approximation**: coupling between resonant and anti-resonant pairs is
+neglected.
 
-   .. D_{vc,v'c'}(\mathbf{k}, \mathbf{k}', \mathbf{Q}) = 
-   .. \sum_{ij,\alpha\beta} 
-   .. C^{i\alpha*}_{c,\mathbf{k} + \mathbf{Q}}^{} C^{*}_{v',\mathbf{k}'}^{j\beta}
-   .. C_{c',\mathbf{k}'+\mathbf{Q}}^{i\alpha} C_{v,\mathbf{k}}^{j\beta}\, V_{ij}(\mathbf{k}' * \mathbf{k})
+The size of the problem, the **BSE dimension**, is
+:math:`N_v \times N_c \times N_{\bm{k}}`: bands from ``# bands``/``# bandlist``, and k-points
+:math:`N_{\bm{k}} =` ``ncells``:math:`^d`.
 
-.. Here, :math:`C_{n,\mathbf{k}}^{i\alpha}` are the tight-binding coefficients and $V_{ij}$ is the lattice-transformed interaction.
+Interaction matrix elements
+===========================
 
-.. The exchange term is analogous and typically vanishes at $Q = 0$ .
+The kernel is built from the electron–hole interaction potential chosen with ``# potential`` (see
+:doc:`screening`). The matrix elements can be computed in two ways:
 
-Solution Methods
-=================
+Real space *(default)*
+   The potential is evaluated between orbitals of the lattice, treated as point-like charges at their
+   centres. The divergence at :math:`r=0` is removed with ``# regularization``.
 
-The BSE matrix is constructed and diagonalized using Armadillo linear algebra routines. For large systems, the following methods are available:
+Reciprocal space
+   The potential is summed over reciprocal-lattice vectors :math:`\bm{G}`. Enabled with
+   ``# reciprocal`` |w90| or ``# gcutoff`` |scr| (see :doc:`../input_files/exciton`).
 
-* **diag**: full diagonalization (default)
-* **davidson**: iterative solver for low-lying states
-* **sparse**: Lanczos-based sparse diagonalization
+Screened RPA potential
+----------------------
 
-Output includes exciton energies, wavefunctions, real* and reciprocal-space densities, and optical matrix elements.
+|scr|
 
+With ``# potential rpa``, the direct term uses the numerical RPA screening. In the strictly 2D
+approach, the screened Coulomb potential is a matrix at each :math:`\bm{q}` of the Brillouin zone:
+
+.. math::
+
+   W_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{v_c(\bm{q}+\bm{G})}\;
+   \epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})\;
+   \sqrt{v_c(\bm{q}+\bm{G}')} ,
+
+where :math:`\epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})` is the inverse RPA dielectric matrix of
+:doc:`screening`.
+
+If a thickness :math:`d_\perp` is given in the screening file, the quasi-2D (Q2D) mode is used
+instead:
+
+.. math::
+
+   \bar{W}_{\bm{G}\bm{G}'}(\bm{q}) = \sqrt{\bar{v}_c(\bm{q}+\bm{G})}\;
+   \bar{\epsilon}^{-1}_{\bm{G}\bm{G}'}(\bm{q})\;
+   \sqrt{\bar{v}_c(\bm{q}+\bm{G}')} ,
+
+with the Coulomb potential averaged over the thickness of the layer,
+
+.. math::
+
+   \bar{v}_c(\bm{q}) = \int_{-d_{\perp}/2}^{d_{\perp}/2} \int_{-d_{\perp}/2}^{d_{\perp}/2}
+   v_c(\bm{q}, z-z')\, \mathrm{d}z\, \mathrm{d}z' .
+
+Here :math:`v_c(\bm{q}, z-z')` is the Coulomb potential in the mixed :math:`(\bm{q}, z)`
+representation: the in-plane Fourier transform of :math:`V(\bm{r}-\bm{r}')`, keeping :math:`z` and
+:math:`z'`.
+
+Solving the BSE
+===============
+
+The BSE matrix is Hermitian. It is built and diagonalized with Armadillo; the solver is chosen with
+``-m``:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 80
+
+   * - ``-m``
+     - Method
+   * - ``diag``
+     - Full diagonalization *(default)*. All states; memory and time grow fast with the BSE dimension.
+   * - ``davidson``
+     - Iterative Davidson solver for the lowest ``-n`` states.
+   * - ``sparse``
+     - Lanczos-based sparse diagonalization (ARPACK) for the lowest ``-n`` states.
+
+From the solution, Xatu derives the energies, wavefunctions in real and reciprocal space, spin, and
+optical matrix elements (see :doc:`../outputs/overview`).

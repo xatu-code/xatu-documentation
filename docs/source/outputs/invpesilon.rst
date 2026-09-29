@@ -1,72 +1,82 @@
-================================
-Inverse Dielectric Matrix Output
-================================
+============================================
+Inverse dielectric matrix (``_invepsilon``)
+============================================
 
-Xatu computes the inverse RPA dielectric matrix if the ``-z`` flag enabling the screening functionalities is provided and the user passes either one of the functions `inversedielectric` or `exciton` in the screening input file.
-If the function `exciton` is used, then a file with the format ``kgrid_*.dat`` containing all the momentum vectors in the BZ mesh is created, alongside the file containing the inverse dielectric matrix.
-The file containing all the generated matrix elements has the format ``*_invpesilon.dat``.
+|scr|
 
-Structure of ``*_invepsilon.dat``
-=================================
+With ``-z`` and ``# function`` set to ``inversedielectric`` or ``exciton`` in the
+:doc:`screening file <../input_files/screening>`, Xatu writes the inverse RPA dielectric matrix
+:math:`\epsilon^{-1}_{\bm{G}\bm{G}'}(\bm{q})` (see :doc:`../methods/screening`):
 
-If the function `inversedielectric` is used, then only a single inverse dielectric matrix is printed with the structure:
+.. list-table::
+   :header-rows: 1
+   :widths: 35 20 45
 
- .. code-block:: text
+   * - File
+     - Function
+     - Content
+   * - ``<label>_invepsilon.dat``
+     - both
+     - :math:`\epsilon^{-1}(\bm{q})` at one :math:`\bm{q}` (``inversedielectric``) or on the whole BZ
+       mesh (``exciton``).
+   * - ``kgrid_<ncells>.dat``
+     - ``exciton``
+     - The :math:`\bm{q}`-points of the mesh, in the order used in ``_invepsilon.dat``.
 
-      Re(G0G0)  Im(G0G0)  Re(G0G1)  Im(G0G1)  ...  Re(G0Gn)  Im(G0Gn)
-      .
-      .
-      .
-      Re(G1G0)  Im(G1G0)  Re(G1G1)  Im(G1G1)  ...  Re(G1Gn)  Im(G1Gn)
+``<label>_invepsilon.dat``
+==========================
 
-where *n-1* is the total number of :math:`\bm{G}`-vectors (including the null one). They are sorted by the same order as they are printed when running Xatu.
-
-If the function `exciton` is used, then the inverse dielectric matrix in the entire BZ mesh is printed into the ``*_invpesilon.dat`` file with a table format, with the structure:
+Each :math:`\epsilon^{-1}(\bm{q})` is an :math:`N_G\times N_G` complex matrix, written as :math:`N_G`
+rows of :math:`2N_G` numbers, with real and imaginary parts side by side:
 
 .. code-block:: text
 
-      Re(q0G0G0)  Im(q0G0G0)  Re(q0G0G1)  Im(q0G0G1)  ...  Re(q0G0Gn)  Im(q0G0Gn)
-      .
-      .
-      .
-      Re(q0GnG0)  Im(q0GnG0)  Re(q0GnG1)  Im(q0GnG1)  ...  Re(q0GnGn)  Im(q0GnGn)
-      Re(q1G0G0)  Im(q1G0G0)  Re(q1G0G1)  Im(q1G0G1)  ...  Re(q1G0Gn)  Im(q1G0Gn)
-      .
-      .
-      .
-      Re(q1GnG0)  Im(q1GnG0)  Re(q1GnG1)  Im(q1GnG1)  ...  Re(q1GnGn)  Im(q1GnGn)
-      .
-      .
-      .
-      Re(qNG0G0)  Im(qNG0G0)  Re(qNG0G1)  Im(qNG0G1)  ...  Re(qNG0Gn)  Im(qNG0Gn)
-      .
-      .
-      .
-      Re(qNGnG0) Im(qNGnG0)  Re(qNGnG1)  Im(qNGnG1)  ...  Re(qNGnGn)  Im(qNGnGn)
+   Re(G0,G0)  Im(G0,G0)  Re(G0,G1)  Im(G0,G1)  ...  Re(G0,Gn)  Im(G0,Gn)
+   Re(G1,G0)  Im(G1,G0)  ...
+   ...
+   Re(Gn,G0)  Im(Gn,G0)  ...                        Re(Gn,Gn)  Im(Gn,Gn)
 
-where *N-1* is the total number of :math:`\bm{q}`-points in the BZ mesh.
-The table has *2(n-1)* columns and *n-1* rows for each :math:`\bm{q}`-point.
-The :math:`\bm{G}`-vectors are sorted by the same order as they are printed when running Xatu, and the :math:`\bm{q}`-points are sorted in the same order as they appear in the ``kgrid_*.dat`` file.
+* **inversedielectric**: a single matrix, at the ``# momentum`` of the screening file.
+* **exciton**: one matrix per :math:`\bm{q}`-point, stacked one after another (:math:`N_G` rows each),
+  in the order of ``kgrid_<ncells>.dat``.
 
-The method ``ExcitonTB::readInverseDielectricMatrix(std::string filename)`` provided in the Xatu library can be used to read the inverse dielectric matrix from a file with the name ``filename`` containing a previously computed one in the same format.
-In this way, the user can repeat an exciton calculation with different parameters (e.g., different BSE solver or regularization scheme) without having to recompute the inverse dielectric matrix.
-For an example of its use in a script, see the ``read_screening.cpp`` file in the main folder of the project's repository.
+The :math:`\bm{G}` vectors (all with :math:`|\bm{G}|` below the screening ``gcutoff``, including
+:math:`\bm{G}=0`) appear in the order printed to the terminal during the run.
 
-**Pro tip**: Using the Xatu as an API tool, the user can also use any language of their preference to read the inverse dielectric matrix, invert it to obtain the dielectric matrix and reduce it, and invert it once again if the user wishes to compute the exciton with a smaller ``Gcutoff`` without having to recompute the inverse dielectric matrix.
+The macroscopic dielectric function is :math:`\epsilon_M(\bm{q}) = 1/\epsilon^{-1}_{00}(\bm{q})`, the
+inverse of the first element of each matrix.
 
-**Pro tip**: Using the Xatu as an API tool, the user can start with a previously computed inverse dielectric matrix by reading it from a file and augment it with the method ``ExcitonTB::augment_2D_DielectricMatrix(double Gcutoff)`` upon passing a larger ``Gcutoff`` value. In this way, only the missing matrix elements will be computed, without the need to recompute the entire inverse dielectric matrix from scratch. For this, the method ``ExcitonTB::augment_2D_DielectricMatrix(double Gcutoff)`` has to be called after a succesful call of ``ExcitonTB::readInverseDielectricMatrix(std::string filename)``.
+.. code-block:: python
 
+   import numpy as np
+   raw = np.loadtxt("hBN_invepsilon.dat")
+   NG = raw.shape[1] // 2
+   inv_eps = (raw[:, 0::2] + 1j * raw[:, 1::2]).reshape(-1, NG, NG)   # [q, G, G']
+   eps_M = 1 / inv_eps[:, 0, 0].real
+   q = np.loadtxt("kgrid_20.dat")
 
-Structure of ``kgrid_*.dat``
-============================
+``kgrid_<ncells>.dat``
+======================
 
-The file contains a table with one row per k-point and one column per each momentum component:
+One :math:`\bm{q}`-point per line, in the same units as the k-mesh of the calculation:
 
 .. code-block:: text
 
    qx0 qy0 qz0
    qx1 qy1 qz1
-   .
-   .
-   .
-   qxN qyN qzN
+   ...
+
+Reusing a computed matrix
+=========================
+
+The screening is the expensive part of an ``rpa`` calculation. Through the Xatu library it can be
+reused:
+
+* ``ExcitonTB::readInverseDielectricMatrix(filename)`` loads a matrix written in this format. That lets
+  you repeat the exciton calculation with other parameters (solver, regularization, …) without
+  recomputing the screening. ``main/read_screening.cpp`` in the repository shows how.
+* ``ExcitonTB::augment_2D_DielectricMatrix(Gcutoff)``, called after a successful
+  ``readInverseDielectricMatrix``, extends a loaded matrix to a larger ``Gcutoff``. Only the missing
+  elements are computed.
+* To go to a *smaller* ``Gcutoff``, read the matrix, invert it back to :math:`\epsilon`, drop the extra
+  :math:`\bm{G}` vectors, and invert again. This can be done in any language.

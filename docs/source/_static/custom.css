@@ -1,10 +1,25 @@
-.wy-nav-content p {
-    text-align: justify;
+/* Slightly larger logo in the sidebar */
+.sidebar-logo {
+    max-width: 70%;
 }
 
-/* Shrink the sidebar logo */
-.wy-side-nav-search .logo,
-.wy-side-nav-search img {
-    max-height: 120px;   /* adjust to taste */
-    padding: 0 0 10px 0; /* top right bottom left */
+/* Keep wide tables readable */
+table.docutils td, table.docutils th {
+    vertical-align: top;
+}
+
+/* Keyword names in reference tables */
+.kw {
+    font-family: var(--font-stack--monospace);
+    font-weight: 600;
+}
+
+/* The logo is black line art: invert it on dark backgrounds */
+body[data-theme="dark"] .sidebar-logo {
+    filter: invert(1);
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .sidebar-logo {
+        filter: invert(1);
+    }
 }

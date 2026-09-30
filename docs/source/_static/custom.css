@@ -1,10 +1,54 @@
-.wy-nav-content p {
-    text-align: justify;
+/* Slightly larger logo in the sidebar */
+.sidebar-logo {
+    max-width: 70%;
 }
 
-/* Shrink the sidebar logo */
-.wy-side-nav-search .logo,
-.wy-side-nav-search img {
-    max-height: 120px;   /* adjust to taste */
-    padding: 0 0 10px 0; /* top right bottom left */
+/* Keep wide tables readable */
+table.docutils td, table.docutils th {
+    vertical-align: top;
+}
+
+/* Keyword names in reference tables */
+.kw {
+    font-family: var(--font-stack--monospace);
+    font-weight: 600;
+}
+
+/* The logo is black line art: invert it on dark backgrounds */
+body[data-theme="dark"] .sidebar-logo {
+    filter: invert(1);
+}
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) .sidebar-logo {
+        filter: invert(1);
+    }
+}
+
+/* ---- Sidebar contrast ------------------------------------------------- */
+
+/* Section captions: brand colour, separated by a rule */
+.sidebar-tree .caption {
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--color-sidebar-background-border);
+    padding-top: 0.9rem;
+}
+.sidebar-tree .caption:first-child {
+    border-top: none;
+}
+
+/* Top-level entries in regular weight so captions stand out */
+.sidebar-tree .toctree-l1 > .reference {
+    font-weight: 500;
+}
+
+/* The section containing the current page gets a tinted band */
+.sidebar-tree li.toctree-l1.current {
+    background: var(--sidebar-section-background);
+}
+
+/* Current page: bold with a brand-coloured bar */
+.sidebar-tree li.current-page > .reference {
+    font-weight: 700;
+    color: var(--color-foreground-primary);
+    box-shadow: inset 3px 0 0 var(--color-brand-primary);
 }

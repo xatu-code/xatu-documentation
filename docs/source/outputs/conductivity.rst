@@ -1,42 +1,91 @@
-======================================
-Conductivity Outputs (.dat files)
-======================================
+====================================
+Optical conductivity (``-a``)
+====================================
 
-Xatu computes the optical conductivity spectrum using both the independent-particle approximation (IPA) and the full Bethe-Salpeter equation (BSE). These are written to separate files during execution with the ``-a --absorption`` flag, provided that a valid `kubo_w.in` file is present.
+With ``-a``, Xatu computes the linear optical conductivity :math:`\sigma^{ab}(\omega)` in the
+independent-particle approximation (IPA) and with excitons (BSE), following
+:doc:`../methods/optical_properties`. The frequency grid, broadening and file names come from
+:doc:`../input_files/absorption`.
 
-Files Generated
-===============
+Files
+=====
 
-Three output files are created, tipically defined in `kubo_w.in` as:
+For output names ``hBN_sp.dat`` and ``hBN_ex.dat`` in ``kubo_w.in``:
 
-* ``*_sp.dat`` : IPA (independent-particle) optical conductivity
-* ``*_ex.dat`` : BSE (excitonic) optical conductivity
-* ``*_osc.dat``: Exciton oscillator strengths (see :doc:`./oscillator_strengths`)
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-Structure of `*_sp.dat` and `*_ex.dat`
-=======================================
+   * - File
+     - Content
+   * - ``hBN_sp.dat``
+     - :math:`\mathrm{Re}\,\sigma^{ab}(\omega)`, independent particles.
+   * - ``hBN_ex.dat``
+     - :math:`\mathrm{Re}\,\sigma^{ab}(\omega)`, with excitons.
+   * - ``hBN_sp_imag.dat``, ``hBN_ex_imag.dat``
+     - The corresponding imaginary parts (same layout).
+   * - ``hBN_ex_osc.dat``
+     - Exciton energies and velocity matrix elements, see :doc:`oscillator_strengths`.
 
-Each file contains real parts of the conductivity tensor components for different photon energies:
+Format
+======
 
-.. code-block:: text 
+One row per frequency, ten columns:
 
-   omega  xx   xy   xz   yx   yy   yz   zx   zy   zz
-   .
-   .
-   .
+.. code-block:: text
 
-**Units**
+   omega   xx   xy   xz   yx   yy   yz   zx   zy   zz
 
-* :math:`\omega` : photon energy in **electron volts (eV)**
+* ``omega``: photon energy :math:`\hbar\omega` (eV).
+* ``ab``: component :math:`\sigma^{ab}`, in atomic units. For a 2D material this is the sheet
+  conductivity in units of :math:`e^2/\hbar` (:math:`\approx 2.43\times10^{-4}` S).
 
-* ``ij`` is :math:`Re[{\sigma_{ij}}]` : real part of optical conductivity in units of :math:`e^{2}/\hbar`
+What the real and imaginary files contain
+-----------------------------------------
 
-**Post-processing**
+The two spectra are not built the same way:
 
-These ``.dat`` files can be plotted directly using ``absorption.py`` at ``/plot/`` folder in Xatu repository.
+.. list-table::
+   :header-rows: 1
+   :widths: 18 41 41
 
-**Related Files**
+   * -
+     - ``*_sp.dat`` (IPA)
+     - ``*_ex.dat`` (BSE)
+   * - Broadening
+     - **Always Lorentzian** of width :math:`\eta`, whatever ``kubo_w.in`` says.
+     - The type chosen in ``kubo_w.in``.
+   * - Real file
+     - Absorptive part, :math:`\mathrm{Re}\,\sigma^{ab}`.
+     - Absorptive part, :math:`\mathrm{Re}\,\sigma^{ab}`.
+   * - ``_imag`` file
+     - Imaginary part of the transition strengths :math:`v^a_{cv}v^b_{vc}` times the (real) line shape.
+       Zero on the diagonal; non-zero off-diagonal only when time-reversal symmetry is broken.
+     - With ``lorentzian``: the dispersive part of the resonant terms,
+       :math:`\propto (\hbar\omega - E_X)/[(\hbar\omega-E_X)^2+\eta^2]`. With ``gaussian`` or
+       ``exponential``: zero.
 
-For oscillator strengths used in the excitonic conductivity calculation, see:
+.. warning::
 
-:doc:`./oscillator_strengths`
+   Neither ``_imag`` file is a full Kramers–Kronig partner of the real part: anti-resonant terms and
+   transitions outside the band window are missing. To compare IPA and BSE spectra line by line, use
+   ``lorentzian`` so both share the same line shape.
+
+Absorbance
+==========
+
+For a freestanding 2D layer at normal incidence, the absorbance for light polarized along :math:`a` is,
+to lowest order,
+
+.. math::
+
+   A(\omega) = \frac{4\pi}{c}\,\mathrm{Re}\,\sigma^{aa}(\omega) \qquad (c \approx 137.036 \text{ in atomic units}).
+
+.. code-block:: python
+
+   import numpy as np
+   ex = np.loadtxt("hBN_ex.dat")
+   absorbance_x = 4 * np.pi / 137.035999 * ex[:, 1]
+
+See the :doc:`../quickstart` for a full example, and ``plot/conductivity.py`` in the repository for a
+plotting script.

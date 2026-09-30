@@ -1,27 +1,29 @@
-==============================
-.eigval — Exciton Energies
-==============================
+============================
+.eigval — exciton energies
+============================
 
-This file contains the exciton eigenvalues (binding energies) computed from solving the Bethe-Salpeter Equation (BSE).
-
-It is generated when running `Xatu` with an exciton input file and requesting eigenvalues explicitly (via ``-e`` or ``--energy``).
+Written with ``-e``.
 
 Format
 ======
 
-A plain text list of exciton energies in **electron volts (eV)**:
-
 .. code-block:: text
 
-   Ncells
-   BSE dimension
-   Number of states
-   E_1
-   E_2
-   E_3
-   E_4
-   .
-   .
-   .
+   30          <- ncells
+   900         <- dimension of the BSE (number of electron–hole pairs)
+   8           <- number of energies that follow
+      5.3356862
+      5.3356866
+      6.0738001
+      ...
 
-Each line corresponds to a different exciton state, in ascending order of energy.
+The first three lines are a header. Then come the exciton energies :math:`E_X` in **eV**, one per
+line, in ascending order. There are ``-n`` of them, or those up to ``-t``.
+
+These are **excitation energies** measured from the ground state, not binding energies. The binding
+energy of an exciton is the band gap minus :math:`E_X`.
+
+.. code-block:: python
+
+   import numpy as np
+   E = np.loadtxt("hBN_N30.eigval", skiprows=3)

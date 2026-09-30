@@ -1,0 +1,14 @@
+{% extends "!base.html" %}
+
+{#- Furo follows the system theme ("auto") unless a choice is stored.
+    Make light the default for first-time visitors. This must run in <head>,
+    before Furo reads the stored theme at the top of <body>. The theme toggle
+    still works and the visitor's choice is kept. -#}
+{% block extrahead %}
+{{ super() }}
+<script>
+  try {
+    if (!localStorage.getItem("theme")) localStorage.setItem("theme", "light");
+  } catch (e) {}
+</script>
+{% endblock %}

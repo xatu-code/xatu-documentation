@@ -1,54 +1,29 @@
-========================================
-.rswf — Real-Space Probability Density
-========================================
+=========================================
+.rswf — real-space probability density
+=========================================
 
-Generated when the ``-r --rswf [holeIndex=0]`` flag is provided, for the first $n$ excitons chosen with ``-n --states [n=8]``.
-
-The `.rswf` file contains the **real-space probability density** :math:`P(\bm{r})` of the first few exciton wavefunctions, computed by fixing the hole position and evaluating the squared amplitude of the wavefunction as a function of the electron position in real space.
-
-
-Format
-=======
-
-The file is organized in blocks, one for each exciton. Each block contains:
-
-.. code-block:: text
-
-   x   y   z   P
-   ...
-   #
-   x   y   z   P
-   ...
-   #
-
-Where:
-
-* ``x, y, z``: Coordinates of each unit cell vector (in :math:`Å`)
-* ``P``: Squared amplitude :math:`| \psi_X(\bm{r}) |^2`
-
-Each block is separated by a `#` delimiter.
-
-**Units**
-
-* Coordinates are in :math:`[x]=Å`
-
-Calculation
-=========================
-
-The probability density is computed as:
+Written with ``-r <hole> [-r <ncells>]`` for each of the ``-n`` excitons. The hole is fixed on atom
+``<hole>`` of the motif (in the home cell), and the file gives the probability of finding the electron on
+each atom of the surrounding ``<ncells>`` unit cells (default 8):
 
 .. math::
 
-   P(\bm{r}) = \left| \psi_X(\bm{r}, \bm{r}_h) \right|^2 = \sum_{n} \left| \psi^{X}_{n}(\bm{r}, \bm{r}_h) \right|^2
+   P(\bm{r}_e) = \sum_{\alpha \in \bm{r}_e} \left|\psi_X(\bm{r}_e \alpha, \bm{r}_h)\right|^2 ,
 
-where:
+summed over the orbitals :math:`\alpha` on the atom at :math:`\bm{r}_e`.
 
-* :math:`\bm{r}_{h}` is the fixed hole position (specified by `--rswf [holeIndex]`)
-* :math:`\psi^{X}_{n}` denotes the exciton component over orbital $n$
-* The sum is over orbitals centered at :math:`\bm{r}`
+Format
+======
 
-By default, Xatu evaluates this for the **first 8 exciton states**, or as defined by the user with ``--states [n]``.
+One block per exciton, closed by ``#``. The first line of each block is the hole position, then one
+line per atom:
 
-**Post-processing**
+.. code-block:: text
 
-The `.rswf` output is used by the provided script ``rkwf.py`` to visualize or analyze the real-space distribution of excitons.
+   xh   yh   0               <- hole position (Angstrom)
+   x    y    P               <- one line per atom
+   ...
+   #
+
+Positions are in Angstrom. Plot with ``plot/rswf.py``, or see the right panel of the figure on
+:doc:`kwf`.

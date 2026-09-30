@@ -1,68 +1,49 @@
-================================
-.spin — Exciton Spin Projection
-================================
+==================================
+.spin — exciton spin projection
+==================================
 
-When using the ``-s`` or ``--spin`` flag, Xatu outputs the spin characteristics of each computed exciton state. This includes the total spin projection and the individual spin projections of the electron and the hole.
+Written with ``-s``. It needs a basis with explicit spin, **ordered with spin as the fastest index**:
+each orbital appears twice in a row, first :math:`\uparrow` then :math:`\downarrow`
+(:math:`1\!\uparrow, 1\!\downarrow, 2\!\uparrow, 2\!\downarrow, \dots`). Xatu stops with an error if
+the basis dimension is odd.
 
 Format
 ======
 
-Each line in the ``.spin`` file has the format:
-
 .. code-block:: text
 
-   n    St    Sh    Se
+   n    St    Se    Sh
+   0    ...   ...   ...
+   1    ...   ...   ...
 
-Where:
+.. list-table::
+   :header-rows: 1
+   :widths: 15 85
 
-* ``n``: Exciton index (starting from $0$ )
-* ``St``: Total spin projection $S^z$of the exciton
-* ``Sh``: Spin projection $ s^z_h$ of the hole
-* ``Se``: Spin projection $ s^z_e$ of the electron
+   * - Column
+     - Meaning
+   * - ``n``
+     - Exciton index, from 0.
+   * - ``St``
+     - Total spin projection, ``St = Se + Sh``.
+   * - ``Se``
+     - Spin projection :math:`\langle s_z\rangle` of the electron (conduction bands).
+   * - ``Sh``
+     - Spin projection of the hole. This is **minus** the spin of the missing valence electron.
 
-All values are given in units of :math:`\hbar`, e.g., :math:`\pm 1/2,\ \pm 1,\ 0` , etc.
+All values are in units of :math:`\hbar`. There are ``-n`` lines, or those up to ``-t``.
 
+Definition
+==========
 
-=========================
-Spin Projection Output
-=========================
-
-When running Xatu with the ``-s`` or ``--spin`` flag, the code outputs a file containing the total spin projection of each excitonic state, along with the spin of the constituent electron and hole states.
-
-Each line in the output contains:
-
-.. code-block:: text
-
-   exciton_index   Sz_total   Sz_hole   Sz_electron
-
-Units: :math:`\hbar`
-
-Spin Calculation
-=================
-
-The total spin projection :math:`\langle X | \hat{S}_z^T | X \rangle` for each excitonic state :math:`|X\rangle` is computed from the exciton wavefunction coefficients using the expression (see Eq. 31 of the paper):
+At each k-point, Xatu builds the :math:`S_z` operator in the space of the valence bands and in that of
+the conduction bands, and takes its expectation value in the exciton state
+(`Xatu paper <https://doi.org/10.1016/j.cpc.2023.109001>`_, Eqs. 30–31). If :math:`S_z` is a good
+quantum number of the bands, with :math:`\sigma_n = \pm 1/2`, this reduces to
 
 .. math::
 
-   \langle S_z^T \rangle = \sum_{v,c,\bm{k}} |A_{vc}^{Q}(\bm{k})|^2 (\sigma_c - \sigma_v)
+   \langle S_z^T\rangle = \sum_{v,c,\bm{k}} |A_{vc}(\bm{k})|^2\,(\sigma_c - \sigma_v) .
 
-where:
-
-- :math:`A_{vc}^{Q}(\bm{k})` is the excitonic coefficient in the electron-hole basis
-- :math:`\sigma_c`, :math:`\sigma_v \in \{-1/2, +1/2\}` are the spin projections of the conduction and valence bands, respectively
-
-The spin of the exciton is thus the **difference** between the electron and hole spin projections, weighted by the probability amplitude of each electron-hole pair in the excitonic state.
-
-**Assumptions**
-
-- Spin is assumed to be a good quantum number of the single-particle states.
-- This holds when the Hamiltonian :math:`H_0` commutes with :math:`\hat{S}_z`, i.e., in the absence of spin-orbit coupling or magnetic noncollinearity.
-- Under this condition, spin projections are well-defined and can be treated using scalar labels :math:`\sigma_n` for each band.
-
-Reference
-=========
-
-For a full derivation, see Section 2.3 and Eq. (30–31) in:
-
-`Efficient computation of optical excitations in two-dimensional materials with the Xatu code <https://doi.org/10.1016/j.cpc.2023.109001>`_
-
+With spin–orbit coupling that mixes the spins, the values are no longer multiples of 1/2 but remain
+well-defined expectation values.

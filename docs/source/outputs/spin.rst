@@ -31,7 +31,7 @@ Format
    * - ``Sh``
      - Spin projection of the hole. This is **minus** the spin of the missing valence electron.
 
-All values are in units of :math:`\hbar`. There are ``-n`` lines, or those up to ``-t`` |w90|.
+All values are in units of :math:`\hbar`. There are ``-n`` lines, or those up to ``-t``.
 
 Definition
 ==========

@@ -50,10 +50,10 @@ The workflow is always the same:
    ``diagonalize``.
 4. **Analyse** the returned result: energies (``results->eigval``), coefficients
    (``results->eigvec``), and the same writers the program uses (``writeEigenvalues``,
-   ``writeStates``, ``writeAbsorptionSpectrum``, …).
+   ``writeStates``, ``writeAbsorptionSpectrum``, ...).
 
 ``main/xatu.cpp`` is the full command-line program and the most complete example. The other files in
-``main/`` (``exciton_example.cpp``, and the screening scripts |scr|) show more specific uses.
+``main/`` (``exciton_example.cpp``, and the screening scripts) show more specific uses.
 
 API reference
 =============

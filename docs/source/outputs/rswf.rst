@@ -18,27 +18,12 @@ Format
 One block per exciton, closed by ``#``. The first line of each block is the hole position, then one
 line per atom:
 
-.. tab-set::
+.. code-block:: text
 
-   .. tab-item:: w90 version
+   xh   yh   0               <- hole position (Angstrom)
+   x    y    P               <- one line per atom
+   ...
+   #
 
-      .. code-block:: text
-
-         xh   yh   zh              <- hole position (Å)
-         x    y    z    P          <- one line per atom
-         ...
-         #
-
-      Wannier centres are moved into the home unit cell before writing.
-
-   .. tab-item:: other versions
-
-      .. code-block:: text
-
-         xh   yh   0               <- hole position (Å)
-         x    y    P               <- one line per atom (no z column)
-         ...
-         #
-
-Positions are in Å. Plot with ``plot/rswf.py``, or see the right panel of the figure on
+Positions are in Angstrom. Plot with ``plot/rswf.py``, or see the right panel of the figure on
 :doc:`kwf`.

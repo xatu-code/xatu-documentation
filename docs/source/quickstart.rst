@@ -43,7 +43,7 @@ We assume Xatu is built (see :doc:`installation`) and that you work from a fresh
    # filling
    1
 
-It defines a 2D hexagonal lattice (Å), with one B and one N atom carrying one orbital each. The
+It defines a 2D hexagonal lattice (Angstrom), with one B and one N atom carrying one orbital each. The
 Hamiltonian matrices :math:`H(\bm{R})` (eV) are given for each Bravais vector :math:`\bm{R}` and
 separated by ``&``, and one band is filled. All blocks are described in :doc:`input_files/system`.
 
@@ -66,10 +66,10 @@ separated by ``&``, and one band is filled. All blocks are described in :doc:`in
 In words:
 
 * output files are named ``hBN_N30.*``;
-* the Brillouin zone is sampled with a 30×30 mesh;
+* the Brillouin zone is sampled with a 30x30 mesh;
 * one valence and one conduction band are used;
 * the electron–hole interaction is the Rytova–Keldysh potential (the default), with substrate and
-  medium permittivities of 1 and a screening length :math:`r_0 = 10` Å.
+  medium permittivities of 1 and a screening length :math:`r_0 = 10` Angstrom.
 
 All keywords are listed in :doc:`input_files/exciton`.
 
@@ -164,7 +164,7 @@ Xatu repository has ready-made scripts (``kwf.py``, ``rswf.py``, ``conductivity.
    :width: 100%
    :align: center
 
-The first exciton sits at the K and K′ valleys in reciprocal space. In real space it is tightly bound,
+The first exciton sits at the :math:`K` and :math:`K'` valleys in reciprocal space. In real space it is tightly bound,
 with the electron within a few lattice constants of the hole.
 
 Next steps

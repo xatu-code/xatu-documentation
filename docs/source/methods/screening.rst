@@ -18,7 +18,7 @@ The direct term of the BSE kernel uses an electron–hole interaction potential,
    * - ``coulomb``
      - real & reciprocal
      - Bare Coulomb potential.
-   * - ``rpa`` |scr|
+   * - ``rpa``
      - reciprocal only
      - Numerical RPA screened potential computed from the band structure.
 
@@ -59,7 +59,6 @@ generalization goes beyond the usual isotropic model.
 Numerical RPA screening
 =======================
 
-|scr|
 
 Instead of a model potential, Xatu can compute the microscopic RPA dielectric matrix of the material
 itself, in its symmetric form:
@@ -99,7 +98,7 @@ Example: macroscopic dielectric function of hBN
 -----------------------------------------------
 
 The figure shows the macroscopic dielectric function :math:`\epsilon_M(\bm{q}) = 1/\epsilon^{-1}_{00}(\bm{q})`
-of monolayer hBN along Γ–K. The red and blue curves are computed with Xatu from the CRYSTAL model
+of monolayer hBN along :math:`\Gamma`-K. The red and blue curves are computed with Xatu from the CRYSTAL model
 ``hBN_base_HSE06.outp`` (HSE06 functional), which ships with Xatu. The continuous black curve is from
 Phys. Rev. B **92**, 245123 (2015), and the dashed black curve from the QEH package (Nano Lett. **15**,
 4616 (2015)).

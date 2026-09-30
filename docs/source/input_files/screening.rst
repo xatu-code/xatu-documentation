@@ -2,7 +2,6 @@
 Screening file
 ==============
 
-|scr|
 
 The screening file sets up the microscopic RPA dielectric screening of a 2D material (see
 :doc:`../methods/screening`). It is passed with ``-z``, always **together with an exciton file**, whose
@@ -73,7 +72,7 @@ Optional blocks
    * - ``# isotropic``
      - ``true`` or ``false`` *(default)*: whether the material is in-plane isotropic.
    * - ``# thickness``
-     - Thickness :math:`d_\perp` of the material (Å). If non-zero, the quasi-2D (Q2D) dielectric
+     - Thickness :math:`d_\perp` of the material (Angstrom). If non-zero, the quasi-2D (Q2D) dielectric
        function is computed instead of the strictly 2D one. Default 0.
 
 The four functions

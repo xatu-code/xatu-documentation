@@ -28,7 +28,7 @@ Hamiltonian. Xatu reads four formats:
 Xatu model file
 ===============
 
-Units are Å for lengths and eV for energies. The blocks follow the common syntax of
+Units are Angstrom for lengths and eV for energies. The blocks follow the common syntax of
 :doc:`../input_files`.
 
 Required blocks
@@ -51,11 +51,11 @@ Required blocks
      - Number of orbitals of each species, in species order: ``n0 [n1 ...]``.
    * - ``# filling``
      - Number of **filled bands**, a positive integer. The highest valence band is band
-       ``filling − 1`` (counting from 0), which sets the Fermi level used to build the excitons. In a
+       ``filling - 1`` (counting from 0), which sets the Fermi level used to build the excitons. In a
        basis with explicit spin, this equals the number of electrons per unit cell.
    * - ``# bravaisvectors``
      - The Bravais vectors :math:`\bm{R}` for which a Hamiltonian matrix is given, one per line:
-       ``x y z`` (Cartesian, Å).
+       ``x y z`` (Cartesian, Angstrom).
    * - ``# hamiltonian``
      - The matrices :math:`H(\bm{R})`, in the order of ``# bravaisvectors``, separated by a line with
        ``&``. See below.
@@ -157,8 +157,8 @@ filling is not part of that file, so give it on the command line:
 
    xatu -w <filling> system_tb.dat exciton.txt
 
-|w90| The w90 version handles the degeneracy weights of the ``_tb.dat`` file, and places the Wannier
-centres in the home unit cell for the real-space wavefunction (``.rswf``).
+Each :math:`H(\bm{R})` is divided by the degeneracy weight of :math:`\bm{R}` listed in the file, as
+Wannier90 itself does.
 
 The ``utility/wannier2xatu`` folder of the repository has tools to convert Wannier90 output into a Xatu
 model file.

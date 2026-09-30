@@ -2,7 +2,6 @@
 Inverse dielectric matrix (``_invepsilon``)
 ============================================
 
-|scr|
 
 With ``-z`` and ``# function`` set to ``inversedielectric`` or ``exciton`` in the
 :doc:`screening file <../input_files/screening>`, Xatu writes the inverse RPA dielectric matrix
@@ -73,7 +72,7 @@ The screening is the expensive part of an ``rpa`` calculation. Through the Xatu 
 reused:
 
 * ``ExcitonTB::readInverseDielectricMatrix(filename)`` loads a matrix written in this format. That lets
-  you repeat the exciton calculation with other parameters (solver, regularization, …) without
+  you repeat the exciton calculation with other parameters (solver, regularization, ...) without
   recomputing the screening. ``main/read_screening.cpp`` in the repository shows how.
 * ``ExcitonTB::augment_2D_DielectricMatrix(Gcutoff)``, called after a successful
   ``readInverseDielectricMatrix``, extends a loaded matrix to a larger ``Gcutoff``. Only the missing

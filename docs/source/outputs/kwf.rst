@@ -23,11 +23,11 @@ One block per exciton, each closed by a line with ``#``:
    ...
    #
 
-* ``kx ky kz``: k-point in Å⁻¹.
+* ``kx ky kz``: k-point in :math:`\text{Angstrom}^{-1}`.
 * ``P``: :math:`|\psi_X(\bm{k})|^2`, divided by the spacing between k-points.
 
 For a full-zone mesh, the density is **repeated over neighbouring Brillouin zones** to fill a
-square box around Γ. This makes plots of hexagonal zones easier to read. With ``# submesh``, only
+square box around :math:`\Gamma`. This makes plots of hexagonal zones easier to read. With ``# submesh``, only
 the mesh itself is written, and each block starts with a ``kx ky kz Prob.`` header line.
 
 .. image:: ../images/hbn_wavefunctions.png

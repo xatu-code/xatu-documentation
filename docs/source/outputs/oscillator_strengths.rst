@@ -3,7 +3,7 @@ Oscillator strengths (``*_ex_osc.dat``)
 ================================================
 
 Written with ``-a``, next to the excitonic conductivity. The name is the excitonic file name of
-``kubo_w.in`` with ``_osc`` inserted before the extension (``hBN_ex.dat`` → ``hBN_ex_osc.dat``). It lists
+``kubo_w.in`` with ``_osc`` inserted before the extension (``hBN_ex.dat`` becomes ``hBN_ex_osc.dat``). It lists
 the velocity matrix element between the ground state and **every** exciton of the BSE, which is what
 sets each exciton's brightness.
 

@@ -29,12 +29,6 @@ mathjax3_config = {
     }
 }
 
-# Badges marking features that only exist in one development line of Xatu
-rst_prolog = """
-.. |w90| replace:: :bdg-primary:`w90 version`
-.. |scr| replace:: :bdg-success:`screening version`
-"""
-
 # Copy only the command, not the prompt or output
 copybutton_prompt_text = r"\$ "
 copybutton_prompt_is_regexp = True

@@ -23,14 +23,14 @@ Format
    ...
 
 1. **Header**: the number of electron–hole pairs ``n_pairs``.
-2. **Basis**: ``n_pairs`` lines, each giving one pair: the k-point (Å⁻¹) and the valence and conduction
+2. **Basis**: ``n_pairs`` lines, each giving one pair: the k-point (:math:`\text{Angstrom}^{-1}`) and the valence and conduction
    band indices ``v c``. Band indices are absolute and count from 0 at the lowest band of the
    Hamiltonian, so the top valence band is ``filling - 1``.
 3. **Coefficients**: one line per exciton, with the complex coefficients as ``Re Im`` pairs. The
    :math:`j`-th pair belongs to the :math:`j`-th basis line.
 
 Each exciton is normalised: :math:`\sum_j |A_j|^2 = 1`. There are ``-n`` exciton lines, or those up to
-``-t`` |w90|.
+``-t``.
 
 .. code-block:: python
 

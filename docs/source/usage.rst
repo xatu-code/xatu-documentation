@@ -50,7 +50,7 @@ Physics and input
    * - ``-m, --method diag|davidson|sparse``
      - BSE solver: full diagonalization (default), iterative Davidson, or sparse Lanczos (ARPACK). The
        iterative solvers only compute the lowest ``-n`` states and are faster for large BSE matrices.
-   * - ``-z, --screening <file>`` |scr|
+   * - ``-z, --screening <file>``
      - Compute the microscopic RPA screening described in ``<file>`` (see
        :doc:`input_files/screening`). An exciton file is required too.
    * - ``-b, --bands <kpointsfile>``
@@ -71,24 +71,27 @@ Output files are named after the ``# label`` of the exciton file.
      - Output
    * - ``-n, --states <n>``
      - Number of excitons printed and written to every output file. Default 8.
-   * - ``-t, --ecut <E>`` |w90|
-     - Instead of a fixed number, keep the excitons up to energy ``E`` (eV) in the terminal,
-       ``.eigval``, ``.states`` and ``.spin`` output. Overrides ``-n`` for those outputs.
+   * - ``-t, --ecut <E>``
+     - Instead of a fixed number, keep the excitons up to the one closest in energy to ``E`` (eV), in
+       the terminal, ``.eigval``, ``.states`` and ``.spin`` output. Overrides ``-n`` for those outputs.
    * - ``-p, --precision <d>``
      - Decimals used to print energies and to decide which states are degenerate. Default 6.
    * - ``-e, --energy``
-     - Exciton energies → :doc:`outputs/eigval`.
+     - Exciton energies, see :doc:`outputs/eigval`.
    * - ``-c, --eigenstates``
-     - Exciton coefficients :math:`A_{vc}(\bm{k})` → :doc:`outputs/states`.
+     - Exciton coefficients :math:`A_{vc}(\bm{k})`, see :doc:`outputs/states`.
    * - ``-k, --kwf``
-     - Reciprocal-space densities → :doc:`outputs/kwf`.
+     - Reciprocal-space densities, see :doc:`outputs/kwf`.
    * - ``-r, --rswf <hole> [-r <ncells>]``
      - Real-space densities with the hole on atom ``<hole>`` of the motif, over ``<ncells>`` unit cells
-       (default 8) → :doc:`outputs/rswf`. Give ``-r`` twice to set both, e.g. ``-r 0 -r 10``.
+       (default 8), see :doc:`outputs/rswf`. Give ``-r`` twice to set both, e.g. ``-r 0 -r 10``.
+   * - ``-i, --printSelfEnergy``
+     - Self-energy correction of each band at each k-point, see :doc:`outputs/selfenergy`. Needs
+       ``# selfenergy true`` in the exciton file.
    * - ``-s, --spin``
-     - Spin of each exciton → :doc:`outputs/spin`. Spin must be part of the orbital basis.
+     - Spin of each exciton, see :doc:`outputs/spin`. Spin must be part of the orbital basis.
    * - ``-a, --absorption``
-     - Optical conductivity with and without excitons, and oscillator strengths →
+     - Optical conductivity with and without excitons, and oscillator strengths, see
        :doc:`outputs/conductivity`. Reads ``kubo_w.in`` (see :doc:`input_files/absorption`).
    * - ``-h, --help``
      - Print the help and exit.
@@ -108,7 +111,7 @@ Ten excitons, with eigenstates, k-space densities, absorption and energies:
 
    xatu -n 10 -kace system.model exciton.txt
 
-Wannier90 Hamiltonian with 8 filled bands, keeping every exciton below 3 eV |w90|:
+Wannier90 Hamiltonian with 8 filled bands, keeping every exciton below 3 eV:
 
 .. code-block:: bash
 
@@ -126,7 +129,7 @@ Large BSE with the Davidson solver:
 
    xatu -m davidson -n 20 -e system.model exciton.txt
 
-Exciton with the RPA-screened interaction |scr|:
+Exciton with the RPA-screened interaction:
 
 .. code-block:: bash
 

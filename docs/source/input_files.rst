@@ -21,7 +21,7 @@ A Xatu run reads up to four files:
       k-mesh, bands, interaction potential and other BSE parameters. **Required** except for
       band-structure runs (``-b``).
 
-   .. grid-item-card:: Screening file |scr|
+   .. grid-item-card:: Screening file
       :link: input_files/screening
       :link-type: doc
 

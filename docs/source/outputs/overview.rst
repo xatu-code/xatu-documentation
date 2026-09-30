@@ -25,6 +25,9 @@ exciton file.
    * - :doc:`<label>.rswf <rswf>`
      - ``-r``
      - Real-space probability density, with the hole fixed.
+   * - :doc:`<label>.selfenergy <selfenergy>`
+     - ``-i``
+     - Self-energy correction of each band at each k-point.
    * - :doc:`<label>.spin <spin>`
      - ``-s``
      - Total, electron and hole spin :math:`S_z` of each exciton.
@@ -34,7 +37,7 @@ exciton file.
    * - :doc:`*_ex_osc.dat <oscillator_strengths>`
      - ``-a``
      - Energies and velocity matrix elements of all excitons.
-   * - :doc:`_invepsilon.dat and kgrid_*.dat <invpesilon>` |scr|
+   * - :doc:`_invepsilon.dat and kgrid_*.dat <invpesilon>`
      - ``-z``
      - Inverse dielectric matrix and the k-mesh it is given on.
    * - ``<kpointsfile>.bands``
@@ -45,7 +48,7 @@ How many excitons are written
 =============================
 
 ``-n`` (default 8) sets how many excitons appear in the terminal and in ``.eigval``, ``.states``,
-``.kwf``, ``.rswf`` and ``.spin``. With ``-t <E>`` |w90|, the terminal, ``.eigval``, ``.states`` and
+``.kwf``, ``.rswf`` and ``.spin``. With ``-t <E>``, the terminal, ``.eigval``, ``.states`` and
 ``.spin`` instead keep every exciton up to energy ``E``. The absorption spectrum and the oscillator
 strengths always use **all** excitons of the BSE.
 
@@ -61,9 +64,9 @@ Units at a glance
    * - Energies (exciton, photon)
      - eV
    * - k-points
-     - Å⁻¹ (for model and Wannier90 input)
+     - :math:`\text{Angstrom}^{-1}` (for model and Wannier90 input)
    * - Positions
-     - Å
+     - Angstrom
    * - Optical conductivity
      - :math:`e^2/\hbar` for 2D systems (atomic units)
    * - Spin

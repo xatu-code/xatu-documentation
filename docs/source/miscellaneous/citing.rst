@@ -22,7 +22,7 @@ If you use Xatu in your research, please cite:
      doi     = {10.1016/j.cpc.2023.109001},
    }
 
-If you use the RPA screening |scr|, please also cite:
+If you use the RPA screening, please also cite:
 
    P. Ninhos, A. J. Uría-Álvarez, C. Tserkezis, N. A. Mortensen and J. J. Palacios,
    *Microscopic screening theory for excitons in two-dimensional materials: A bridge between effective

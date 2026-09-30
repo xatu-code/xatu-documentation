@@ -51,5 +51,5 @@ extension. For the example above it writes ``hBN_sp.dat``, ``hBN_ex.dat``, ``hBN
 
 .. note::
 
-   |w90| If ``kubo_w.in`` is missing, the w90 version prints a warning, skips the spectra, and still
-   writes the oscillator strengths to ``kubo_ex_osc.dat``. Other versions stop with an error.
+   If ``kubo_w.in`` is missing, Xatu prints a warning and skips the spectra, but still writes the
+   oscillator strengths of all excitons to ``kubo_ex_osc.dat``.

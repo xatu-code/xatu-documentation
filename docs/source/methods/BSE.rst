@@ -44,6 +44,21 @@ where
 This is the **Tamm–Dancoff approximation**: coupling between resonant and anti-resonant pairs is
 neglected.
 
+Self-energy correction
+----------------------
+
+With ``# selfenergy true``, the band energies entering the BSE are corrected by a self-energy computed
+from the same model interaction (``# selfenergy.potential``):
+
+.. math::
+
+   \varepsilon_{n,\bm{k}} \;\to\; \varepsilon_{n,\bm{k}} + \Sigma_n(\bm{k}) .
+
+:math:`\Sigma_n(\bm{k})` is a Hartree–Fock-type term: a direct (Hartree) contribution minus an
+exchange contribution, summed over the valence bands of the window and the k-mesh. It follows Eqs.
+(2.10)–(2.12) of `arXiv:2510.25009 <https://arxiv.org/abs/2510.25009>`_. It is available for the
+real-space method, and can be written to :doc:`../outputs/selfenergy` with ``-i``.
+
 The size of the problem, the **BSE dimension**, is
 :math:`N_v \times N_c \times N_{\bm{k}}`: bands from ``# bands``/``# bandlist``, and k-points
 :math:`N_{\bm{k}} =` ``ncells``:math:`^d`.
@@ -59,13 +74,13 @@ Real space *(default)*
    centres. The divergence at :math:`r=0` is removed with ``# regularization``.
 
 Reciprocal space
-   The potential is summed over reciprocal-lattice vectors :math:`\bm{G}`. Enabled with
-   ``# reciprocal`` |w90| or ``# gcutoff`` |scr| (see :doc:`../input_files/exciton`).
+   The potential is summed over reciprocal-lattice vectors :math:`\bm{G}` with
+   :math:`|\bm{G}|` below ``# gcutoff``, which enables this method (see
+   :doc:`../input_files/exciton`).
 
 Screened RPA potential
 ----------------------
 
-|scr|
 
 With ``# potential rpa``, the direct term uses the numerical RPA screening. In the strictly 2D
 approach, the screened Coulomb potential is a matrix at each :math:`\bm{q}` of the Brillouin zone:

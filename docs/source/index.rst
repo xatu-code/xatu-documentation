@@ -69,17 +69,6 @@ Where to start
 
       The BSE, the interaction potentials and the optical conductivity as implemented in Xatu.
 
-.. note::
-
-   **Two development lines.** Some features currently exist in only one version of Xatu. They are
-   marked with a badge:
-
-   * |w90| — improved Wannier90 support (degenerate-state handling, ``-t/--ecut``, ``.rswf`` with
-     :math:`z` coordinates);
-   * |scr| — the microscopic RPA screening (``-z`` flag, ``rpa`` potential, ``# gcutoff``).
-
-   Everything without a badge works the same in both.
-
 .. toctree::
    :hidden:
    :caption: Getting started
@@ -104,6 +93,7 @@ Where to start
    outputs/kwf
    outputs/rswf
    outputs/spin
+   outputs/selfenergy
    outputs/conductivity
    outputs/oscillator_strengths
    outputs/invpesilon

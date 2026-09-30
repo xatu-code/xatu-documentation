@@ -18,7 +18,7 @@ Format
       ...
 
 The first three lines are a header. Then come the exciton energies :math:`E_X` in **eV**, one per
-line, in ascending order. There are ``-n`` of them, or those up to ``-t`` |w90|.
+line, in ascending order. There are ``-n`` of them, or those up to ``-t``.
 
 These are **excitation energies** measured from the ground state, not binding energies. The binding
 energy of an exciton is the band gap minus :math:`E_X`.
